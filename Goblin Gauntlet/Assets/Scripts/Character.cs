@@ -14,3 +14,42 @@ public abstract class Character : ScriptableObject
 		health -= amount;
 	}
 }
+
+// This holds all the possible character class options for a playable character
+public enum CharacterClass
+{
+	Paladin,
+	Warlock,
+	Cleric,
+	Rogue
+}
+
+[CreateAssetMenu(fileName = "New Playable Character", menuName = "Characters/Playable")]
+public class PlayableCharacter : Character
+{
+	// Shared characteristics between playable characters
+	public CharacterClass characterClass;
+	public Ability mainAbility;
+	public Ability specialAbility;
+}
+
+[CreateAssetMenu(fileName = "New Enemy Character", menuName = "Characters/Enemy")]
+public class EnemyCharacter : Character
+{
+	public float damage;
+}
+
+[System.Serializable]
+public class Ability
+{
+	public string id;
+	public string name;
+	public int damage;
+	public float cooldown;
+
+	public void UseAbility(Character target)
+	{
+		target.TakeDamage(damage);
+		// Add code to start cooldown
+	}
+}

@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aa99850063f3974aaabf83445044534, type: 3}
-  m_Name: testPC
-  m_EditorClassIdentifier: 
-  id: 
-  characterName: 
-  health: 0
+  m_Script: {fileID: 0}
+  m_Name: Playable_Rogue_Jonas
+  m_EditorClassIdentifier: Assembly-CSharp::PlayableCharacter
+  id: rogue_jonas
+  characterName: Jonas
+  health: 15
+  characterClass: 3
   mainAbility:
     id: 
     name: 
