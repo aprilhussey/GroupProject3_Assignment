@@ -6,9 +6,9 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class DirectionArrowGizmo : MonoBehaviour
 {
-	private float arrowLineLength = 2.0f;
+	private float arrowLineLength = 2f;
 	private float arrowHeadLength = 0.25f;
-	private float arrowHeadAngle = 210.0f;
+	private float arrowHeadAngle = 21f;
 
 	void OnDrawGizmos()
 	{
