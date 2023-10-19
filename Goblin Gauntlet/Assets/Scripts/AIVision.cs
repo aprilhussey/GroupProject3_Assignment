@@ -9,29 +9,39 @@ public class AIVision : MonoBehaviour
     public SphereCollider followRadiusCollider;   // Reference to the 'follow radius' game object collider
     private float visionDistance;
 
-	public LayerMask playerLayer;
-    public LayerMask obstructionLayer;
+    private GoblinController goblinController;
+
+    void Start()
+    {
+        goblinController = GetComponentInParent<GoblinController>();
+    }
 
     // Update is called once per frame
     void Update()
     {
         visionDistance = followRadiusCollider.radius;   // Use the sphere collider's radius as the vision distance
 
-        Collider[] playersInViewRadius = Physics.OverlapSphere(transform.position, visionDistance, playerLayer);
+        Collider[] playersInViewRadius = Physics.OverlapSphere(transform.position, visionDistance, goblinController.playerLayer);
 
-        foreach (Collider player in playersInViewRadius)
+        foreach (Collider playerCollider in playersInViewRadius)
         {
-            Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+            Vector3 directionToPlayer = (playerCollider.transform.position - transform.position).normalized;
             
             // Check if player is within the field of view
             if (Vector3.Angle(transform.forward, directionToPlayer) < fieldOfView / 2)
             {
-                float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+                float distanceToPlayer = Vector3.Distance(transform.position, playerCollider.transform.position);
 
                 // Check if there are obstructions between the AI and the player
-                if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, obstructionLayer))
+                if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, goblinController.obstructionLayer))
                 {
-                    Debug.Log("Player detected");
+                    //Debug.Log("Player detected");
+                    GameObject player = playerCollider.gameObject;
+                    if (!goblinController.characterData.playersSeen.Contains(player))
+                    {
+						Debug.Log("New Player detected");
+						goblinController.characterData.playersSeen.Add(player);
+                    }
                 }
             }
         }

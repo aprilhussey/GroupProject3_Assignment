@@ -13,17 +13,19 @@ public class GoblinAttack : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject == goblinController.player)
+		if ((goblinController.playerLayer.value & (1 << other.gameObject.layer)) != 0)
 		{
-			goblinController.AttackPlayer();
+			GameObject player = other.gameObject;
+			goblinController.AttackPlayer(player);
 		}
 	}
 
 	void OnTriggerExit(Collider other)
 	{
-		if (other.gameObject == goblinController.player)
+		if ((goblinController.playerLayer.value & (1 << other.gameObject.layer)) != 0)
 		{
-			goblinController.StopAttackingPlayer();
+			GameObject player = other.gameObject;
+			goblinController.StopAttackingPlayer(player);
 		}
 	}
 }
