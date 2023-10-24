@@ -9,9 +9,12 @@ public class GoblinController : MonoBehaviour
 	private string id;
 	private string characterName;
 	private int health;
+	private float speed;
+	private float rotationSpeed;
 
 	private float damage;
 	private List<GameObject> playersSeen;
+	private GameObject closestPlayer = null;
 	private bool attacked;
 	private bool attacking;
 
@@ -28,9 +31,12 @@ public class GoblinController : MonoBehaviour
 		id = characterData.id;
 		characterName = characterData.characterName;
 		health = characterData.health;
+		speed = characterData.speed;
+		rotationSpeed = characterData.rotationSpeed;
 
 		damage = characterData.damage;
 		playersSeen = characterData.playersSeen;
+		closestPlayer = characterData.closestPlayer;
 		attacked = characterData.attacked;
 		attacking = characterData.attacking;
 
@@ -39,7 +45,6 @@ public class GoblinController : MonoBehaviour
 	}
 
 	public GameObject player;
-	public GameObject closestPlayer = null;
 	private float distanceToClosestPlayer;
 
 	public GameObject artifact; // TESTING
@@ -54,27 +59,32 @@ public class GoblinController : MonoBehaviour
 		// If playersSeen list is empty
 		if (characterData.playersSeen.Count <= 0)
 		{
+			// Move towards artifact
 			Vector3 targetDirection = (artifact.transform.position - transform.position).normalized;
 			Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
 			
-			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
-			transform.position = Vector3.MoveTowards(transform.position, artifact.transform.position, speed * Time.deltaTime);
+			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * characterData.rotationSpeed);
+			transform.position = Vector3.MoveTowards(transform.position, artifact.transform.position, characterData.speed * Time.deltaTime);
 		}
 
-		// If playersSeen list is not empty
+		//If playersSeen list is not empty
 		if (characterData.playersSeen.Count > 0)
 		{
-			closestPlayer = FindClosestPlayer();
+			characterData.closestPlayer = FindClosestPlayer();
+		}
+		else
+		{
+			// Do nothing
 		}
 
 		// If closestPlayer has a player
-		if (closestPlayer != null)
+		if (characterData.closestPlayer != null)
 		{
-			distanceToClosestPlayer = CalculateDistanceToClosestPlayer(closestPlayer);
+			distanceToClosestPlayer = CalculateDistanceToClosestPlayer(characterData.closestPlayer);
 			
 			if (distanceToClosestPlayer < distanceToArtifact)
 			{
-				//FollowPlayer(closestPlayer);
+				FollowPlayer(characterData.closestPlayer);
 			}
 		}
 	}
@@ -96,33 +106,35 @@ public class GoblinController : MonoBehaviour
 			if (distanceToPlayer < closerDistance)
 			{
 				closerDistance = distanceToPlayer;
-				closestPlayer = player;
+				characterData.closestPlayer = player;
 			}
 		}
-		return closestPlayer;
+		return characterData.closestPlayer;
 	}
 
 	public float CalculateDistanceToClosestPlayer(GameObject closestPlayer)
 	{
-		float distanceToClosestPlayer = Vector3.Distance(transform.position, closestPlayer.transform.position);
-		Debug.DrawLine(transform.position, closestPlayer.transform.position, Color.blue);
+		float distanceToClosestPlayer = Vector3.Distance(transform.position, characterData.closestPlayer.transform.position);
+		Debug.DrawLine(transform.position, characterData.closestPlayer.transform.position, Color.blue);
 		return distanceToClosestPlayer;
 	}
 
-	public float speed = 2.0f;
-	public float rotationSpeed = 5.0f;
-
 	public void FollowPlayer(GameObject player)
 	{
-		Debug.Log("Following the player");
-		//transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+		Debug.Log("Following player: " + player.name);
+		Vector3 targetDirection = (player.gameObject.transform.position - transform.position).normalized;
+		Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
+
+		transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * characterData.rotationSpeed);
+		transform.position = Vector3.MoveTowards(transform.position, player.gameObject.transform.position, characterData.speed * Time.deltaTime);
 	}
 
 	public void StopFollowingPlayer(GameObject player)
 	{
 		Debug.Log("Player left the follow radius");
-		characterData.playersSeen.Clear();	// Remove all elements from list
-		characterData.playersSeen.TrimExcess();	// Release the memory that was allocated for the removed elements
+		//characterData.playersSeen.Clear();	// Remove all elements from list
+		//characterData.playersSeen.TrimExcess();	// Release the memory that was allocated for the removed elements
+		characterData.closestPlayer = null;
 	}
 
 	public void AttackPlayer(GameObject player)

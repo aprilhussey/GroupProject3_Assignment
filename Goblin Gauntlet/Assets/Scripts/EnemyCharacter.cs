@@ -7,6 +7,7 @@ public class EnemyCharacter : Character
 {
 	public float damage;
 	public List<GameObject> playersSeen;
+	public GameObject closestPlayer;
 	public bool attacked;
 	public bool attacking;
 }

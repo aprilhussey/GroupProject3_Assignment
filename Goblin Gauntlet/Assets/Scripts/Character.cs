@@ -8,6 +8,8 @@ public abstract class Character : ScriptableObject
 	public string id;
 	public string characterName;
 	public int health;
+	public float speed;
+	public float rotationSpeed;
 
 	public virtual void TakeDamage(int amount)
 	{

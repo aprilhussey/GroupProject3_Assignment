@@ -37,11 +37,12 @@ public class AIVision : MonoBehaviour
                 {
                     //Debug.Log("Player detected");
                     GameObject player = playerCollider.gameObject;
-                    if (!goblinController.characterData.playersSeen.Contains(player))
+                    /*if (!goblinController.characterData.playersSeen.Contains(player))
                     {
 						Debug.Log("New Player detected");
 						goblinController.characterData.playersSeen.Add(player);
-                    }
+                    }*/
+                    //FollowPlayer(player)
                 }
             }
         }

@@ -5,8 +5,6 @@ using UnityEngine;
 public class GoblinFollow : MonoBehaviour
 {
 	private GoblinController goblinController;
-	private float speed = 2.0f;
-	private float rotationSpeed = 5.0f;
 
 	void Start()
 	{
@@ -15,38 +13,30 @@ public class GoblinFollow : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (goblinController.characterData.playersSeen.Contains(other.gameObject))
+		Debug.Log("Start following the player");
+		if ((goblinController.playerLayer.value & (1 << other.gameObject.layer)) != 0)
 		{
-			if ((goblinController.playerLayer.value & (1 << other.gameObject.layer)) != 0)
+			/*
+			// If no target or new target is closer
+			if (goblinController.characterData.closestPlayer == null ||
+				Vector3.Distance(goblinController.gameObject.transform.position, other.gameObject.transform.position)
+				< Vector3.Distance(goblinController.transform.position, goblinController.characterData.closestPlayer.transform.position))
 			{
-				GameObject player = other.gameObject;
-				//goblinController.FollowPlayer(player);
-				//goblinController.gameObject.transform.position = Vector3.MoveTowards(goblinController.gameObject.transform.position, player.transform.position, speed * Time.deltaTime);
-
-				Vector3 targetDirection = (other.gameObject.transform.position - transform.position).normalized;
-				Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
-
-				goblinController.gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
-				goblinController.gameObject.transform.position = Vector3.MoveTowards(transform.position, other.gameObject.transform.position, speed * Time.deltaTime);
+				goblinController.characterData.closestPlayer = other.gameObject;
 			}
+			*/
 		}
 	}
 
 	void OnTriggerStay(Collider other)
 	{
-		if (goblinController.characterData.playersSeen.Contains(other.gameObject))
+		Debug.Log("Following the player");
+		if (goblinController.characterData.closestPlayer == other.gameObject)
 		{
 			if ((goblinController.playerLayer.value & (1 << other.gameObject.layer)) != 0)
 			{
 				GameObject player = other.gameObject;
-				//goblinController.FollowPlayer(player);
-				//goblinController.gameObject.transform.position = Vector3.MoveTowards(goblinController.gameObject.transform.position, player.transform.position, speed * Time.deltaTime);
-
-				Vector3 targetDirection = (other.gameObject.transform.position - transform.position).normalized;
-				Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
-
-				goblinController.gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
-				goblinController.gameObject.transform.position = Vector3.MoveTowards(transform.position, other.gameObject.transform.position, speed * Time.deltaTime);
+				goblinController.FollowPlayer(player);
 			}
 		}
 	}
