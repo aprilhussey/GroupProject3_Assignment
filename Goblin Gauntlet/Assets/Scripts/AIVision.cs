@@ -9,11 +9,11 @@ public class AIVision : MonoBehaviour
     public SphereCollider followRadiusCollider;   // Reference to the 'follow radius' game object collider
     private float visionDistance;
 
-    private GoblinController goblinController;
+    private GoblinControllerOld goblinController;
 
     void Start()
     {
-        goblinController = GetComponentInParent<GoblinController>();
+        goblinController = GetComponentInParent<GoblinControllerOld>();
     }
 
     // Update is called once per frame

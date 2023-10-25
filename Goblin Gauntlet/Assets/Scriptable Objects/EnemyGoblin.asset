@@ -9,15 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 1b327abe493104a4cb2c17c6b6448465, type: 3}
   m_Name: EnemyGoblin
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyCharacter
+  m_EditorClassIdentifier: 
   id: goblin
-  characterName: GOBBO
-  health: 12
+  characterName: Goblin
+  health: 5
   speed: 2
   rotationSpeed: 5
-  damage: 1
+  dealDamage: 1
+  visionDistance: 5
+  fieldOfView: 45
   playersSeen: []
-  attacked: 0
-  attacking: 0
+  target: {fileID: 0}

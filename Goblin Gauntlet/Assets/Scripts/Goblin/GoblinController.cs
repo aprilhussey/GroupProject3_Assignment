@@ -4,146 +4,288 @@ using UnityEngine;
 
 public class GoblinController : MonoBehaviour
 {
-	public EnemyCharacter characterData;
+    public EnemyCharacter characterData;
 
-	private string id;
-	private string characterName;
-	private int health;
-	private float speed;
-	private float rotationSpeed;
+    // Character.cs varaibles
+    private string id;
+    private string characterName;
+    private float health;
+    private float speed;
+    private float rotationSpeed;
 
-	private float damage;
-	private List<GameObject> playersSeen;
-	private GameObject closestPlayer = null;
-	private bool attacked;
-	private bool attacking;
+    // EnemyCharacter.cs variables
+    private float dealDamage;
+    private float visionDistance;
+    private float fieldOfView;
 
-	public LayerMask playerLayer;
-	public LayerMask obstructionLayer;
+    // Layer mask variables
+    private LayerMask playerLayer;
+    private LayerMask obstructionLayer;
 
-	// Start is called before the first frame update
-	void Start()
-	{
-		playerLayer = 1 << 3;   // Represents the Player layer in project
-		obstructionLayer = 1 << 6;   // Represents the Obstruction layer in project
+    // Sphere collider variables
+    private SphereCollider[] sphereColliders;
+    private SphereCollider followRadiusCollider;
+    private SphereCollider attackRadiusCollider;
 
-		// Access character data
+	// Other variables
+	[SerializeField] private List<GameObject> playersSeen;
+	[SerializeField] private GameObject target = null;
+	//private bool attacked;
+	//private bool attacking;
+
+	private GameObject nearestPlayer;						// player compared to it will always be closer
+
+	// FOR TESTING ONLY
+	// FOR TESTING ONLY
+	public GameObject artifact;
+	// FOR TESTING ONLY
+	// FOR TESTING ONLY
+
+	// Awake is called before Start
+	void Awake()
+    {
+		// Access character data - Character.cs
 		id = characterData.id;
 		characterName = characterData.characterName;
 		health = characterData.health;
 		speed = characterData.speed;
 		rotationSpeed = characterData.rotationSpeed;
 
-		damage = characterData.damage;
-		playersSeen = characterData.playersSeen;
-		closestPlayer = characterData.closestPlayer;
-		attacked = characterData.attacked;
-		attacking = characterData.attacking;
+		// Access character data - EnemyCharacter.cs
+		dealDamage = characterData.dealDamage;
+		visionDistance = characterData.visionDistance;
+		fieldOfView = characterData.fieldOfView;
 
-		characterData.playersSeen.Clear();	// Remove all elements from list
-		characterData.playersSeen.TrimExcess();	// Release the memory that was allocated for the removed elements
+		// Set layer mask variables to their respective layers
+		playerLayer = LayerMask.GetMask("Player");
+		obstructionLayer = LayerMask.GetMask("Obstruction");
+
+		// Get all sphere collider components in children
+		sphereColliders = GetComponentsInChildren<SphereCollider>();
+		followRadiusCollider = null;
+		attackRadiusCollider = null;
 	}
+    
+    // Start is called before the first frame update
+	void Start()
+    {
+		sphereColliders = GetComponentsInChildren<SphereCollider>();
 
-	public GameObject player;
-	private float distanceToClosestPlayer;
-
-	public GameObject artifact; // TESTING
-	private float distanceToArtifact;
-
-	private float closerDistance = Mathf.Infinity;	// Start with infinity so the first player distance will always be closer
-
-	void Update()
-	{
-		distanceToArtifact = CalculateDistanceToArtifact();
-
-		// If playersSeen list is empty
-		if (characterData.playersSeen.Count <= 0)
-		{
-			// Move towards artifact
-			Vector3 targetDirection = (artifact.transform.position - transform.position).normalized;
-			Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
-			
-			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * characterData.rotationSpeed);
-			transform.position = Vector3.MoveTowards(transform.position, artifact.transform.position, characterData.speed * Time.deltaTime);
-		}
-
-		//If playersSeen list is not empty
-		if (characterData.playersSeen.Count > 0)
-		{
-			characterData.closestPlayer = FindClosestPlayer();
-		}
-		else
-		{
-			// Do nothing
-		}
-
-		// If closestPlayer has a player
-		if (characterData.closestPlayer != null)
-		{
-			distanceToClosestPlayer = CalculateDistanceToClosestPlayer(characterData.closestPlayer);
-			
-			if (distanceToClosestPlayer < distanceToArtifact)
+		// Loop through colliders
+		foreach (SphereCollider sphereCollider in sphereColliders)
+        {
+            // Check the tag of the game object the collider is attached to
+            if (sphereCollider.gameObject.tag == "FollowRadius")
+            {
+                followRadiusCollider = sphereCollider;
+				followRadiusCollider.radius = characterData.visionDistance;
+            }
+			else if (sphereCollider.gameObject.tag == "AttackRadius")
 			{
-				FollowPlayer(characterData.closestPlayer);
+				attackRadiusCollider = sphereCollider;
 			}
+			else
+            {
+                Debug.LogError("ERROR: A game object with a sphere collider not tagged as " +
+					"'FollowRadius' or 'AttackRadius' was found. Are the tags on the child game " +
+					"object set correctly?");
+            }
+        }
+		CheckIfNull();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+		AIVision();
+
+		FindTarget();
+
+		if (target != null)
+		{
+			MoveTowardsTarget(target);
 		}
 	}
 
-	public float CalculateDistanceToArtifact()
-	{
-		float distanceToArtifact = Vector3.Distance(transform.position, artifact.transform.position);
-		Debug.DrawLine(transform.position, artifact.transform.position, Color.blue);
-		return distanceToArtifact;
-	}
+	// AIVision handles the vision of the goblins. It determines how and if a player can be seen by them
+    void AIVision()
+    {
+		Collider[] playersInViewRadius = Physics.OverlapSphere(transform.position, 
+			visionDistance, playerLayer);
 
-	public GameObject FindClosestPlayer()
+        foreach (Collider playerCollider in playersInViewRadius)
+        {
+			Vector3 directionToPlayer = (playerCollider.transform.position -
+				transform.position).normalized;
+
+			// Check if player is within field of view
+			if (Vector3.Angle(transform.forward, directionToPlayer) < fieldOfView / 2)
+			{
+				float distanceToPlayer = Vector3.Distance(transform.position, 
+					playerCollider.transform.position);
+
+				// Check if there are obstructions between the AI and the player
+				if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, 
+					obstructionLayer))
+				{
+					GameObject playerSeen = playerCollider.gameObject;
+					Debug.Log("Player detected: " + playerSeen.name);
+
+					if (!playersSeen.Contains(playerSeen))
+					{
+						Debug.Log("New player detected: " + playerSeen.name);
+						playersSeen.Add(playerSeen);
+					}
+				}
+			}
+        }
+    }
+
+	void FindTarget()
 	{
-		foreach (GameObject player in characterData.playersSeen)
+		float closestPlayerDistance = Mathf.Infinity;
+		foreach (GameObject player in playersSeen)
 		{
+			Debug.Log("playersSeen: " + player.name);
+
 			float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 			Debug.DrawLine(transform.position, player.transform.position, Color.red);
 
-			if (distanceToPlayer < closerDistance)
+			// If distanceToPlayer is less than the closestPlayerDistance set closestPlayerDistance
+			// to distanceToPlayer
+			if (distanceToPlayer < closestPlayerDistance)
 			{
-				closerDistance = distanceToPlayer;
-				characterData.closestPlayer = player;
+				closestPlayerDistance = distanceToPlayer;
+				nearestPlayer = player;
 			}
 		}
-		return characterData.closestPlayer;
+
+		// When closest player to goblin is found check if closestPlayerDistance is less than
+		// distanceToArtefact
+		float distanceToArtifact = Vector3.Distance(transform.position, artifact.transform.position);
+		Debug.DrawLine(transform.position, artifact.transform.position, Color.cyan);
+
+		if (closestPlayerDistance < distanceToArtifact)
+		{
+			target = nearestPlayer;
+		}
+		else
+		{
+			target = artifact;
+		}
 	}
 
-	public float CalculateDistanceToClosestPlayer(GameObject closestPlayer)
+	void MoveTowardsTarget(GameObject target)
 	{
-		float distanceToClosestPlayer = Vector3.Distance(transform.position, characterData.closestPlayer.transform.position);
-		Debug.DrawLine(transform.position, characterData.closestPlayer.transform.position, Color.blue);
-		return distanceToClosestPlayer;
+		Vector3 targetDirection = (target.transform.position - transform.position).normalized;
+		Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, 
+			targetDirection.z));
+
+		transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 
+			rotationSpeed);
+		transform.position = Vector3.MoveTowards(transform.position, target.transform.position,
+			speed * Time.deltaTime);
 	}
 
-	public void FollowPlayer(GameObject player)
+	// Handles the OnTriggerEnter functionality of the followRadiusCollider
+	public void FollowRadiusEntered(GameObject other)
 	{
-		Debug.Log("Following player: " + player.name);
-		Vector3 targetDirection = (player.gameObject.transform.position - transform.position).normalized;
-		Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
-
-		transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * characterData.rotationSpeed);
-		transform.position = Vector3.MoveTowards(transform.position, player.gameObject.transform.position, characterData.speed * Time.deltaTime);
+		if (playersSeen.Contains(other))
+		{
+			Debug.Log("Game object entered follow radius: " + other.name);
+		}
 	}
 
-	public void StopFollowingPlayer(GameObject player)
+	// Handles the OnTriggerExit functionality of the followRadiusCollider
+	public void FollowRadiusExited(GameObject other)
 	{
-		Debug.Log("Player left the follow radius");
-		//characterData.playersSeen.Clear();	// Remove all elements from list
-		//characterData.playersSeen.TrimExcess();	// Release the memory that was allocated for the removed elements
-		characterData.closestPlayer = null;
+		if (playersSeen.Contains(other))
+		{
+			Debug.Log("Game object exited follow radius: " + other.name);
+			target = null;
+			playersSeen.Remove(other);
+		}
 	}
 
-	public void AttackPlayer(GameObject player)
-	{
-		Debug.Log("Attacking the player for " + damage + " damage");
+	// CheckIfNull handles checking if any varaibles that shouldn't be null are null and logs a
+	// warning message
+	void CheckIfNull()
+    {
+        // Check if Character.cs variables are null
+        if (id == null)
+        {
+            Debug.LogWarning("WARNING: " + gameObject.name + ".id is null");
+        }
+		if (characterName == null)
+		{
+			Debug.LogWarning("WARNING: " + gameObject.name + ".characterName is null");
+		}
+		if (health == 0)
+		{
+			Debug.LogWarning("WARNING: " + gameObject.name + ".health is null");
+		}
+		if (speed == 0)
+		{
+			Debug.LogWarning("WARNING: " + gameObject.name + ".speed is null");
+		}
+		if (rotationSpeed == 0)
+		{
+			Debug.LogWarning("WARNING: " + gameObject.name + ".rotationSpeed is null");
+		}
+
+		// Check if EnemyCharacter.cs variables are null
+		if (dealDamage == 0)
+		{
+			Debug.LogWarning("WARNING: " + gameObject.name + ".damage is null");
+		}
+		if (visionDistance == 0)
+		{
+			Debug.LogWarning("WARNING: " + gameObject.name + ".visionDistance is null");
+		}
+		if (fieldOfView == 0)
+		{
+			Debug.LogWarning("WARNING: " + gameObject.name + ".fieldOfView is null");
+		}
+		// playersSeen can be null
+		// target can be null
+		/*if (attacked == null)
+		{
+			Debug.LogWarning("WARNING: " + gameObject.name + ".attacked is null");
+		}*/
+		/*if (attacking == null)
+		{
+			Debug.LogWarning("WARNING: " + gameObject.name + ".attacking is null");
+		}*/
+
+		// Check if layer mask variables are empty
+		if (playerLayer.value == 0)
+		{
+			Debug.LogWarning("WARNING: playerLayer does not have a layer selected");
+		}
+		if (obstructionLayer.value == 0)
+		{
+			Debug.LogWarning("WARNING: obstructionLayer does not have a layer selected");
+		}
+
+		// Check if sphere collider varaibles are null
+		if (sphereColliders == null)
+		{
+			Debug.LogWarning("WARNING: sphereColliders does not contain any sphere colliders");
+		}
+		// followRadiusCollider is checked seperately within Start()
+		// attackRadiusCollider is checked seperately within Start()
 	}
 
-	public void StopAttackingPlayer(GameObject player)
+	// Draw gizmo in editor
+	void OnDrawGizmos()
 	{
-		Debug.Log("Player left the attack radius");
+		// Draw field of view
+		Gizmos.color = Color.green;
+		Gizmos.DrawRay(transform.position, Quaternion.Euler(0, -characterData.fieldOfView / 2, 0) * transform.forward
+			* characterData.visionDistance);
+		Gizmos.DrawRay(transform.position, Quaternion.Euler(0, characterData.fieldOfView / 2, 0) * transform.forward
+			* characterData.visionDistance);
+	
+		Gizmos.DrawWireSphere(transform.position, characterData.visionDistance);
 	}
 }

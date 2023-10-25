@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GoblinFollow : MonoBehaviour
 {
-	private GoblinController goblinController;
+	private GoblinControllerOld goblinController;
 
 	void Start()
 	{
-		goblinController = GetComponentInParent<GoblinController>();
+		goblinController = GetComponentInParent<GoblinControllerOld>();
 	}
 
 	void OnTriggerEnter(Collider other)
