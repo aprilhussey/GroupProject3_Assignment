@@ -13,13 +13,15 @@ public class GoblinController : MonoBehaviour
     private float speed;
     private float rotationSpeed;
 
-    // EnemyCharacter.cs variables
-    private float dealDamage;
-    private float visionDistance;
-    private float fieldOfView;
+	// EnemyCharacter.cs variables
+	private float fieldOfView;
+	private float visionDistance;
+	private float attackDistance;
+	private float attackCooldown;
+	private float dealDamage;
 
-    // Layer mask variables
-    private LayerMask playerLayer;
+	// Layer mask variables
+	private LayerMask playerLayer;
     private LayerMask obstructionLayer;
 
     // Sphere collider variables
@@ -28,16 +30,17 @@ public class GoblinController : MonoBehaviour
     private SphereCollider attackRadiusCollider;
 
 	// Other variables
-	[SerializeField] private List<GameObject> playersSeen;
-	[SerializeField] private GameObject target = null;
+	private List<GameObject> playersSeen;
+	private GameObject target = null;
+	private bool targetInAttackRadius;
 	//private bool attacked;
 	//private bool attacking;
 
-	private GameObject nearestPlayer;						// player compared to it will always be closer
+	private GameObject nearestPlayer;   // Player compared to it will always be closer
+	private GameObject artifact;
 
 	// FOR TESTING ONLY
 	// FOR TESTING ONLY
-	public GameObject artifact;
 	// FOR TESTING ONLY
 	// FOR TESTING ONLY
 
@@ -52,9 +55,11 @@ public class GoblinController : MonoBehaviour
 		rotationSpeed = characterData.rotationSpeed;
 
 		// Access character data - EnemyCharacter.cs
-		dealDamage = characterData.dealDamage;
-		visionDistance = characterData.visionDistance;
 		fieldOfView = characterData.fieldOfView;
+		visionDistance = characterData.visionDistance;
+		attackDistance = characterData.attackDistance;
+		attackCooldown = characterData.attackCooldown;
+		dealDamage = characterData.dealDamage;
 
 		// Set layer mask variables to their respective layers
 		playerLayer = LayerMask.GetMask("Player");
@@ -64,6 +69,11 @@ public class GoblinController : MonoBehaviour
 		sphereColliders = GetComponentsInChildren<SphereCollider>();
 		followRadiusCollider = null;
 		attackRadiusCollider = null;
+
+		playersSeen = new List<GameObject>();
+
+		// Get artifact game object
+		artifact = GameObject.FindGameObjectWithTag("Artifact");
 	}
     
     // Start is called before the first frame update
@@ -78,18 +88,14 @@ public class GoblinController : MonoBehaviour
             if (sphereCollider.gameObject.tag == "FollowRadius")
             {
                 followRadiusCollider = sphereCollider;
-				followRadiusCollider.radius = characterData.visionDistance;
+				followRadiusCollider.radius = visionDistance;
             }
-			else if (sphereCollider.gameObject.tag == "AttackRadius")
+
+			if (sphereCollider.gameObject.tag == "AttackRadius")
 			{
 				attackRadiusCollider = sphereCollider;
+				attackRadiusCollider.radius = attackDistance;
 			}
-			else
-            {
-                Debug.LogError("ERROR: A game object with a sphere collider not tagged as " +
-					"'FollowRadius' or 'AttackRadius' was found. Are the tags on the child game " +
-					"object set correctly?");
-            }
         }
 		CheckIfNull();
     }
@@ -104,6 +110,7 @@ public class GoblinController : MonoBehaviour
 		if (target != null)
 		{
 			MoveTowardsTarget(target);
+			AttackTarget(target);
 		}
 	}
 
@@ -207,6 +214,34 @@ public class GoblinController : MonoBehaviour
 		}
 	}
 
+	void AttackTarget(GameObject target)
+	{
+		if (targetInAttackRadius)
+		{
+			Debug.Log(gameObject.name + " attacked " + target.name + " for " + dealDamage + " damage");
+		}
+	}
+
+	// Handles the OnTriggerEnter functionality of the attackRadiusCollider
+	public void AttackRadiusEntered(GameObject other)
+	{
+		if (other == target)
+		{
+			Debug.Log("Game object entered attack radius: " + other.name);
+			targetInAttackRadius = true;
+		}
+	}
+
+	// Handles the OnTriggerExit functionality of the attackRadiusCollider
+	public void AttackRadiusExited(GameObject other)
+	{
+		if (other == target)
+		{
+			Debug.Log("Game object exited attack radius: " + other.name);
+			targetInAttackRadius = false;
+		}
+	}
+
 	// CheckIfNull handles checking if any varaibles that shouldn't be null are null and logs a
 	// warning message
 	void CheckIfNull()
@@ -246,16 +281,6 @@ public class GoblinController : MonoBehaviour
 		{
 			Debug.LogWarning("WARNING: " + gameObject.name + ".fieldOfView is null");
 		}
-		// playersSeen can be null
-		// target can be null
-		/*if (attacked == null)
-		{
-			Debug.LogWarning("WARNING: " + gameObject.name + ".attacked is null");
-		}*/
-		/*if (attacking == null)
-		{
-			Debug.LogWarning("WARNING: " + gameObject.name + ".attacking is null");
-		}*/
 
 		// Check if layer mask variables are empty
 		if (playerLayer.value == 0)
@@ -272,20 +297,36 @@ public class GoblinController : MonoBehaviour
 		{
 			Debug.LogWarning("WARNING: sphereColliders does not contain any sphere colliders");
 		}
-		// followRadiusCollider is checked seperately within Start()
-		// attackRadiusCollider is checked seperately within Start()
+		if (followRadiusCollider == null)
+		{
+			Debug.LogError("ERROR: A game object with a sphere collider not tagged as " +
+					"'FollowRadius' was found. Is the tag on the child game " +
+					"object set correctly?");
+		}
+		if (attackRadiusCollider == null)
+		{
+			Debug.LogError("ERROR: A game object with a sphere collider not tagged as " +
+					"'AttackRadius' was found. Is the tag on the child game " +
+					"object set correctly?");
+		}
 	}
 
 	// Draw gizmo in editor
 	void OnDrawGizmos()
 	{
 		// Draw field of view
-		Gizmos.color = Color.green;
+		Gizmos.color = Color.yellow;
 		Gizmos.DrawRay(transform.position, Quaternion.Euler(0, -characterData.fieldOfView / 2, 0) * transform.forward
 			* characterData.visionDistance);
 		Gizmos.DrawRay(transform.position, Quaternion.Euler(0, characterData.fieldOfView / 2, 0) * transform.forward
 			* characterData.visionDistance);
-	
+
+		// Draw vision distance
+		Gizmos.color = Color.yellow;
 		Gizmos.DrawWireSphere(transform.position, characterData.visionDistance);
+
+		// Draw attack distance
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(transform.position, characterData.attackDistance);
 	}
 }

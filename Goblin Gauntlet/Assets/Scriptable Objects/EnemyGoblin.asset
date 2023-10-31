@@ -17,8 +17,7 @@ MonoBehaviour:
   health: 5
   speed: 2
   rotationSpeed: 5
-  dealDamage: 1
-  visionDistance: 5
   fieldOfView: 45
-  playersSeen: []
-  target: {fileID: 0}
+  visionDistance: 5
+  attackDistance: 2.5
+  dealDamage: 1

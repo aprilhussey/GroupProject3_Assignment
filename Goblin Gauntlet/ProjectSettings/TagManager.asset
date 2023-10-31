@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FollowRadius
   - AttackRadius
+  - Artifact
   layers:
   - Default
   - TransparentFX
