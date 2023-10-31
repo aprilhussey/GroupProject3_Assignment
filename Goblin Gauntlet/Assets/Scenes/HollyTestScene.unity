@@ -123,6 +123,34 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &610780498 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9032611000019605500, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
+  m_PrefabInstance: {fileID: 944841370343575364}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &610780504
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610780498}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1 &836089480
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,20 +767,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4019775628849653169, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
       propertyPath: classID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019775628849653169, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
+      propertyPath: attacking
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4019775628849653169, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
       propertyPath: paladinBeam
       value: 
       objectReference: {fileID: 1871512013431325409, guid: e0c32511af344e843b4c6d3ea24165c7, type: 3}
+    - target: {fileID: 4019775628849653169, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
+      propertyPath: warlockFlame
+      value: 
+      objectReference: {fileID: 1274902372460129102, guid: 260af2ed0e64a124188fce90d70c0317, type: 3}
+    - target: {fileID: 4019775628849653169, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
+      propertyPath: warlockReticleObject
+      value: 
+      objectReference: {fileID: 1670396494358298541, guid: 440f2962835878b4583a4504353cae90, type: 3}
     - target: {fileID: 9032611000019605500, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1956030951840028289, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
+    - {fileID: 4009080479715276524, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9032611000019605500, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 610780504}
   m_SourcePrefab: {fileID: 100100000, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

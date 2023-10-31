@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class playerAttack : MonoBehaviour
 {
+    playerMove PlayerMove;
+    WarlockReticle warlockReticle;
     BoxCollider attackCollider;
     public BoxCollider paladinAttackCollider;
     public BoxCollider rogueAttackCollider;
     public GameObject warlockCastShot;
     public BoxCollider clericAttackCollider;
     public GameObject paladinBeam;
+    public GameObject warlockReticleObject;
+    public GameObject warlockFlame;
+    private Vector3 warlockReticlePosition;
     float attackTime;
     private float paladinAttackTime = 0.9f;
     private float rogueAttackTime = 0.2f;
@@ -21,6 +26,7 @@ public class playerAttack : MonoBehaviour
     private float clericSpecialCooldown = 600;
     float specialCooldown;
     public bool attacking = false;
+    bool reticleTriggered = false;
     private Rigidbody rb;
     public float classID = 0;
     // Start is called before the first frame update
@@ -104,9 +110,8 @@ public class playerAttack : MonoBehaviour
         attacking = true;
         if (classID == 2)
         {
-            GameObject childObject = Instantiate(warlockCastShot) as GameObject;
+            GameObject childObject = Instantiate(warlockCastShot, transform.position + new Vector3(0, 2, 1), Quaternion.identity);
             childObject.transform.parent = this.transform;
-            childObject.transform.position = this.transform.position + new Vector3(0, 2, 1);
         }
         else
         {
@@ -121,7 +126,7 @@ public class playerAttack : MonoBehaviour
     IEnumerator PaladinSpecialAttack()
     {
         print("special attacking");
-        specialCooldown = 1200;
+        specialCooldown = paladinSpecialCooldown;
         GameObject childObject = Instantiate(paladinBeam) as GameObject;
         childObject.transform.parent = this.transform;
         childObject.transform.position = this.transform.position + new Vector3(0, 1.5f, 10.5f);
@@ -137,7 +142,14 @@ public class playerAttack : MonoBehaviour
 
     IEnumerator WarlockSpecialAttack()
     {
-        yield return new WaitForSeconds(5);
+        print("special attacking");
+        specialCooldown = warlockSpecialCooldown;
+        GameObject childObject = Instantiate(warlockReticleObject) as GameObject;
+        childObject.transform.parent = this.transform;
+        childObject.transform.position = this.transform.position + new Vector3(0, 0.5f, 5.5f);
+        PlayerMove.capsule.enabled = false;
+        yield return new WaitForSeconds(3);
+        PlayerMove.capsule.enabled = true;
     }
 
     IEnumerator ClericSpecialAttack()
