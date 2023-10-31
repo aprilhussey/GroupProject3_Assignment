@@ -737,6 +737,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4019775628849653169, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
+      propertyPath: classID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019775628849653169, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
+      propertyPath: paladinBeam
+      value: 
+      objectReference: {fileID: 1871512013431325409, guid: e0c32511af344e843b4c6d3ea24165c7, type: 3}
     - target: {fileID: 9032611000019605500, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
       propertyPath: m_Name
       value: Player
