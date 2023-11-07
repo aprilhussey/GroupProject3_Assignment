@@ -5,7 +5,6 @@ using UnityEngine;
 public class playerAttack : MonoBehaviour
 {
     playerMove PlayerMove;
-    WarlockReticle warlockReticle;
     BoxCollider attackCollider;
     public BoxCollider paladinAttackCollider;
     public BoxCollider rogueAttackCollider;
@@ -14,7 +13,6 @@ public class playerAttack : MonoBehaviour
     public GameObject paladinBeam;
     public GameObject warlockReticleObject;
     public GameObject warlockFlame;
-    private Vector3 warlockReticlePosition;
     float attackTime;
     private float paladinAttackTime = 0.9f;
     private float rogueAttackTime = 0.2f;
@@ -26,7 +24,7 @@ public class playerAttack : MonoBehaviour
     private float clericSpecialCooldown = 600;
     float specialCooldown;
     public bool attacking = false;
-    bool reticleTriggered = false;
+    bool poison = false;
     private Rigidbody rb;
     public float classID = 0;
     // Start is called before the first frame update
@@ -100,7 +98,15 @@ public class playerAttack : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            print("Hit detected");
+            if (poison)
+            {
+                print("poison detected");
+                StartCoroutine(PoisonDamage(other.gameObject));
+            }
+            else
+            {
+                print("Hit detected");
+            }
         }
     }
 
@@ -137,7 +143,12 @@ public class playerAttack : MonoBehaviour
 
     IEnumerator RogueSpecialAttack()
     {
+        print("special attacking");
+        specialCooldown = rogueSpecialCooldown;
+        poison = true;
         yield return new WaitForSeconds(5);
+        poison = false;
+        print("special attack done");
     }
 
     IEnumerator WarlockSpecialAttack()
@@ -155,5 +166,13 @@ public class playerAttack : MonoBehaviour
     IEnumerator ClericSpecialAttack()
     {
         yield return new WaitForSeconds(5);
+    }
+
+    IEnumerator PoisonDamage(GameObject enemy)
+    {
+        for(int i = 0; i < 5; i++) {
+            yield return new WaitForSeconds(1);
+            enemy.gameObject.GetComponent<testEnemy>().health -= 2;
+        }
     }
 }

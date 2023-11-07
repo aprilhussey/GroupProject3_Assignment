@@ -10,6 +10,7 @@ public class playerMove : MonoBehaviour
     private Rigidbody rb;
     public CapsuleCollider capsule;
     playerAttack attackScript;
+    public float health = 100;
     // Start is called before the first frame update
     void Awake()
     {
