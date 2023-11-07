@@ -31,6 +31,9 @@ public class playerAttack : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        paladinAttackCollider.enabled = false;
+        rogueAttackCollider.enabled = false;
+        clericAttackCollider.enabled = false;
         switch (classID)
         {
             case 0:
@@ -54,7 +57,6 @@ public class playerAttack : MonoBehaviour
                 specialCooldown = clericSpecialCooldown;
                 break;
         }
-        attackCollider.enabled = false;
     }
 
     private void Update()

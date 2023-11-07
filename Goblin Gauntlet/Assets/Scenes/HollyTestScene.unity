@@ -360,7 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1393184405}
   - component: {fileID: 1393184406}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 1475138873}
   - component: {fileID: 1475138872}
   - component: {fileID: 1475138871}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 1769345901}
   - component: {fileID: 1769345900}
   - component: {fileID: 1769345899}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -767,7 +767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4019775628849653169, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
       propertyPath: classID
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4019775628849653169, guid: 6144f8e69611a644d9cdd37e3ca81f42, type: 3}
       propertyPath: attacking
