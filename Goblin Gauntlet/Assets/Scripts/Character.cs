@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class Character : ScriptableObject
 {
 	// Shared characteristics between all characters
-	public string id;
 	public string characterName;
 	public float health;
 	public float speed;

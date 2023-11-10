@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Playable Character", menuName = "Characters/Playable")]
+[CreateAssetMenu(fileName = "New Playable Character", menuName = "Scriptable Object/Character/Playable")]
 public class PlayableCharacter : Character
 {
 	// Shared characteristics between playable characters

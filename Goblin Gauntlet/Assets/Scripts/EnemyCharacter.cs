@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Enemy Character", menuName = "Characters/Enemy")]
+[CreateAssetMenu(fileName = "New Enemy Character", menuName = "Scriptable Object/Character/Enemy")]
 public class EnemyCharacter : Character
 {
 	public float fieldOfView;

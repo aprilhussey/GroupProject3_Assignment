@@ -7,7 +7,6 @@ public class GoblinController : MonoBehaviour
     public EnemyCharacter characterData;
 
     // Character.cs varaibles
-    private string id;
     private string characterName;
     private float health;
     private float speed;
@@ -39,16 +38,10 @@ public class GoblinController : MonoBehaviour
 	private GameObject nearestPlayer;   // Player compared to it will always be closer
 	private GameObject artifact;
 
-	// FOR TESTING ONLY
-	// FOR TESTING ONLY
-	// FOR TESTING ONLY
-	// FOR TESTING ONLY
-
 	// Awake is called before Start
 	void Awake()
     {
 		// Access character data - Character.cs
-		id = characterData.id;
 		characterName = characterData.characterName;
 		health = characterData.health;
 		speed = characterData.speed;
@@ -247,10 +240,6 @@ public class GoblinController : MonoBehaviour
 	void CheckIfNull()
     {
         // Check if Character.cs variables are null
-        if (id == null)
-        {
-            Debug.LogWarning("WARNING: " + gameObject.name + ".id is null");
-        }
 		if (characterName == null)
 		{
 			Debug.LogWarning("WARNING: " + gameObject.name + ".characterName is null");
