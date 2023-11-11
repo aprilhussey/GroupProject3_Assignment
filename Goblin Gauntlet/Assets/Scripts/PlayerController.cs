@@ -6,11 +6,12 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-    public PlayableCharacter characterData;
+	public PlayableCharacter characterData;
 
     // Character.cs variables
     private string characterName;
     private float health;
+	public float damage;
     private float speed;
     private float rotationSpeed;
 
@@ -27,7 +28,12 @@ public class PlayerController : MonoBehaviour
 
 	// Other variables
 	private InputActions inputActions;
-    private Vector2 movementInput = new Vector2();
+	private Vector2 movementInput = new Vector2();
+	private Vector2 lookInput = new Vector2();
+
+	private Rigidbody rb;
+
+	public float smoothTime = 0.1f;
 
 	enum AbilityState
 	{
@@ -45,6 +51,7 @@ public class PlayerController : MonoBehaviour
         // Access character data - Character.cs
         characterName = characterData.characterName;
         health = characterData.health;
+		damage = characterData.baseDamage;
         speed = characterData.speed;
         rotationSpeed = characterData.rotationSpeed;
 
@@ -54,28 +61,45 @@ public class PlayerController : MonoBehaviour
         specialAbility = characterData.specialAbility;
 
 		// OTHER VARIABLES //
+
 		// Input actions
 		inputActions = new InputActions();
 
-        // Subscribe to Movement action
-        inputActions.Player.Movement.performed += Context => movementInput = Context.ReadValue<Vector2>();
+		// Subscribe to Movement action
+		inputActions.Player.Movement.performed += context => movementInput = context.ReadValue<Vector2>().normalized;
+		inputActions.Player.Movement.canceled += context => movementInput = Vector2.zero;
 
-        // Set ability states to ready
-        mainAbilityState = AbilityState.ready;
+		// Subscribe to Look action
+		inputActions.Player.Look.performed += context => lookInput = context.ReadValue<Vector2>().normalized;
+		inputActions.Player.Look.canceled += context => movementInput = Vector2.zero;
+
+		// Set ability states to ready
+		mainAbilityState = AbilityState.ready;
         specialAbilityState = AbilityState.ready;
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+		rb = GetComponent<Rigidbody>();
     }
 
 	// Update is called once per frame
 	void Update()
 	{
-		// Movement
-		
+		// Calculate the movement direction in the camera's perspective
+		Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;			// Removes the y component of the forward vector and normalizes it
+		Vector3 movementDirection = movementInput.x * Camera.main.transform.right + movementInput.y * cameraForward;	// giving a forward vector that is always parallel to the ground
+
+		// Move player using velocity
+		Vector3 movement = new Vector3(movementDirection.x * speed, rb.velocity.y, movementDirection.z * speed);
+
+		rb.velocity = movement;
+
+		// Handle player rotation
+		if (movementInput.sqrMagnitude > 0.01f) // Check if there's input
+		{
+			// Handle player rotation
+			float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
+			float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothTime);
+			this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
+		}
 
 		// Abilities
 		CheckAbilityState("MainAbility", mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
@@ -92,6 +116,10 @@ public class PlayerController : MonoBehaviour
         inputActions.Disable();
     }
 
+	void Attack()
+	{
+
+	}
     void CheckAbilityState(string inputActionName, Ability ability, ref AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
     {
 		InputAction inputAction = GetInputAction(inputActionName);
@@ -111,6 +139,7 @@ public class PlayerController : MonoBehaviour
 				if (abilityActiveTime > 0)
 				{
 					abilityActiveTime -= Time.deltaTime;
+					Debug.Log($"{ability.abilityName} active time = {abilityActiveTime}");
 				}
 				else
 				{
@@ -123,10 +152,12 @@ public class PlayerController : MonoBehaviour
 				if (abilityCooldownTime > 0)
 				{
 					abilityCooldownTime -= Time.deltaTime;
+					Debug.Log($"{ability.abilityName} cooldown time = {abilityCooldownTime}");
 				}
 				else
 				{
 					abilityState = AbilityState.ready;
+					ability.EndAbility(this.gameObject);
 				}
 				break;
 		}

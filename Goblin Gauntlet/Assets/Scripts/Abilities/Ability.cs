@@ -6,8 +6,10 @@ public abstract class Ability : ScriptableObject
 {
 	// Shared characteristics between all abilities
 	public string abilityName;
-	public float cooldownTime;
 	public float activeTime;
+	public float cooldownTime;
 
-	public virtual void UseAbility(GameObject parent) {}
+	public virtual void UseAbility(GameObject parent) { }
+
+	public virtual void EndAbility(GameObject parent) { }
 }

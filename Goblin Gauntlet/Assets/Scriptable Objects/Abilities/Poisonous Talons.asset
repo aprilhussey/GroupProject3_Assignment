@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Poisonous Talons
   m_EditorClassIdentifier: 
   abilityName: Poisonous Talons
-  cooldownTime: 5
-  activeTime: 10
+  activeTime: 5
+  cooldownTime: 10
+  damageBuff: 1

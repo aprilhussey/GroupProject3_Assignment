@@ -1,13 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Poisonous Talons", menuName = "Scriptable Object/Ability/Poisonious Talons")]
 public class PoisonousTalons : Ability
 {
+    private PlayerController playerController;
+    public float damageBuff;
+
     public override void UseAbility(GameObject parent)
     {
-        Debug.Log("Poisonous Talons ability used");
-        // Activate a poison buff to attacks - when enemies are hit while this ability is active they will be dealt additional damage
+		playerController = parent.GetComponent<PlayerController>();
+
+		Debug.Log("Poisonous Talons ability used");
+        playerController.damage += damageBuff;
+    }
+
+    public override void EndAbility(GameObject parent)
+    {
+		playerController = parent.GetComponent<PlayerController>();
+
+		Debug.Log("Poisonous Talons ability ended");
+        playerController.damage -= damageBuff;
     }
 }

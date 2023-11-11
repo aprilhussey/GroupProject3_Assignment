@@ -7,6 +7,7 @@ public abstract class Character : ScriptableObject
 	// Shared characteristics between all characters
 	public string characterName;
 	public float health;
+	public float baseDamage;
 	public float speed;
 	public float rotationSpeed;
 
