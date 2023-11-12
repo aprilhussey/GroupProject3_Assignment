@@ -26,7 +26,7 @@ public class WarlockCast : MonoBehaviour
         rb.velocity = transform.forward * speed;
         if (warlockCastCollide.hitDetected)
         {
-            GameObject.Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

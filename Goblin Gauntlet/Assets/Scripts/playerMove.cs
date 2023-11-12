@@ -8,12 +8,16 @@ public class playerMove : MonoBehaviour
     public float speed = 10.0f;
     private Vector3 direction;
     private Rigidbody rb;
+    public CapsuleCollider capsule;
     playerAttack attackScript;
+    public float health = 100;
     // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        capsule = GetComponent<CapsuleCollider>();
         attackScript = GetComponentInChildren<playerAttack>();
+        capsule.enabled = true;
     }
 
     // Update is called once per frame
