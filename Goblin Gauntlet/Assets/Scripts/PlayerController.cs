@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,9 +32,15 @@ public class PlayerController : MonoBehaviour
 	private Vector2 movementInput = new Vector2();
 	private Vector2 lookInput = new Vector2();
 
+	private string gamepadControlSchemeName = "Gamepad";
+	private string keyboardMouseControlSchemeName = "KeyboardMouse";
+
 	private Rigidbody rb;
 
 	public float smoothTime = 0.1f;
+
+	public PlayerInput playerInputComponent;
+	private string currentControlScheme;
 
 	enum AbilityState
 	{
@@ -66,11 +73,11 @@ public class PlayerController : MonoBehaviour
 		inputActions = new InputActions();
 
 		// Subscribe to Movement action
-		inputActions.Player.Movement.performed += context => movementInput = context.ReadValue<Vector2>().normalized;
+		inputActions.Player.Movement.performed += context => movementInput = context.ReadValue<Vector2>();
 		inputActions.Player.Movement.canceled += context => movementInput = Vector2.zero;
 
 		// Subscribe to Look action
-		inputActions.Player.Look.performed += context => lookInput = context.ReadValue<Vector2>().normalized;
+		inputActions.Player.Look.performed += context => lookInput = context.ReadValue<Vector2>();
 		inputActions.Player.Look.canceled += context => movementInput = Vector2.zero;
 
 		// Set ability states to ready
@@ -78,14 +85,21 @@ public class PlayerController : MonoBehaviour
         specialAbilityState = AbilityState.ready;
 
 		rb = GetComponent<Rigidbody>();
-    }
+	}
+
+	// Start is called before the first frame
+	void Start()
+	{
+		//playerInputComponent = GetComponent<PlayerInput>();
+	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;          // Removes the y component of the forward vector and normalizes it
+																														// giving a forward vector that is always parallel to the ground
 		// Calculate the movement direction in the camera's perspective
-		Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;			// Removes the y component of the forward vector and normalizes it
-		Vector3 movementDirection = movementInput.x * Camera.main.transform.right + movementInput.y * cameraForward;	// giving a forward vector that is always parallel to the ground
+		Vector3 movementDirection = movementInput.x * Camera.main.transform.right + movementInput.y * cameraForward;
 
 		// Move player using velocity
 		Vector3 movement = new Vector3(movementDirection.x * speed, rb.velocity.y, movementDirection.z * speed);
@@ -93,12 +107,25 @@ public class PlayerController : MonoBehaviour
 		rb.velocity = movement;
 
 		// Handle player rotation
+		//if (movementInput.sqrMagnitude > 0.01f) // Check if there's input
 		if (movementInput.sqrMagnitude > 0.01f) // Check if there's input
 		{
 			// Handle player rotation
 			float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
 			float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothTime);
 			this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
+
+			/*if (currentControlScheme == "Gamepad")
+			{
+				// Use gamepad controls
+				float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
+				float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothTime);
+				this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
+			}
+			if (currentControlScheme == "KeyboardMouse")
+			{
+				// Use keyboard and mouse controls
+			}*/
 		}
 
 		// Abilities
@@ -106,20 +133,47 @@ public class PlayerController : MonoBehaviour
 		CheckAbilityState("SpecialAbility", specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
 	}
 
-    void OnEnable()
+	void LateUpdate()
+	{
+		//currentControlScheme = playerInputComponent.currentControlScheme;
+		//Debug.Log($"currentControlScheme: {currentControlScheme}");
+	}
+
+	void OnEnable()
     {
         inputActions.Enable();
-    }
+		//playerInputComponent.onActionTriggered += OnActionTriggered;
+	}
 
     void OnDisable()
     {
         inputActions.Disable();
-    }
+		//playerInputComponent.onActionTriggered -= OnActionTriggered;
+	}
 
 	void Attack()
 	{
-
 	}
+
+	void OnActionTriggered(InputAction.CallbackContext context)
+	{
+		var device = context.control.device;
+		Debug.Log($"device = {device}");
+
+		if (device != null)
+		{
+			if (device is Gamepad)
+			{
+				playerInputComponent.SwitchCurrentControlScheme(gamepadControlSchemeName, device);
+			}
+
+			if (device is Keyboard || device is Mouse)
+			{
+				playerInputComponent.SwitchCurrentControlScheme(keyboardMouseControlSchemeName, device);
+			}
+		}
+	}
+
     void CheckAbilityState(string inputActionName, Ability ability, ref AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
     {
 		InputAction inputAction = GetInputAction(inputActionName);

@@ -75,7 +75,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""WASD"",
+                    ""name"": ""Keyboard WASD"",
                     ""id"": ""097987f2-0afa-4f46-8609-5464b586fb32"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -132,7 +132,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Gamepad Stick"",
                     ""id"": ""01390c78-deae-4d1b-b864-3f665098ecc2"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=1)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -323,12 +323,29 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         {
             ""name"": ""KeyboardMouse"",
             ""bindingGroup"": ""KeyboardMouse"",
-            ""devices"": []
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
         },
         {
             ""name"": ""Gamepad"",
             ""bindingGroup"": ""Gamepad"",
-            ""devices"": []
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
