@@ -566,7 +566,7 @@ GameObject:
   - component: {fileID: 379904330}
   m_Layer: 0
   m_Name: AttackRadius
-  m_TagString: AttackRadius
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1466,7 +1466,7 @@ GameObject:
   - component: {fileID: 917997454}
   m_Layer: 0
   m_Name: FollowRadius
-  m_TagString: FollowRadius
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
