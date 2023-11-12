@@ -1086,6 +1086,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2510415520799433049, guid: 4c9fc5ace024c86498d4dcf935ae7318, type: 3}
+      propertyPath: m_Radius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2726135823217436229, guid: 4c9fc5ace024c86498d4dcf935ae7318, type: 3}
       propertyPath: m_Name
       value: Mesh
@@ -1133,6 +1137,10 @@ PrefabInstance:
     - target: {fileID: 4021710123099032830, guid: 4c9fc5ace024c86498d4dcf935ae7318, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465237723949681510, guid: 4c9fc5ace024c86498d4dcf935ae7318, type: 3}
+      propertyPath: m_Radius
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8669206538209821045, guid: 4c9fc5ace024c86498d4dcf935ae7318, type: 3}
       propertyPath: m_Name
