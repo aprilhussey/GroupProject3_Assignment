@@ -7,6 +7,7 @@ public class PlayableCharacter : Character
 {
 	// Shared characteristics between playable characters
 	public CharacterClass characterClass;
+	public Ability basicAttack;
 	public Ability mainAbility;
 	public Ability specialAbility;
 }

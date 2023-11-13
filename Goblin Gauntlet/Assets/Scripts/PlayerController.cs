@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.Timeline;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,14 +13,18 @@ public class PlayerController : MonoBehaviour
     // Character.cs variables
     private string characterName;
     private float health;
-	public float damage;
+	[HideInInspector] public float damage;
     private float speed;
     private float rotationSpeed;
 
     // PlayableCharacter.cs variables
     private CharacterClass characterClass;
 
-    private Ability mainAbility;
+	private Ability basicAttack;
+	[HideInInspector] public float basicAttackCooldownTime;
+	private float basicAttackActiveTime;
+
+	private Ability mainAbility;
     private float mainAbilityCooldownTime;
 	private float mainAbilityActiveTime;
 
@@ -49,6 +54,7 @@ public class PlayerController : MonoBehaviour
 		cooldown
 	}
 
+	private AbilityState basicAttackState;
     private AbilityState mainAbilityState;
 	private AbilityState specialAbilityState;
 
@@ -58,13 +64,14 @@ public class PlayerController : MonoBehaviour
         // Access character data - Character.cs
         characterName = characterData.characterName;
         health = characterData.health;
-		damage = characterData.baseDamage;
+		damage = characterData.damage;
         speed = characterData.speed;
         rotationSpeed = characterData.rotationSpeed;
 
         // Access character data - PlayableCharacter.cs
         characterClass = characterData.characterClass;
-        mainAbility = characterData.mainAbility;
+		basicAttack = characterData.basicAttack;
+		mainAbility = characterData.mainAbility;
         specialAbility = characterData.specialAbility;
 
 		// OTHER VARIABLES //
@@ -81,6 +88,7 @@ public class PlayerController : MonoBehaviour
 		inputActions.Player.Look.canceled += context => movementInput = Vector2.zero;
 
 		// Set ability states to ready
+		basicAttackState = AbilityState.ready;
 		mainAbilityState = AbilityState.ready;
         specialAbilityState = AbilityState.ready;
 
@@ -96,6 +104,9 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		//currentControlScheme = playerInputComponent.currentControlScheme;
+		//Debug.Log($"currentControlScheme = {currentControlScheme}");
+
 		Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;          // Removes the y component of the forward vector and normalizes it
 																														// giving a forward vector that is always parallel to the ground
 		// Calculate the movement direction in the camera's perspective
@@ -107,15 +118,14 @@ public class PlayerController : MonoBehaviour
 		rb.velocity = movement;
 
 		// Handle player rotation
-		//if (movementInput.sqrMagnitude > 0.01f) // Check if there's input
 		if (movementInput.sqrMagnitude > 0.01f) // Check if there's input
 		{
 			// Handle player rotation
-			float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
-			float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothTime);
-			this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
+			//float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
+			//float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothTime);
+			//this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
 
-			/*if (currentControlScheme == "Gamepad")
+			if (currentControlScheme == "Gamepad")
 			{
 				// Use gamepad controls
 				float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
@@ -125,10 +135,11 @@ public class PlayerController : MonoBehaviour
 			if (currentControlScheme == "KeyboardMouse")
 			{
 				// Use keyboard and mouse controls
-			}*/
+			}
 		}
 
 		// Abilities
+		CheckAbilityState("BasicAttack", basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
 		CheckAbilityState("MainAbility", mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
 		CheckAbilityState("SpecialAbility", specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
 	}
@@ -151,11 +162,7 @@ public class PlayerController : MonoBehaviour
 		//playerInputComponent.onActionTriggered -= OnActionTriggered;
 	}
 
-	void Attack()
-	{
-	}
-
-	void OnActionTriggered(InputAction.CallbackContext context)
+	/*void OnActionTriggered(InputAction.CallbackContext context)
 	{
 		var device = context.control.device;
 		Debug.Log($"device = {device}");
@@ -172,7 +179,7 @@ public class PlayerController : MonoBehaviour
 				playerInputComponent.SwitchCurrentControlScheme(keyboardMouseControlSchemeName, device);
 			}
 		}
-	}
+	}*/
 
     void CheckAbilityState(string inputActionName, Ability ability, ref AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
     {
@@ -192,6 +199,7 @@ public class PlayerController : MonoBehaviour
 			case AbilityState.active:
 				if (abilityActiveTime > 0)
 				{
+					ability.AbilityActive(this.gameObject, abilityState);
 					abilityActiveTime -= Time.deltaTime;
 					Debug.Log($"{ability.abilityName} active time = {abilityActiveTime}");
 				}

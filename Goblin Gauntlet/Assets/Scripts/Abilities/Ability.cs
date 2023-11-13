@@ -9,7 +9,16 @@ public abstract class Ability : ScriptableObject
 	public float activeTime;
 	public float cooldownTime;
 
+	public enum AbilityState
+	{
+		ready,
+		active,
+		cooldown
+	}
+
 	public virtual void UseAbility(GameObject parent) { }
+
+	public virtual void AbilityActive(GameObject parent, AbilityState abilityState) { }
 
 	public virtual void EndAbility(GameObject parent) { }
 }

@@ -9,7 +9,8 @@ public class GoblinController : MonoBehaviour
     // Character.cs varaibles
     private string characterName;
     private float health;
-    private float speed;
+	private float damage;
+	private float speed;
     private float rotationSpeed;
 
 	// EnemyCharacter.cs variables
@@ -17,7 +18,6 @@ public class GoblinController : MonoBehaviour
 	private float visionDistance;
 	private float attackDistance;
 	private float attackCooldown;
-	private float dealDamage;
 
 	// Layer mask variables
 	private LayerMask playerLayer;
@@ -44,6 +44,7 @@ public class GoblinController : MonoBehaviour
 		// Access character data - Character.cs
 		characterName = characterData.characterName;
 		health = characterData.health;
+		damage = characterData.damage;
 		speed = characterData.speed;
 		rotationSpeed = characterData.rotationSpeed;
 
@@ -52,7 +53,6 @@ public class GoblinController : MonoBehaviour
 		visionDistance = characterData.visionDistance;
 		attackDistance = characterData.attackDistance;
 		attackCooldown = characterData.attackCooldown;
-		dealDamage = characterData.dealDamage;
 
 		// Set layer mask variables to their respective layers
 		playerLayer = LayerMask.GetMask("Player");
@@ -211,7 +211,7 @@ public class GoblinController : MonoBehaviour
 	{
 		if (targetInAttackRadius)
 		{
-			Debug.Log(gameObject.name + " attacked " + target.name + " for " + dealDamage + " damage");
+			Debug.Log(gameObject.name + " attacked " + target.name + " for " + damage + " damage");
 		}
 	}
 
@@ -258,9 +258,9 @@ public class GoblinController : MonoBehaviour
 		}
 
 		// Check if EnemyCharacter.cs variables are null
-		if (dealDamage == 0)
+		if (damage == 0)
 		{
-			Debug.LogWarning("WARNING: " + gameObject.name + ".damage is null");
+			Debug.LogWarning("WARNING: " + gameObject.name + ".baseDamage is null");
 		}
 		if (visionDistance == 0)
 		{

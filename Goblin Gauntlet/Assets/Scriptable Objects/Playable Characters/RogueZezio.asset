@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Zezio
   health: 100
-  baseDamage: 0
+  baseDamage: 3
   speed: 2
   rotationSpeed: 5
   characterClass: 3
+  baseAttackDistance: 0
   mainAbility: {fileID: 0}
   specialAbility: {fileID: 11400000, guid: dc060cdc5a2ccc74385d9d306aee0c54, type: 2}
