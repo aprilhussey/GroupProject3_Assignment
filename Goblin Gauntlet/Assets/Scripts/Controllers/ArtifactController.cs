@@ -9,12 +9,16 @@ public class ArtifactController : MonoBehaviour, IDamageable
 	private string entityName;
 	[HideInInspector] public float health;
 
+	[SerializeField] FloatingHealthBar healthBar;
+
 	// Awake is called before Start
 	void Awake()
 	{
 		// Access character data - Entity.cs
 		entityName = entityData.entityName;
 		health = entityData.health;
+
+		healthBar = GetComponentInChildren<FloatingHealthBar>();
 	}
 
     // Update is called once per frame
@@ -36,6 +40,7 @@ public class ArtifactController : MonoBehaviour, IDamageable
 		if (health > 0)
 		{
 			health -= amount;
+			healthBar.UpdateHealthBar();
 		}
 	}
 }
