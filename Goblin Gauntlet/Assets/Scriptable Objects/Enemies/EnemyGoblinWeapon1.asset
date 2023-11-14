@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b327abe493104a4cb2c17c6b6448465, type: 3}
-  m_Name: EnemyGoblin
+  m_Name: EnemyGoblinWeapon1
   m_EditorClassIdentifier: 
   entityName: Goblin
   health: 5
