@@ -106,55 +106,58 @@ public class PlayerController : MonoBehaviour, IDamageable
 	// Update is called once per frame
 	void Update()
 	{
-		currentControlScheme = playerInputComponent.currentControlScheme;
-		//Debug.Log($"currentControlScheme = {currentControlScheme}");
-
-		Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;          // Removes the y component of the forward vector and normalizes it
-																														// giving a forward vector that is always parallel to the ground
-		// Calculate the movement direction in the camera's perspective
-		Vector3 movementDirection = movementInput.x * Camera.main.transform.right + movementInput.y * cameraForward;
-
-		// Move player using velocity
-		Vector3 movement = new Vector3(movementDirection.x * speed, rb.velocity.y, movementDirection.z * speed);
-
-		rb.velocity = movement;
-
-		// Handle player rotation
-		if (movementInput.sqrMagnitude > 0.01f) // Check if there's input
+		if (!GameManager.isGamePaused)
 		{
+			currentControlScheme = playerInputComponent.currentControlScheme;
+			//Debug.Log($"currentControlScheme = {currentControlScheme}");
+
+			Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;          // Removes the y component of the forward vector and normalizes it
+																															// giving a forward vector that is always parallel to the ground
+																															// Calculate the movement direction in the camera's perspective
+			Vector3 movementDirection = movementInput.x * Camera.main.transform.right + movementInput.y * cameraForward;
+
+			// Move player using velocity
+			Vector3 movement = new Vector3(movementDirection.x * speed, rb.velocity.y, movementDirection.z * speed);
+
 			rb.velocity = movement;
 
-			if (currentControlScheme == "Gamepad")
+			// Handle player rotation
+			if (movementInput.sqrMagnitude > 0.01f) // Check if there's input
 			{
-				// Use gamepad controls
-				float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
-				float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothRotationTime);
-				this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
+				rb.velocity = movement;
 
+				if (currentControlScheme == "Gamepad")
+				{
+					// Use gamepad controls
+					float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
+					float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothRotationTime);
+					this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
+
+				}
+				if (currentControlScheme == "KeyboardMouse")
+				{
+					// Use keyboard and mouse controls
+				}
 			}
-			if (currentControlScheme == "KeyboardMouse")
+			else
 			{
-				// Use keyboard and mouse controls
+				//rotationSpeed = 0f;	// Reset rotation when there's no input
 			}
-		}
-		else
-		{
-			//rotationSpeed = 0f;	// Reset rotation when there's no input
-		}
 
-		// Abilities
-		CheckAbilityState("BasicAttack", basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
-		CheckAbilityState("MainAbility", mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
-		CheckAbilityState("SpecialAbility", specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
+			// Abilities
+			CheckAbilityState("BasicAttack", basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
+			CheckAbilityState("MainAbility", mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
+			CheckAbilityState("SpecialAbility", specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
 
-		// If player health is less than or equal to 0
-		if (health <= 0)
-		{
-			Debug.Log("Artifact destroyed");
-			Destroy(gameObject);
+			// If player health is less than or equal to 0
+			if (health <= 0)
+			{
+				Debug.Log("Artifact destroyed");
+				Destroy(gameObject);
+			}
+
+			Debug.Log($"{gameObject.name} health = {health}");
 		}
-
-		Debug.Log($"{gameObject.name} health = {health}");
 	}
 
 
