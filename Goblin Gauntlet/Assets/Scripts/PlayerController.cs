@@ -3,24 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
-using UnityEngine.InputSystem.LowLevel;
-using UnityEngine.Timeline;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
 	public PlayableCharacter characterData;
 
-    // Character.cs variables
-    private string characterName;
-    private float health;
-	[HideInInspector] public float damage;
+	// Entity.cs variables
+	private string characterName;
+	[HideInInspector] public float health;
+
+	// Character.cs variables
     private float speed;
     private float rotationSpeed;
 
     // PlayableCharacter.cs variables
     private CharacterClass characterClass;
 
-	private Ability basicAttack;
+	private BasicAttack basicAttack;
 	[HideInInspector] public float basicAttackCooldownTime;
 	private float basicAttackActiveTime;
 
@@ -33,12 +32,14 @@ public class PlayerController : MonoBehaviour
 	private float specialAbilityActiveTime;
 
 	// Other variables
+	[HideInInspector] public float damage;
+
 	private InputActions inputActions;
 	private Vector2 movementInput = new Vector2();
 	private Vector2 lookInput = new Vector2();
 
-	private string gamepadControlSchemeName = "Gamepad";
-	private string keyboardMouseControlSchemeName = "KeyboardMouse";
+	//private string gamepadControlSchemeName = "Gamepad";
+	//private string keyboardMouseControlSchemeName = "KeyboardMouse";
 
 	private Rigidbody rb;
 
@@ -61,11 +62,13 @@ public class PlayerController : MonoBehaviour
 	// Awake is called before Start
 	void Awake()
     {
-        // Access character data - Character.cs
-        characterName = characterData.characterName;
+        // Access character data - Entity.cs
+        characterName = characterData.entityName;
         health = characterData.health;
-		damage = characterData.damage;
-        speed = characterData.speed;
+
+		// Access character data - Character.cs
+		damage = characterData.basicAttack.damage;
+		speed = characterData.speed;
         rotationSpeed = characterData.rotationSpeed;
 
         // Access character data - PlayableCharacter.cs
@@ -95,10 +98,14 @@ public class PlayerController : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 	}
 
-	// Start is called before the first frame
-	void Start()
+	void OnEnable()
 	{
-		//playerInputComponent = GetComponent<PlayerInput>();
+		inputActions.Enable();
+	}
+
+	void OnDisable()
+	{
+		inputActions.Disable();
 	}
 
 	// Update is called once per frame
@@ -120,11 +127,6 @@ public class PlayerController : MonoBehaviour
 		// Handle player rotation
 		if (movementInput.sqrMagnitude > 0.01f) // Check if there's input
 		{
-			// Handle player rotation
-			//float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
-			//float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothTime);
-			//this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
-
 			if (currentControlScheme == "Gamepad")
 			{
 				// Use gamepad controls
@@ -137,51 +139,31 @@ public class PlayerController : MonoBehaviour
 				// Use keyboard and mouse controls
 			}
 		}
-
 		// Abilities
 		CheckAbilityState("BasicAttack", basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
 		CheckAbilityState("MainAbility", mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
 		CheckAbilityState("SpecialAbility", specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
-	}
 
-	void LateUpdate()
-	{
-		//currentControlScheme = playerInputComponent.currentControlScheme;
-		//Debug.Log($"currentControlScheme: {currentControlScheme}");
-	}
-
-	void OnEnable()
-    {
-        inputActions.Enable();
-		//playerInputComponent.onActionTriggered += OnActionTriggered;
-	}
-
-    void OnDisable()
-    {
-        inputActions.Disable();
-		//playerInputComponent.onActionTriggered -= OnActionTriggered;
-	}
-
-	/*void OnActionTriggered(InputAction.CallbackContext context)
-	{
-		var device = context.control.device;
-		Debug.Log($"device = {device}");
-
-		if (device != null)
+		// If player health is less than or equal to 0
+		if (health <= 0)
 		{
-			if (device is Gamepad)
-			{
-				playerInputComponent.SwitchCurrentControlScheme(gamepadControlSchemeName, device);
-			}
-
-			if (device is Keyboard || device is Mouse)
-			{
-				playerInputComponent.SwitchCurrentControlScheme(keyboardMouseControlSchemeName, device);
-			}
+			Debug.Log("Artifact destroyed");
 		}
-	}*/
 
-    void CheckAbilityState(string inputActionName, Ability ability, ref AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
+		Debug.Log($"{gameObject.name} health = {health}");
+	}
+
+
+	// Class needs to derive from 'IDamageable' for this function to work
+	public void TakeDamage(float amount)
+	{
+		if (health > 0)
+		{
+			health -= amount;
+		}
+	}
+
+	void CheckAbilityState(string inputActionName, Ability ability, ref AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
     {
 		InputAction inputAction = GetInputAction(inputActionName);
 
@@ -199,9 +181,8 @@ public class PlayerController : MonoBehaviour
 			case AbilityState.active:
 				if (abilityActiveTime > 0)
 				{
-					ability.AbilityActive(this.gameObject, abilityState);
 					abilityActiveTime -= Time.deltaTime;
-					Debug.Log($"{ability.abilityName} active time = {abilityActiveTime}");
+					//Debug.Log($"{ability.abilityName} active time = {abilityActiveTime}");
 				}
 				else
 				{
@@ -214,7 +195,7 @@ public class PlayerController : MonoBehaviour
 				if (abilityCooldownTime > 0)
 				{
 					abilityCooldownTime -= Time.deltaTime;
-					Debug.Log($"{ability.abilityName} cooldown time = {abilityCooldownTime}");
+					//Debug.Log($"{ability.abilityName} cooldown time = {abilityCooldownTime}");
 				}
 				else
 				{
@@ -229,14 +210,31 @@ public class PlayerController : MonoBehaviour
 	{
 		switch (inputActionName)
 		{
-			case "SpecialAbility":
-				return inputActions.Player.SpecialAbility;
+			case "BasicAttack":
+				return inputActions.Player.BasicAttack;
 
 			case "MainAbility":
 				return inputActions.Player.MainAbility;
 
+			case "SpecialAbility":
+				return inputActions.Player.SpecialAbility;
+
 			default:
 				throw new ArgumentException($"Non-existent input action: {inputActionName}");
 		}
+	}
+
+	void OnDrawGizmos()
+	{
+		// Draw field of attack
+		Gizmos.color = Color.red;
+		Gizmos.DrawRay(transform.position, Quaternion.Euler(0, -basicAttack.fieldOfAttack / 2, 0) * transform.forward
+			* basicAttack.attackRadius);
+		Gizmos.DrawRay(transform.position, Quaternion.Euler(0, basicAttack.fieldOfAttack / 2, 0) * transform.forward
+			* basicAttack.attackRadius);
+
+		// Draw attack radius
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(transform.position, basicAttack.attackRadius);
 	}
 }

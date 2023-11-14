@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoblinController : MonoBehaviour
+public class GoblinController : MonoBehaviour, IDamageable
 {
     public EnemyCharacter characterData;
 
-    // Character.cs varaibles
+    // Entity.cs varaibles
     private string characterName;
     private float health;
-	private float damage;
+
+	// Character.cs varaibles
 	private float speed;
-    private float rotationSpeed;
+	private float rotationSpeed;
 
 	// EnemyCharacter.cs variables
 	private float fieldOfView;
@@ -19,16 +20,13 @@ public class GoblinController : MonoBehaviour
 	private float attackDistance;
 	private float attackCooldown;
 
-	// Layer mask variables
-	private LayerMask playerLayer;
-    private LayerMask obstructionLayer;
-
     // Sphere collider variables
     private SphereCollider[] sphereColliders;
     private SphereCollider followRadiusCollider;
     private SphereCollider attackRadiusCollider;
 
 	// Other variables
+	public float damage = 1f;
 	private List<GameObject> playersSeen;
 	private GameObject target = null;
 	private bool targetInAttackRadius;
@@ -38,13 +36,16 @@ public class GoblinController : MonoBehaviour
 	private GameObject nearestPlayer;   // Player compared to it will always be closer
 	private GameObject artifact;
 
+	private float targetHealth;
+
 	// Awake is called before Start
 	void Awake()
     {
-		// Access character data - Character.cs
-		characterName = characterData.characterName;
+		// Access character data - Entity.cs
+		characterName = characterData.entityName;
 		health = characterData.health;
-		damage = characterData.damage;
+
+		// Access character data - Character.cs
 		speed = characterData.speed;
 		rotationSpeed = characterData.rotationSpeed;
 
@@ -53,10 +54,6 @@ public class GoblinController : MonoBehaviour
 		visionDistance = characterData.visionDistance;
 		attackDistance = characterData.attackDistance;
 		attackCooldown = characterData.attackCooldown;
-
-		// Set layer mask variables to their respective layers
-		playerLayer = LayerMask.GetMask("Player");
-		obstructionLayer = LayerMask.GetMask("Obstruction");
 
 		// Get all sphere collider components in children
 		sphereColliders = GetComponentsInChildren<SphereCollider>();
@@ -91,7 +88,7 @@ public class GoblinController : MonoBehaviour
 			}
         }
 		CheckIfNull();
-    }
+	}
 
     // Update is called once per frame
     void Update()
@@ -104,14 +101,37 @@ public class GoblinController : MonoBehaviour
 		{
 			MoveTowardsTarget(target);
 			AttackTarget(target);
+
+			if (target == nearestPlayer)
+			{
+				targetHealth = target.GetComponent<PlayerController>().health;
+			}
+
+			if (target == artifact)
+			{
+				targetHealth = target.GetComponent<ArtifactController>().health;
+			}
+
+			if (targetHealth <= 0)
+			{ 
+				target = null;
+			}
 		}
+
+		// If goblin health is less than or equal to 0
+		if (health <= 0)
+		{
+			Debug.Log("Goblin dead");
+		}
+
+		Debug.Log($"{gameObject.name} health = {health}");
 	}
 
 	// AIVision handles the vision of the goblins. It determines how and if a player can be seen by them
     void AIVision()
     {
 		Collider[] playersInViewRadius = Physics.OverlapSphere(transform.position, 
-			visionDistance, playerLayer);
+			visionDistance, GameManager.instance.playerLayer);
 
         foreach (Collider playerCollider in playersInViewRadius)
         {
@@ -126,15 +146,18 @@ public class GoblinController : MonoBehaviour
 
 				// Check if there are obstructions between the AI and the player
 				if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, 
-					obstructionLayer))
+					GameManager.instance.obstructionLayer))
 				{
 					GameObject playerSeen = playerCollider.gameObject;
-					Debug.Log("Player detected: " + playerSeen.name);
+					//Debug.Log($"Player detected: {playerSeen.name}");
 
-					if (!playersSeen.Contains(playerSeen))
+					if (playerSeen.GetComponent<PlayerController>().health > 0) // Check that the player still has health
 					{
-						Debug.Log("New player detected: " + playerSeen.name);
-						playersSeen.Add(playerSeen);
+						if (!playersSeen.Contains(playerSeen))
+						{
+							//Debug.Log($"New player detected: {playerSeen.name}");
+							playersSeen.Add(playerSeen);
+						}
 					}
 				}
 			}
@@ -146,7 +169,7 @@ public class GoblinController : MonoBehaviour
 		float closestPlayerDistance = Mathf.Infinity;
 		foreach (GameObject player in playersSeen)
 		{
-			Debug.Log("playersSeen: " + player.name);
+			//Debug.Log($"playersSeen: {player.name}");
 
 			float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 			Debug.DrawLine(transform.position, player.transform.position, Color.red);
@@ -161,7 +184,7 @@ public class GoblinController : MonoBehaviour
 		}
 
 		// When closest player to goblin is found check if closestPlayerDistance is less than
-		// distanceToArtefact
+		// distanceToArtifact
 		float distanceToArtifact = Vector3.Distance(transform.position, artifact.transform.position);
 		Debug.DrawLine(transform.position, artifact.transform.position, Color.cyan);
 
@@ -171,7 +194,10 @@ public class GoblinController : MonoBehaviour
 		}
 		else
 		{
-			target = artifact;
+			if (artifact.GetComponent<ArtifactController>().health > 0) // Check that the artifact still has health
+			{
+				target = artifact;
+			}
 		}
 	}
 
@@ -192,7 +218,7 @@ public class GoblinController : MonoBehaviour
 	{
 		if (playersSeen.Contains(other))
 		{
-			Debug.Log("Game object entered follow radius: " + other.name);
+			//Debug.Log($"Game object entered follow radius: {other.name}");
 		}
 	}
 
@@ -201,7 +227,7 @@ public class GoblinController : MonoBehaviour
 	{
 		if (playersSeen.Contains(other))
 		{
-			Debug.Log("Game object exited follow radius: " + other.name);
+			//Debug.Log($"Game object exited follow radius: {other.name}");
 			target = null;
 			playersSeen.Remove(other);
 		}
@@ -211,7 +237,14 @@ public class GoblinController : MonoBehaviour
 	{
 		if (targetInAttackRadius)
 		{
-			Debug.Log(gameObject.name + " attacked " + target.name + " for " + damage + " damage");
+			//Debug.Log($"{gameObject.name} attacked {target.name} for { damage} damage");
+			
+			IDamageable damageable = target.GetComponent<IDamageable>();
+			if (damageable != null)
+			{
+				//Debug.Log($"damageable = {damageable} ");
+				damageable.TakeDamage(damage);
+			}
 		}
 	}
 
@@ -220,7 +253,7 @@ public class GoblinController : MonoBehaviour
 	{
 		if (other == target)
 		{
-			Debug.Log("Game object entered attack radius: " + other.name);
+			//Debug.Log($"Game object entered attack radius: {other.name}");
 			targetInAttackRadius = true;
 		}
 	}
@@ -230,8 +263,17 @@ public class GoblinController : MonoBehaviour
 	{
 		if (other == target)
 		{
-			Debug.Log("Game object exited attack radius: " + other.name);
+			//Debug.Log($"Game object exited attack radius: {other.name}");
 			targetInAttackRadius = false;
+		}
+	}
+
+	// Class needs to derive from 'IDamageable' for this function to work
+	public void TakeDamage(float amount)
+	{
+		if (health > 0)
+		{
+			health -= amount;
 		}
 	}
 
@@ -239,62 +281,52 @@ public class GoblinController : MonoBehaviour
 	// warning message
 	void CheckIfNull()
     {
-        // Check if Character.cs variables are null
+		// Check if Character.cs variables are null
 		if (characterName == null)
 		{
-			Debug.LogWarning("WARNING: " + gameObject.name + ".characterName is null");
+			Debug.LogWarning($"WARNING: {gameObject.name}.characterName is null");
 		}
 		if (health == 0)
 		{
-			Debug.LogWarning("WARNING: " + gameObject.name + ".health is null");
+			Debug.LogWarning($"WARNING:  {gameObject.name}..health is null");
 		}
 		if (speed == 0)
 		{
-			Debug.LogWarning("WARNING: " + gameObject.name + ".speed is null");
+			Debug.LogWarning($"WARNING:  {gameObject.name}..speed is null");
 		}
 		if (rotationSpeed == 0)
 		{
-			Debug.LogWarning("WARNING: " + gameObject.name + ".rotationSpeed is null");
+			Debug.LogWarning($"WARNING:  {gameObject.name}..rotationSpeed is null");
 		}
 
 		// Check if EnemyCharacter.cs variables are null
 		if (damage == 0)
 		{
-			Debug.LogWarning("WARNING: " + gameObject.name + ".baseDamage is null");
+			Debug.LogWarning($"WARNING:  {gameObject.name}..baseDamage is null");
 		}
 		if (visionDistance == 0)
 		{
-			Debug.LogWarning("WARNING: " + gameObject.name + ".visionDistance is null");
+			Debug.LogWarning($"WARNING:  {gameObject.name}..visionDistance is null");
 		}
 		if (fieldOfView == 0)
 		{
-			Debug.LogWarning("WARNING: " + gameObject.name + ".fieldOfView is null");
-		}
-
-		// Check if layer mask variables are empty
-		if (playerLayer.value == 0)
-		{
-			Debug.LogWarning("WARNING: playerLayer does not have a layer selected");
-		}
-		if (obstructionLayer.value == 0)
-		{
-			Debug.LogWarning("WARNING: obstructionLayer does not have a layer selected");
+			Debug.LogWarning($"WARNING:  {gameObject.name}..fieldOfView is null");
 		}
 
 		// Check if sphere collider varaibles are null
 		if (sphereColliders == null)
 		{
-			Debug.LogWarning("WARNING: sphereColliders does not contain any sphere colliders");
+			Debug.LogWarning($"WARNING: sphereColliders does not contain any sphere colliders");
 		}
 		if (followRadiusCollider == null)
 		{
-			Debug.LogError("ERROR: A game object with a sphere collider not tagged as " +
+			Debug.LogError($"ERROR: A game object with a sphere collider not tagged as " +
 					"'FollowRadius' was found. Is the tag on the child game " +
 					"object set correctly?");
 		}
 		if (attackRadiusCollider == null)
 		{
-			Debug.LogError("ERROR: A game object with a sphere collider not tagged as " +
+			Debug.LogError($"ERROR: A game object with a sphere collider not tagged as " +
 					"'AttackRadius' was found. Is the tag on the child game " +
 					"object set correctly?");
 		}

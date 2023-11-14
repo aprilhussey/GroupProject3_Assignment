@@ -46,7 +46,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Attack"",
+                    ""name"": ""BasicAttack"",
                     ""type"": ""Button"",
                     ""id"": ""3f9946e8-a28e-46e0-b0b9-4f7cae4e994b"",
                     ""expectedControlType"": ""Button"",
@@ -290,7 +290,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
-                    ""action"": ""Attack"",
+                    ""action"": ""BasicAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -301,7 +301,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Attack"",
+                    ""action"": ""BasicAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -353,7 +353,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_BasicAttack = m_Player.FindAction("BasicAttack", throwIfNotFound: true);
         m_Player_MainAbility = m_Player.FindAction("MainAbility", throwIfNotFound: true);
         m_Player_SpecialAbility = m_Player.FindAction("SpecialAbility", throwIfNotFound: true);
     }
@@ -419,7 +419,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_BasicAttack;
     private readonly InputAction m_Player_MainAbility;
     private readonly InputAction m_Player_SpecialAbility;
     public struct PlayerActions
@@ -428,7 +428,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Look => m_Wrapper.m_Player_Look;
-        public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @BasicAttack => m_Wrapper.m_Player_BasicAttack;
         public InputAction @MainAbility => m_Wrapper.m_Player_MainAbility;
         public InputAction @SpecialAbility => m_Wrapper.m_Player_SpecialAbility;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -446,9 +446,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @Attack.started += instance.OnAttack;
-            @Attack.performed += instance.OnAttack;
-            @Attack.canceled += instance.OnAttack;
+            @BasicAttack.started += instance.OnBasicAttack;
+            @BasicAttack.performed += instance.OnBasicAttack;
+            @BasicAttack.canceled += instance.OnBasicAttack;
             @MainAbility.started += instance.OnMainAbility;
             @MainAbility.performed += instance.OnMainAbility;
             @MainAbility.canceled += instance.OnMainAbility;
@@ -465,9 +465,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @Attack.started -= instance.OnAttack;
-            @Attack.performed -= instance.OnAttack;
-            @Attack.canceled -= instance.OnAttack;
+            @BasicAttack.started -= instance.OnBasicAttack;
+            @BasicAttack.performed -= instance.OnBasicAttack;
+            @BasicAttack.canceled -= instance.OnBasicAttack;
             @MainAbility.started -= instance.OnMainAbility;
             @MainAbility.performed -= instance.OnMainAbility;
             @MainAbility.canceled -= instance.OnMainAbility;
@@ -513,7 +513,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
+        void OnBasicAttack(InputAction.CallbackContext context);
         void OnMainAbility(InputAction.CallbackContext context);
         void OnSpecialAbility(InputAction.CallbackContext context);
     }

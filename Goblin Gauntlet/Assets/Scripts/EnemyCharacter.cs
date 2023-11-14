@@ -9,5 +9,4 @@ public class EnemyCharacter : Character
 	public float visionDistance;
 	public float attackDistance;
 	public float attackCooldown;
-	public float dealDamage;
 }

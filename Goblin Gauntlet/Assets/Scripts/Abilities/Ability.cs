@@ -18,7 +18,5 @@ public abstract class Ability : ScriptableObject
 
 	public virtual void UseAbility(GameObject parent) { }
 
-	public virtual void AbilityActive(GameObject parent, AbilityState abilityState) { }
-
 	public virtual void EndAbility(GameObject parent) { }
 }
