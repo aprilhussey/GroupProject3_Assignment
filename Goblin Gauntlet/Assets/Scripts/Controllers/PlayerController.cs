@@ -231,7 +231,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 		}
 	}
 
-	void OnDrawGizmos()
+	/*void OnDrawGizmos()
 	{
 		// Draw field of attack
 		Gizmos.color = Color.red;
@@ -243,5 +243,5 @@ public class PlayerController : MonoBehaviour, IDamageable
 		// Draw attack radius
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position, basicAttack.attackRadius);
-	}
+	}*/
 }

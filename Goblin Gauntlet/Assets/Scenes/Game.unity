@@ -550,7 +550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabToSpawn: {fileID: 1176199413879127531, guid: b44d7112e013e194ab7d44c8d62a22d5, type: 3}
   spawnInterval: 10
-  initialDelay: 2
+  initialDelay: 4
 --- !u!1 &453382033
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,7 +1696,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1206694580
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1733,7 +1733,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1236612932
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1802,7 +1802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabToSpawn: {fileID: 1176199413879127531, guid: b44d7112e013e194ab7d44c8d62a22d5, type: 3}
   spawnInterval: 10
-  initialDelay: 4
+  initialDelay: 2
 --- !u!1 &1427807231
 GameObject:
   m_ObjectHideFlags: 0
