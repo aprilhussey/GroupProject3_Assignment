@@ -9,7 +9,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 
     // Entity.cs varaibles
     private string characterName;
-    private float health;
+    [HideInInspector] public float health;
 
 	// Character.cs varaibles
 	private float speed;
@@ -44,6 +44,8 @@ public class GoblinController : MonoBehaviour, IDamageable
 
 	private Ability.AbilityState basicAttackState;
 
+	[SerializeField] FloatingHealthBar healthBar;
+
 	// Awake is called before Start
 	void Awake()
     {
@@ -73,6 +75,8 @@ public class GoblinController : MonoBehaviour, IDamageable
 		artifact = GameObject.FindGameObjectWithTag("Artifact");
 
 		basicAttackState = Ability.AbilityState.ready;
+
+		healthBar = GetComponentInChildren<FloatingHealthBar>();
 	}
     
     // Start is called before the first frame update
@@ -311,6 +315,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 		if (health > 0)
 		{
 			health -= amount;
+			healthBar.UpdateHealthBar();
 		}
 	}
 
