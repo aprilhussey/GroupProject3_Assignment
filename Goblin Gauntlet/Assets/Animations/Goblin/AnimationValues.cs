@@ -21,6 +21,10 @@ public class AnimationValues : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (goblincontrol.health <= 0)
+        {
+            animator.SetBool("Dead", true);
+        }
 
         speed = rb.velocity.magnitude;
         animator.SetFloat("speed", speed);

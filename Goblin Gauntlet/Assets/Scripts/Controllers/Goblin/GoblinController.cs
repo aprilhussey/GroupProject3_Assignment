@@ -9,7 +9,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 
     // Entity.cs varaibles
     private string characterName;
-    private float health;
+    public float health;
 
 	// Character.cs varaibles
 	private float speed;
