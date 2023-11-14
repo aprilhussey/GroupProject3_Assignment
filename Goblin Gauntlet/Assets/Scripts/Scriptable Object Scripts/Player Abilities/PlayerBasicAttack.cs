@@ -70,7 +70,7 @@ public class PlayerBasicAttack : Ability
 
 		if (nearestEnemy != null)
 		{
-			nearestEnemy.GetComponent<IDamageable>().TakeDamage(damage);
+			nearestEnemy.GetComponent<IDamageable>().TakeDamage(playerController.damage);
 		}
 	}
 

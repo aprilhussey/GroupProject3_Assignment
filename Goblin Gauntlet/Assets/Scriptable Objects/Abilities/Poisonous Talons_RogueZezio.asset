@@ -15,4 +15,4 @@ MonoBehaviour:
   abilityName: Poisonous Talons
   activeTime: 5
   cooldownTime: 10
-  damageBuff: 1
+  damageBuff: 5

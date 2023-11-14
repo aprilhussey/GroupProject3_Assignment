@@ -122,18 +122,26 @@ public class PlayerController : MonoBehaviour, IDamageable
 		// Handle player rotation
 		if (movementInput.sqrMagnitude > 0.01f) // Check if there's input
 		{
+			rb.velocity = movement;
+
 			if (currentControlScheme == "Gamepad")
 			{
 				// Use gamepad controls
 				float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
 				float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothRotationTime);
 				this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
+
 			}
 			if (currentControlScheme == "KeyboardMouse")
 			{
 				// Use keyboard and mouse controls
 			}
 		}
+		else
+		{
+			//rotationSpeed = 0f;	// Reset rotation when there's no input
+		}
+
 		// Abilities
 		CheckAbilityState("BasicAttack", basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
 		CheckAbilityState("MainAbility", mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);

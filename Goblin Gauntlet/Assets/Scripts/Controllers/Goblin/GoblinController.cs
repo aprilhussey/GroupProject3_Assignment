@@ -31,7 +31,6 @@ public class GoblinController : MonoBehaviour, IDamageable
     private SphereCollider attackRadiusCollider;
 
 	// Other variables
-	public float damage;
 	private List<GameObject> playersSeen;
 	[HideInInspector] public GameObject target = null;
 	private bool targetInAttackRadius;
@@ -338,10 +337,6 @@ public class GoblinController : MonoBehaviour, IDamageable
 		}
 
 		// Check if EnemyCharacter.cs variables are null
-		if (damage == 0)
-		{
-			Debug.LogWarning($"WARNING:  {gameObject.name}..baseDamage is null");
-		}
 		if (visionDistance == 0)
 		{
 			Debug.LogWarning($"WARNING:  {gameObject.name}..visionDistance is null");
