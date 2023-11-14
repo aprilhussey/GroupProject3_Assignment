@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Artifact
+  - FollowRadius
+  - AttackRadius
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,6 @@ TagManager:
   - UI
   - Enemy
   - Obstruction
-  - 
   - 
   - 
   - 
