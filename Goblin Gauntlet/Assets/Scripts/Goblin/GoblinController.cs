@@ -122,6 +122,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 		if (health <= 0)
 		{
 			Debug.Log("Goblin dead");
+			Destroy(gameObject);
 		}
 
 		Debug.Log($"{gameObject.name} health = {health}");

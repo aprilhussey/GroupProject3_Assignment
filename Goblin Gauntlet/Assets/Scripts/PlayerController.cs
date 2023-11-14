@@ -148,6 +148,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 		if (health <= 0)
 		{
 			Debug.Log("Artifact destroyed");
+			Destroy(gameObject);
 		}
 
 		Debug.Log($"{gameObject.name} health = {health}");
