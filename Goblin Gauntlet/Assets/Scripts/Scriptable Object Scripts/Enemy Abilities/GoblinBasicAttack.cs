@@ -18,7 +18,7 @@ public class GoblinBasicAttack : Ability
 			IDamageable damageable = goblinController.target.GetComponent<IDamageable>();
 			if (damageable != null)
 			{
-				//Debug.Log($"damageable = {damageable} ");
+				Debug.Log($"damageable = {damageable} ");
 				damageable.TakeDamage(damage);
 				Debug.Log($"{parent.name} basic attack used");
 			}
