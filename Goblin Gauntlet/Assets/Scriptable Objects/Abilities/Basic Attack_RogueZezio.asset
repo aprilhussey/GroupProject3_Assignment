@@ -16,5 +16,5 @@ MonoBehaviour:
   activeTime: 0.1
   cooldownTime: 0.5
   damage: 1
-  attackRadius: 25
-  fieldOfAttack: 450
+  attackRadius: 2.5
+  fieldOfAttack: 90

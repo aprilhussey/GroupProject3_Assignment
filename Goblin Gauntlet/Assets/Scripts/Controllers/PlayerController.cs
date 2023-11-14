@@ -43,9 +43,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 	private Rigidbody rb;
 
-	public float smoothTime = 0.1f;
+	public float smoothRotationTime = 0.1f;
 
-	public PlayerInput playerInputComponent;
+	private PlayerInput playerInputComponent;
 	private string currentControlScheme;
 
 	private Ability.AbilityState basicAttackState;
@@ -89,6 +89,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         specialAbilityState = Ability.AbilityState.ready;
 
 		rb = GetComponent<Rigidbody>();
+
+		playerInputComponent = GetComponent<PlayerInput>();
 	}
 
 	void OnEnable()
@@ -104,7 +106,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 	// Update is called once per frame
 	void Update()
 	{
-		//currentControlScheme = playerInputComponent.currentControlScheme;
+		currentControlScheme = playerInputComponent.currentControlScheme;
 		//Debug.Log($"currentControlScheme = {currentControlScheme}");
 
 		Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;          // Removes the y component of the forward vector and normalizes it
@@ -124,7 +126,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 			{
 				// Use gamepad controls
 				float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
-				float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothTime);
+				float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothRotationTime);
 				this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
 			}
 			if (currentControlScheme == "KeyboardMouse")
