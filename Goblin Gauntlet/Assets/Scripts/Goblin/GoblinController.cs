@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GoblinController : MonoBehaviour, IDamageable
 {
@@ -20,15 +21,19 @@ public class GoblinController : MonoBehaviour, IDamageable
 	private float attackDistance;
 	private float attackCooldown;
 
-    // Sphere collider variables
-    private SphereCollider[] sphereColliders;
+	private GoblinBasicAttack basicAttack;
+	[HideInInspector] public float basicAttackCooldownTime;
+	private float basicAttackActiveTime;
+
+	// Sphere collider variables
+	private SphereCollider[] sphereColliders;
     private SphereCollider followRadiusCollider;
     private SphereCollider attackRadiusCollider;
 
 	// Other variables
-	public float damage = 1f;
+	public float damage;
 	private List<GameObject> playersSeen;
-	private GameObject target = null;
+	[HideInInspector] public GameObject target = null;
 	private bool targetInAttackRadius;
 	//private bool attacked;
 	//private bool attacking;
@@ -37,6 +42,8 @@ public class GoblinController : MonoBehaviour, IDamageable
 	private GameObject artifact;
 
 	private float targetHealth;
+
+	private Ability.AbilityState basicAttackState;
 
 	// Awake is called before Start
 	void Awake()
@@ -53,7 +60,8 @@ public class GoblinController : MonoBehaviour, IDamageable
 		fieldOfView = characterData.fieldOfView;
 		visionDistance = characterData.visionDistance;
 		attackDistance = characterData.attackDistance;
-		attackCooldown = characterData.attackCooldown;
+		basicAttack = characterData.basicAttack;
+		//attackCooldown = characterData.attackCooldown;
 
 		// Get all sphere collider components in children
 		sphereColliders = GetComponentsInChildren<SphereCollider>();
@@ -64,6 +72,8 @@ public class GoblinController : MonoBehaviour, IDamageable
 
 		// Get artifact game object
 		artifact = GameObject.FindGameObjectWithTag("Artifact");
+
+		basicAttackState = Ability.AbilityState.ready;
 	}
     
     // Start is called before the first frame update
@@ -100,7 +110,6 @@ public class GoblinController : MonoBehaviour, IDamageable
 		if (target != null)
 		{
 			MoveTowardsTarget(target);
-			AttackTarget(target);
 
 			if (target == nearestPlayer)
 			{
@@ -126,10 +135,53 @@ public class GoblinController : MonoBehaviour, IDamageable
 		}
 
 		Debug.Log($"{gameObject.name} health = {health}");
+
+		CheckAbilityState(basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
+	}
+
+	void CheckAbilityState(Ability ability, ref Ability.AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
+	{
+		switch (abilityState)
+		{
+			case Ability.AbilityState.ready:
+				if (targetInAttackRadius)
+				{
+					ability.UseAbility(this.gameObject);
+					abilityState = Ability.AbilityState.active;
+					abilityActiveTime = ability.activeTime;
+				}
+				break;
+
+			case Ability.AbilityState.active:
+				if (abilityActiveTime > 0)
+				{
+					abilityActiveTime -= Time.deltaTime;
+					//Debug.Log($"{ability.abilityName} active time = {abilityActiveTime}");
+				}
+				else
+				{
+					abilityState = Ability.AbilityState.cooldown;
+					abilityCooldownTime = ability.cooldownTime;
+				}
+				break;
+
+			case Ability.AbilityState.cooldown:
+				if (abilityCooldownTime > 0)
+				{
+					abilityCooldownTime -= Time.deltaTime;
+					//Debug.Log($"{ability.abilityName} cooldown time = {abilityCooldownTime}");
+				}
+				else
+				{
+					abilityState = Ability.AbilityState.ready;
+					ability.EndAbility(this.gameObject);
+				}
+				break;
+		}
 	}
 
 	// AIVision handles the vision of the goblins. It determines how and if a player can be seen by them
-    void AIVision()
+	void AIVision()
     {
 		Collider[] playersInViewRadius = Physics.OverlapSphere(transform.position, 
 			visionDistance, GameManager.instance.playerLayer);
@@ -231,21 +283,6 @@ public class GoblinController : MonoBehaviour, IDamageable
 			//Debug.Log($"Game object exited follow radius: {other.name}");
 			target = null;
 			playersSeen.Remove(other);
-		}
-	}
-
-	void AttackTarget(GameObject target)
-	{
-		if (targetInAttackRadius)
-		{
-			//Debug.Log($"{gameObject.name} attacked {target.name} for { damage} damage");
-			
-			IDamageable damageable = target.GetComponent<IDamageable>();
-			if (damageable != null)
-			{
-				//Debug.Log($"damageable = {damageable} ");
-				damageable.TakeDamage(damage);
-			}
 		}
 	}
 

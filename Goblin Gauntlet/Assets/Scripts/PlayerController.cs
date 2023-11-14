@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     // PlayableCharacter.cs variables
     private CharacterClass characterClass;
 
-	private BasicAttack basicAttack;
+	private PlayerBasicAttack basicAttack;
 	[HideInInspector] public float basicAttackCooldownTime;
 	private float basicAttackActiveTime;
 
@@ -48,16 +48,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 	public PlayerInput playerInputComponent;
 	private string currentControlScheme;
 
-	enum AbilityState
-	{
-		ready,
-		active,
-		cooldown
-	}
-
-	private AbilityState basicAttackState;
-    private AbilityState mainAbilityState;
-	private AbilityState specialAbilityState;
+	private Ability.AbilityState basicAttackState;
+    private Ability.AbilityState mainAbilityState;
+	private Ability.AbilityState specialAbilityState;
 
 	// Awake is called before Start
 	void Awake()
@@ -91,9 +84,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 		inputActions.Player.Look.canceled += context => movementInput = Vector2.zero;
 
 		// Set ability states to ready
-		basicAttackState = AbilityState.ready;
-		mainAbilityState = AbilityState.ready;
-        specialAbilityState = AbilityState.ready;
+		basicAttackState = Ability.AbilityState.ready;
+		mainAbilityState = Ability.AbilityState.ready;
+        specialAbilityState = Ability.AbilityState.ready;
 
 		rb = GetComponent<Rigidbody>();
 	}
@@ -164,22 +157,22 @@ public class PlayerController : MonoBehaviour, IDamageable
 		}
 	}
 
-	void CheckAbilityState(string inputActionName, Ability ability, ref AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
+	void CheckAbilityState(string inputActionName, Ability ability, ref Ability.AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
     {
 		InputAction inputAction = GetInputAction(inputActionName);
 
 		switch (abilityState)
 		{
-			case AbilityState.ready:
+			case Ability.AbilityState.ready:
 				if (inputAction.triggered)
 				{
 					ability.UseAbility(this.gameObject);
-					abilityState = AbilityState.active;
+					abilityState = Ability.AbilityState.active;
 					abilityActiveTime = ability.activeTime;
 				}
 				break;
 
-			case AbilityState.active:
+			case Ability.AbilityState.active:
 				if (abilityActiveTime > 0)
 				{
 					abilityActiveTime -= Time.deltaTime;
@@ -187,12 +180,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 				}
 				else
 				{
-					abilityState = AbilityState.cooldown;
+					abilityState = Ability.AbilityState.cooldown;
 					abilityCooldownTime = ability.cooldownTime;
 				}
 				break;
 
-			case AbilityState.cooldown:
+			case Ability.AbilityState.cooldown:
 				if (abilityCooldownTime > 0)
 				{
 					abilityCooldownTime -= Time.deltaTime;
@@ -200,7 +193,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 				}
 				else
 				{
-					abilityState = AbilityState.ready;
+					abilityState = Ability.AbilityState.ready;
 					ability.EndAbility(this.gameObject);
 				}
 				break;

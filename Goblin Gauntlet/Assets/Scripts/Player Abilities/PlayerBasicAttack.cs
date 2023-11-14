@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Basic Attack", menuName = "Scriptable Object/Ability/Basic Attack")]
-public class BasicAttack : Ability
+[CreateAssetMenu(fileName = "New Player Basic Attack", menuName = "Scriptable Object/Ability/Player Basic Attack")]
+public class PlayerBasicAttack : Ability
 {
 	private PlayerController playerController;
 
@@ -17,7 +17,7 @@ public class BasicAttack : Ability
 	{
 		playerController = parent.GetComponent<PlayerController>();
 
-		Debug.Log("Basic Attack used");
+		Debug.Log($"{parent.name} basic attack used");
 
 		enemiesSeen = new List<GameObject>();
 		nearestEnemy = null;
@@ -78,7 +78,7 @@ public class BasicAttack : Ability
 	{
 		playerController = parent.GetComponent<PlayerController>();
 
-		Debug.Log("Basic Attack ended");
+		Debug.Log($"{parent.name} basic attack ended");
 
 		nearestEnemy = null;
 	}

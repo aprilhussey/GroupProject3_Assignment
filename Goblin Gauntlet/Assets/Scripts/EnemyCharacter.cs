@@ -8,5 +8,7 @@ public class EnemyCharacter : Character
 	public float fieldOfView;
 	public float visionDistance;
 	public float attackDistance;
-	public float attackCooldown;
+	//public float attackCooldown;
+
+	public GoblinBasicAttack basicAttack;
 }
