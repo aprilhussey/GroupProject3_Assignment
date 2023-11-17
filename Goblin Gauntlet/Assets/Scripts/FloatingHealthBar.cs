@@ -10,8 +10,8 @@ public class FloatingHealthBar : MonoBehaviour
     private float maxHealth;
     private float currentHealth;
 
-    private ArtifactController artifactController;
-    private GoblinController goblinController;
+    [SerializeField] private ArtifactController artifactController;
+    [SerializeField] private GoblinController goblinController;
 
     void Awake()
     {
@@ -52,5 +52,10 @@ public class FloatingHealthBar : MonoBehaviour
 	public void UpdateHealthBar()
 	{
         slider.value = currentHealth / maxHealth;
-	}
+
+        Debug.Log($"currentHealth = {currentHealth}");
+        Debug.Log($"maxhealth = {maxHealth}");
+        Debug.Log($"slider value = {slider.value}");
+
+    }
 }
