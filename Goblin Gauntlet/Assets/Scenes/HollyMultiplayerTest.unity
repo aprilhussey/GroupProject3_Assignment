@@ -504,6 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: b3e3f2b12a30af248aaa59ddd2874e40, type: 2}
   health: 0
+  healthBar: {fileID: 0}
 --- !u!1 &422624958
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +552,7 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 1176199413879127531, guid: b44d7112e013e194ab7d44c8d62a22d5, type: 3}
   spawnInterval: 10
   initialDelay: 2
+  spawnAmount: 10
 --- !u!1 &453382033
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,6 +1965,7 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 1176199413879127531, guid: b44d7112e013e194ab7d44c8d62a22d5, type: 3}
   spawnInterval: 10
   initialDelay: 4
+  spawnAmount: 10
 --- !u!1 &1427807231
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,7 +2149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1669652874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2340,6 +2343,7 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 1176199413879127531, guid: b44d7112e013e194ab7d44c8d62a22d5, type: 3}
   spawnInterval: 10
   initialDelay: 0
+  spawnAmount: 10
 --- !u!1 &1801806416
 GameObject:
   m_ObjectHideFlags: 0
