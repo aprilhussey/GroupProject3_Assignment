@@ -35,8 +35,11 @@ public class PlayerController : MonoBehaviour, IDamageable
 	[HideInInspector] public float damage;
 
 	private InputActions inputActions;
-	private Vector2 movementInput = new Vector2();
-	private Vector2 lookInput = new Vector2();
+	private Vector2 movementInput = Vector2.zero;
+	private Vector2 lookInput = Vector2.zero;
+	//private bool basicAttackUsed = false;
+	//private bool mainAbilityUsed = false;
+	//private bool specialAbilityUsed = false;
 
 	//private string gamepadControlSchemeName = "Gamepad";
 	//private string keyboardMouseControlSchemeName = "KeyboardMouse";
@@ -75,14 +78,6 @@ public class PlayerController : MonoBehaviour, IDamageable
 		// Input actions
 		inputActions = new InputActions();
 
-		// Subscribe to Movement action
-		inputActions.Player.Movement.performed += context => movementInput = context.ReadValue<Vector2>();
-		inputActions.Player.Movement.canceled += context => movementInput = Vector2.zero;
-
-		// Subscribe to Look action
-		inputActions.Player.Look.performed += context => lookInput = context.ReadValue<Vector2>();
-		inputActions.Player.Look.canceled += context => movementInput = Vector2.zero;
-
 		// Set ability states to ready
 		basicAttackState = Ability.AbilityState.ready;
 		mainAbilityState = Ability.AbilityState.ready;
@@ -103,6 +98,37 @@ public class PlayerController : MonoBehaviour, IDamageable
 		inputActions.Disable();
 	}
 
+	public void OnMovement(InputAction.CallbackContext context)
+	{
+		movementInput = context.ReadValue<Vector2>();
+	}
+
+	public void OnLook(InputAction.CallbackContext context)
+	{
+		lookInput = context.ReadValue<Vector2>();
+	}
+
+	public void OnBasicAttack(InputAction.CallbackContext context)
+	{
+		//basicAttackUsed = context.ReadValue<bool>();
+		//basicAttackUsed = context.action.triggered;
+		CheckAbilityState(context, basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
+	}
+
+	public void OnMainAbility(InputAction.CallbackContext context)
+	{
+		//mainAbilityUsed = context.ReadValue<bool>();
+		//mainAbilityUsed = context.action.triggered;
+		CheckAbilityState(context, mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
+	}
+
+	public void OnSpecialAbility(InputAction.CallbackContext context)
+	{
+		//specialAbilityUsed = context.ReadValue<bool>();
+		//specialAbilityUsed = context.action.triggered;
+		CheckAbilityState(context, specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
+	}
+
 	// Update is called once per frame
 	void Update()
 	{
@@ -113,7 +139,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 			Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;          // Removes the y component of the forward vector and normalizes it
 																															// giving a forward vector that is always parallel to the ground
-																															// Calculate the movement direction in the camera's perspective
+			// Calculate the movement direction in the camera's perspective
 			Vector3 movementDirection = movementInput.x * Camera.main.transform.right + movementInput.y * cameraForward;
 
 			// Move player using velocity
@@ -144,10 +170,10 @@ public class PlayerController : MonoBehaviour, IDamageable
 				//rotationSpeed = 0f;	// Reset rotation when there's no input
 			}
 
-			// Abilities
+			/*// Abilities
 			CheckAbilityState("BasicAttack", basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
 			CheckAbilityState("MainAbility", mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
-			CheckAbilityState("SpecialAbility", specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
+			CheckAbilityState("SpecialAbility", specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);*/
 
 			// If player health is less than or equal to 0
 			if (health <= 0)
@@ -160,7 +186,6 @@ public class PlayerController : MonoBehaviour, IDamageable
 		}
 	}
 
-
 	// Class needs to derive from 'IDamageable' for this function to work
 	public void TakeDamage(float amount)
 	{
@@ -170,14 +195,14 @@ public class PlayerController : MonoBehaviour, IDamageable
 		}
 	}
 
-	void CheckAbilityState(string inputActionName, Ability ability, ref Ability.AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
+	void CheckAbilityState(InputAction.CallbackContext context, Ability ability, ref Ability.AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
     {
-		InputAction inputAction = GetInputAction(inputActionName);
+		bool inputActionTriggered = context.action.triggered;
 
 		switch (abilityState)
 		{
 			case Ability.AbilityState.ready:
-				if (inputAction.triggered)
+				if (inputActionTriggered)
 				{
 					ability.UseAbility(this.gameObject);
 					abilityState = Ability.AbilityState.active;
@@ -213,7 +238,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 		}
 	}
 
-	public InputAction GetInputAction(string inputActionName)
+	/*public InputAction GetInputAction(string inputActionName)
 	{
 		switch (inputActionName)
 		{
@@ -229,7 +254,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 			default:
 				throw new ArgumentException($"Non-existent input action: {inputActionName}");
 		}
-	}
+	}*/
 
 	/*void OnDrawGizmos()
 	{
