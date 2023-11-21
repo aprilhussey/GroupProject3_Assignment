@@ -33,6 +33,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 	// Other variables
 	private List<GameObject> playersSeen;
 	[HideInInspector] public GameObject target = null;
+	private AudioSource goblinDeathSound;
 	private bool targetInAttackRadius;
 	//private bool attacked;
 	//private bool attacking;
@@ -82,7 +83,9 @@ public class GoblinController : MonoBehaviour, IDamageable
     // Start is called before the first frame update
 	void Start()
     {
-		sphereColliders = GetComponentsInChildren<SphereCollider>();
+        goblinDeathSound = GetComponent<AudioSource>();
+
+        sphereColliders = GetComponentsInChildren<SphereCollider>();
 
 		// Loop through colliders
 		foreach (SphereCollider sphereCollider in sphereColliders)
@@ -133,6 +136,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 		// If goblin health is less than or equal to 0
 		if (health <= 0)
 		{
+			goblinDeathSound.Play();
 			Debug.Log("Goblin dead");
 			Destroy(gameObject);
 		}
