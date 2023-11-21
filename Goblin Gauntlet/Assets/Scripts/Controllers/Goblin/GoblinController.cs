@@ -34,6 +34,9 @@ public class GoblinController : MonoBehaviour, IDamageable
 	private List<GameObject> playersSeen;
 	[HideInInspector] public GameObject target = null;
 	private AudioSource goblinDeathSound;
+	private AudioSource goblinSpawnSound;
+	private AudioSource goblinAttackSound;
+	private bool aggressivePlayed = false;
 	private bool targetInAttackRadius;
 	//private bool attacked;
 	//private bool attacking;
@@ -83,7 +86,9 @@ public class GoblinController : MonoBehaviour, IDamageable
     // Start is called before the first frame update
 	void Start()
     {
-        goblinDeathSound = GetComponent<AudioSource>();
+		AudioSource[] audioSources = GetComponents<AudioSource>();
+		goblinDeathSound = audioSources[0];
+		goblinSpawnSound = audioSources[1];
 
         sphereColliders = GetComponentsInChildren<SphereCollider>();
 
@@ -104,6 +109,8 @@ public class GoblinController : MonoBehaviour, IDamageable
 			}
         }
 		CheckIfNull();
+
+		goblinSpawnSound.Play();
 	}
 
     // Update is called once per frame
@@ -240,6 +247,11 @@ public class GoblinController : MonoBehaviour, IDamageable
 			{
 				closestPlayerDistance = distanceToPlayer;
 				nearestPlayer = player;
+				if (!aggressivePlayed)
+				{
+					goblinAttackSound.Play();
+					aggressivePlayed = true;
+				}
 			}
 		}
 
