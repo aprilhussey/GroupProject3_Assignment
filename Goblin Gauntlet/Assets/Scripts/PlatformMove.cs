@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlatformMove : MonoBehaviour
 {
-    float speed = 1f;
+    public float speed = 2f;
     Vector3 moveDirection;
     Rigidbody platformRigidbody;
     // Start is called before the first frame update
@@ -23,6 +23,7 @@ public class PlatformMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print("trigger entered!");
         if (other.gameObject.CompareTag("TurnLeft"))
         {
            switch(moveDirection)

@@ -7,6 +7,8 @@ TagManager:
   - Artifact
   - FollowRadius
   - AttackRadius
+  - TurnLeft
+  - TurnRight
   layers:
   - Default
   - TransparentFX
