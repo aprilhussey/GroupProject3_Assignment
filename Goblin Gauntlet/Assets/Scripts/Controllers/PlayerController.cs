@@ -34,19 +34,21 @@ public class PlayerController : MonoBehaviour, IDamageable
 	// Other variables
 	[HideInInspector] public float damage;
 
-	private InputActions inputActions;
-	private Vector2 movementInput = new Vector2();
-	private Vector2 lookInput = new Vector2();
-
+	private Vector2 movementInput = Vector2.zero;
+	private Vector2 lookInput = Vector2.zero;
+	// Commented out as this will need to be implemented at some point //
 	//private string gamepadControlSchemeName = "Gamepad";
 	//private string keyboardMouseControlSchemeName = "KeyboardMouse";
+	// Commented out as this will need to be implemented at some point //
 
-	private Rigidbody rb;
+	private Rigidbody playerRigidbody;
 
 	public float smoothRotationTime = 0.1f;
 
 	private PlayerInput playerInputComponent;
-	private string currentControlScheme;
+	// Commented out as this will need to be implemented at some point //
+	//private string currentControlScheme;
+	// Commented out as this will need to be implemented at some point //
 
 	private Ability.AbilityState basicAttackState;
     private Ability.AbilityState mainAbilityState;
@@ -72,35 +74,14 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 		// OTHER VARIABLES //
 
-		// Input actions
-		inputActions = new InputActions();
-
-		// Subscribe to Movement action
-		inputActions.Player.Movement.performed += context => movementInput = context.ReadValue<Vector2>();
-		inputActions.Player.Movement.canceled += context => movementInput = Vector2.zero;
-
-		// Subscribe to Look action
-		inputActions.Player.Look.performed += context => lookInput = context.ReadValue<Vector2>();
-		inputActions.Player.Look.canceled += context => movementInput = Vector2.zero;
-
 		// Set ability states to ready
 		basicAttackState = Ability.AbilityState.ready;
 		mainAbilityState = Ability.AbilityState.ready;
         specialAbilityState = Ability.AbilityState.ready;
 
-		rb = GetComponent<Rigidbody>();
+		playerRigidbody = GetComponent<Rigidbody>();
 
 		playerInputComponent = GetComponent<PlayerInput>();
-	}
-
-	void OnEnable()
-	{
-		inputActions.Enable();
-	}
-
-	void OnDisable()
-	{
-		inputActions.Disable();
 	}
 
 	// Update is called once per frame
@@ -108,25 +89,33 @@ public class PlayerController : MonoBehaviour, IDamageable
 	{
 		if (!GameManager.isGamePaused)
 		{
-			currentControlScheme = playerInputComponent.currentControlScheme;
+			// Commented out as this will need to be implemented at some point //
+			//currentControlScheme = playerInputComponent.currentControlScheme;
 			//Debug.Log($"currentControlScheme = {currentControlScheme}");
+			// Commented out as this will need to be implemented at some point //
 
 			Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;          // Removes the y component of the forward vector and normalizes it
 																															// giving a forward vector that is always parallel to the ground
-																															// Calculate the movement direction in the camera's perspective
+			// Calculate the movement direction in the camera's perspective
 			Vector3 movementDirection = movementInput.x * Camera.main.transform.right + movementInput.y * cameraForward;
 
 			// Move player using velocity
-			Vector3 movement = new Vector3(movementDirection.x * speed, rb.velocity.y, movementDirection.z * speed);
+			Vector3 movement = new Vector3(movementDirection.x * speed, playerRigidbody.velocity.y, movementDirection.z * speed);
 
-			rb.velocity = movement;
+			playerRigidbody.velocity = movement;
 
 			// Handle player rotation
 			if (movementInput.sqrMagnitude > 0.01f) // Check if there's input
 			{
-				rb.velocity = movement;
+				playerRigidbody.velocity = movement;
 
-				if (currentControlScheme == "Gamepad")
+				// Use gamepad controls
+				float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
+				float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothRotationTime);
+				this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
+
+				// Commented out as this will need to be implemented at some point //
+				/*if (currentControlScheme == "Gamepad")
 				{
 					// Use gamepad controls
 					float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
@@ -137,17 +126,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 				if (currentControlScheme == "KeyboardMouse")
 				{
 					// Use keyboard and mouse controls
-				}
+				}*/
+				// Commented out as this will need to be implemented at some point //
 			}
-			else
-			{
-				//rotationSpeed = 0f;	// Reset rotation when there's no input
-			}
-
-			// Abilities
-			CheckAbilityState("BasicAttack", basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
-			CheckAbilityState("MainAbility", mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
-			CheckAbilityState("SpecialAbility", specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
 
 			// If player health is less than or equal to 0
 			if (health <= 0)
@@ -160,7 +141,6 @@ public class PlayerController : MonoBehaviour, IDamageable
 		}
 	}
 
-
 	// Class needs to derive from 'IDamageable' for this function to work
 	public void TakeDamage(float amount)
 	{
@@ -170,14 +150,39 @@ public class PlayerController : MonoBehaviour, IDamageable
 		}
 	}
 
-	void CheckAbilityState(string inputActionName, Ability ability, ref Ability.AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
+	public void OnMovement(InputAction.CallbackContext context)
+	{
+		movementInput = context.ReadValue<Vector2>();
+	}
+
+	public void OnLook(InputAction.CallbackContext context)
+	{
+		lookInput = context.ReadValue<Vector2>();
+	}
+
+	public void OnBasicAttack(InputAction.CallbackContext context)
+	{
+		CheckAbilityState(context, basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
+	}
+
+	public void OnMainAbility(InputAction.CallbackContext context)
+	{
+		CheckAbilityState(context, mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
+	}
+
+	public void OnSpecialAbility(InputAction.CallbackContext context)
+	{
+		CheckAbilityState(context, specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
+	}
+
+	void CheckAbilityState(InputAction.CallbackContext context, Ability ability, ref Ability.AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
     {
-		InputAction inputAction = GetInputAction(inputActionName);
+		bool inputActionTriggered = context.action.triggered;
 
 		switch (abilityState)
 		{
 			case Ability.AbilityState.ready:
-				if (inputAction.triggered)
+				if (inputActionTriggered)
 				{
 					ability.UseAbility(this.gameObject);
 					abilityState = Ability.AbilityState.active;
@@ -213,25 +218,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 		}
 	}
 
-	public InputAction GetInputAction(string inputActionName)
-	{
-		switch (inputActionName)
-		{
-			case "BasicAttack":
-				return inputActions.Player.BasicAttack;
-
-			case "MainAbility":
-				return inputActions.Player.MainAbility;
-
-			case "SpecialAbility":
-				return inputActions.Player.SpecialAbility;
-
-			default:
-				throw new ArgumentException($"Non-existent input action: {inputActionName}");
-		}
-	}
-
-	void OnDrawGizmos()
+	/*void OnDrawGizmos()
 	{
 		// Draw field of attack
 		Gizmos.color = Color.red;
@@ -243,5 +230,5 @@ public class PlayerController : MonoBehaviour, IDamageable
 		// Draw attack radius
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position, basicAttack.attackRadius);
-	}
+	}*/
 }
