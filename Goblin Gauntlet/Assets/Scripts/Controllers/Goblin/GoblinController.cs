@@ -246,7 +246,10 @@ public class GoblinController : MonoBehaviour, IDamageable
 
 		if (closestPlayerDistance < distanceToArtifact)
 		{
-			target = nearestPlayer;
+			if (nearestPlayer.GetComponent<PlayerController>().health > 0) // Check that the nearestPlayer still has health
+			{
+				target = nearestPlayer;
+			}
 		}
 		else
 		{
@@ -255,6 +258,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 				target = artifact;
 			}
 		}
+		Debug.Log($"target = {target}");
 	}
 
 	void MoveTowardsTarget(GameObject target)
@@ -292,9 +296,14 @@ public class GoblinController : MonoBehaviour, IDamageable
 	// Handles the OnTriggerEnter functionality of the attackRadiusCollider
 	public void AttackRadiusEntered(GameObject other)
 	{
-		if (other == target)
+		/*if (other == target)
 		{
 			//Debug.Log($"Game object entered attack radius: {other.name}");
+			targetInAttackRadius = true;
+		}*/
+
+		if (other.transform.root.CompareTag("Player") || other.transform.root.CompareTag("Artifact"))
+		{
 			targetInAttackRadius = true;
 		}
 	}
@@ -302,10 +311,15 @@ public class GoblinController : MonoBehaviour, IDamageable
 	// Handles the OnTriggerExit functionality of the attackRadiusCollider
 	public void AttackRadiusExited(GameObject other)
 	{
-		if (other == target)
+		/*if (other == target)
 		{
 			//Debug.Log($"Game object exited attack radius: {other.name}");
 			targetInAttackRadius = false;
+		}*/
+
+		if (other.transform.root.CompareTag("Player") || other.transform.root.CompareTag("Artifact"))
+		{
+			targetInAttackRadius = true;
 		}
 	}
 
