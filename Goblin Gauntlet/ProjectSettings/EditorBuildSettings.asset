@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/LewisScene003.unity
+    guid: 4cdcb2115823cff439f2fc0f8fb95c28
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 80f24158b7aad3d44b8b4f31e4b0b106
   - enabled: 1
@@ -15,6 +18,6 @@ EditorBuildSettings:
     path: Assets/Scenes/JackScene.unity
     guid: 68bdf5cdf09b4f9499e3ba8242b7dfa7
   - enabled: 1
-    path: Assets/Scenes/LewisScene002.unity
+    path: Assets/Scenes/LewisScene002_Profiles/Old Scenes/LewisScene002.unity
     guid: 275813b7069db9941851116025bc8466
   m_configObjects: {}
