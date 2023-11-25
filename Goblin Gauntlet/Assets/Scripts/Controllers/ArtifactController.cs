@@ -7,7 +7,8 @@ public class ArtifactController : MonoBehaviour, IDamageable
 	public Entity entityData;
 
 	private string entityName;
-	[HideInInspector] public float health;
+	//[HideInInspector] 
+	public float health;
 
 	[SerializeField] FloatingHealthBar healthBar;
 
