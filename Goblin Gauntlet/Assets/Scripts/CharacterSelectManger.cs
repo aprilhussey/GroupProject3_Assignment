@@ -7,17 +7,31 @@ using UnityEngine.UI;
 
 public class CharacterSelectManager : MonoBehaviour
 {
+	// Singleton instance
+	public static CharacterSelectManager instance = null;
+
 	private PlayerInputManager playerInputManager;
 	private int maxPlayerCount;
 
 	private GameObject characterButtonsParent;
 	private GameObject playerCursorsParent;
 
-	List<GameObject> characterButtons;
-	List<GameObject> playerCursors;
+	public List<GameObject> characterButtons;
+	private List<GameObject> playerCursors;
 
+	// Awake is called before Start
 	private void Awake()
 	{
+		// Ensure only one CharacterSelectManager instance exists
+		if (instance == null)
+		{
+			instance = this;
+		}
+		else if (instance != this)
+		{
+			Destroy(gameObject);
+		}
+
 		playerInputManager = GetComponent<PlayerInputManager>();
 		maxPlayerCount = playerInputManager.maxPlayerCount;
 
@@ -28,6 +42,7 @@ public class CharacterSelectManager : MonoBehaviour
 		playerCursors = new List<GameObject>();
 	}
 
+	// Start is called before the first frame update
 	private void Start()
 	{
 		for (int i = 0; i < characterButtonsParent.transform.childCount; i++)
