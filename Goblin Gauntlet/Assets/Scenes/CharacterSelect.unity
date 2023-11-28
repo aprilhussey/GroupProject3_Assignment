@@ -415,7 +415,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 227617001}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 293549834}
+        m_TargetAssemblyTypeName: CharacterSelectManager, Assembly-CSharp
+        m_MethodName: OnReadyUpClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.PlayerInput,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &227617001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -941,7 +954,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 395762941}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 293549834}
+        m_TargetAssemblyTypeName: CharacterSelectManager, Assembly-CSharp
+        m_MethodName: OnReadyUpClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.PlayerInput,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &395762941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1801,7 +1827,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 733500701}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 293549834}
+        m_TargetAssemblyTypeName: CharacterSelectManager, Assembly-CSharp
+        m_MethodName: OnReadyUpClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.PlayerInput,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &733500701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2218,7 +2257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_Transition
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_TargetGraphic
@@ -2279,6 +2318,34 @@ PrefabInstance:
     - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 293549834}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCharacterButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CharacterSelectManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
       objectReference: {fileID: 0}
     - target: {fileID: 5578034971228835952, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_Name
@@ -2602,7 +2669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_Transition
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_TargetGraphic
@@ -2663,6 +2730,34 @@ PrefabInstance:
     - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 293549834}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCharacterButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CharacterSelectManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
       objectReference: {fileID: 0}
     - target: {fileID: 5578034971228835952, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_Name
@@ -3293,7 +3388,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1552022796}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 293549834}
+        m_TargetAssemblyTypeName: CharacterSelectManager, Assembly-CSharp
+        m_MethodName: OnReadyUpClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.PlayerInput,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1552022796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3525,7 +3633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_Transition
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_TargetGraphic
@@ -3586,6 +3694,34 @@ PrefabInstance:
     - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 293549834}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCharacterButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CharacterSelectManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
       objectReference: {fileID: 0}
     - target: {fileID: 5578034971228835952, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_Name
@@ -4281,7 +4417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_Transition
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_TargetGraphic
@@ -4342,6 +4478,34 @@ PrefabInstance:
     - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 293549834}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCharacterButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CharacterSelectManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808319703163320678, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
       objectReference: {fileID: 0}
     - target: {fileID: 5578034971228835952, guid: 98b9a74c66fa58442a0ddf090323b404, type: 3}
       propertyPath: m_Name
