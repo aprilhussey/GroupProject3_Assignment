@@ -63,7 +63,7 @@ public class CharacterSelectManager : MonoBehaviour
 			GameObject newPlayerCursor = playerInput.gameObject;
 			if (playerCursorsParent != null)
 			{
-				newPlayerCursor.transform.SetParent(playerCursorsParent.transform);
+				newPlayerCursor.transform.parent = playerCursorsParent.transform;
 
 				string loadString = $"Sprites/PlayerCursors/Player{playerCursors.Count + 1}Cursor";
 
@@ -78,7 +78,6 @@ public class CharacterSelectManager : MonoBehaviour
 				newPlayerCursor.GetComponent<RectTransform>().localScale = characterButtons[0].GetComponent<RectTransform>().localScale;
 
 				// Assign an ID to the player
-				//newPlayerCursor.GetComponent<PlayerInput>().user.userData = playerCursors.Count + 1;
 				PlayerManager playerManager = newPlayerCursor.AddComponent<PlayerManager>();
 				playerManager.Initialize(playerInput, playerCursors.Count + 1);
 
@@ -103,7 +102,7 @@ public class CharacterSelectManager : MonoBehaviour
 		PlayerManager playerManager = player.GetComponent<PlayerManager>();
 		int playerID = playerManager.playerID;
 
-		GameObject readyParent = GameObject.Find($"P{playerID}_Ready");
+		GameObject readyParent = GameObject.Find($"P{playerID}_Ready").gameObject;
 		GameObject readyUpButton = readyParent.transform.Find("btn_ReadyUp").gameObject;
 
 		readyParent.SetActive(true);
@@ -112,9 +111,8 @@ public class CharacterSelectManager : MonoBehaviour
 		multiplayerEventSystem.SetSelectedGameObject(readyUpButton);
 	}
 
-	public void OnReadyUpClick(PlayerInput playerInput)
+	public void OnReadyUpClick(GameObject player)
 	{
-		GameObject player = playerInput.gameObject;
 
 		PlayerManager playerManager = player.GetComponent<PlayerManager>();
 		int playerID = playerManager.playerID;
