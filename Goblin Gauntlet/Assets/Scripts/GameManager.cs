@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 	// Singleton instance
-	public static GameManager instance = null;
+	public static GameManager Instance = null;
 
 	// Game state
 	public enum GameState
@@ -46,11 +46,11 @@ public class GameManager : MonoBehaviour
 	void Awake()
 	{
 		// Ensure only one GameManager instance exists
-		if (instance == null)
+		if (Instance == null)
 		{
-			instance = this;
+			Instance = this;
 		}
-		else if (instance != this)
+		else if (Instance != this)
 		{
 			Destroy(gameObject);
 		}
