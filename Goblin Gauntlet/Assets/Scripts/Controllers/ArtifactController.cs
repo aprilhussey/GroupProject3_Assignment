@@ -12,6 +12,9 @@ public class ArtifactController : MonoBehaviour, IDamageable
 
 	[SerializeField] FloatingHealthBar healthBar;
 
+	// Particle Spark
+	public ParticleSystem artefactSpark;
+
 	// Awake is called before Start
 	void Awake()
 	{
@@ -21,6 +24,7 @@ public class ArtifactController : MonoBehaviour, IDamageable
 
 		healthBar = GetComponentInChildren<FloatingHealthBar>();
 	}
+
 
     // Update is called once per frame
     void Update()
@@ -40,6 +44,7 @@ public class ArtifactController : MonoBehaviour, IDamageable
 	{
 		if (health > 0)
 		{
+			artefactSpark.Play();
 			health -= amount;
 			healthBar.UpdateHealthBar();
 		}
