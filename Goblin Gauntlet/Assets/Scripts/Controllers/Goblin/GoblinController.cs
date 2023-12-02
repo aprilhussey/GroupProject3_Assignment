@@ -187,7 +187,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 	void AIVision()
     {
 		Collider[] playersInViewRadius = Physics.OverlapSphere(transform.position, 
-			visionDistance, GameManager.instance.playerLayer);
+			visionDistance, GameManager.Instance.playerLayer);
 
         foreach (Collider playerCollider in playersInViewRadius)
         {
@@ -202,7 +202,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 
 				// Check if there are obstructions between the AI and the player
 				if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, 
-					GameManager.instance.obstructionLayer))
+					GameManager.Instance.obstructionLayer))
 				{
 					GameObject playerSeen = playerCollider.gameObject;
 					//Debug.Log($"Player detected: {playerSeen.name}");
