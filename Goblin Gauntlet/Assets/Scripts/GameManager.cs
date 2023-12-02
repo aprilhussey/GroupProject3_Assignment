@@ -95,37 +95,40 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (playerController.health <= 0 || artifactController.health <= 0)
+		if (playerController != null && artifactController != null)
 		{
-			ChangeGameState(GameState.Game);
-			/*Time.timeScale = 0f;
-			gameOver.SetActive(true);
-			okayButton = GameObject.Find("Okay").GetComponent<Button>();
-			EventSystem.current.SetSelectedGameObject(null);
-			EventSystem.current.SetSelectedGameObject(okayButton.gameObject);
-
-			isGamePaused = true;*/
-		}
-
-		if (inputActions.Player.Pause.triggered)
-		{
-			if (!paused.activeInHierarchy)
+			if (playerController.health <= 0 || artifactController.health <= 0)
 			{
-				Time.timeScale = 0f;
-				paused.SetActive(true);
-				resumeButton = GameObject.Find("Resume").GetComponent<Button>();
+				ChangeGameState(GameState.Game);
+				/*Time.timeScale = 0f;
+				gameOver.SetActive(true);
+				okayButton = GameObject.Find("Okay").GetComponent<Button>();
 				EventSystem.current.SetSelectedGameObject(null);
-				EventSystem.current.SetSelectedGameObject(resumeButton.gameObject);
+				EventSystem.current.SetSelectedGameObject(okayButton.gameObject);
 
-				isGamePaused = true;
+				isGamePaused = true;*/
 			}
-			else if (paused.activeInHierarchy)
-			{
-				Time.timeScale = 1f;
-				paused.SetActive(false);
-				EventSystem.current.SetSelectedGameObject(null);
 
-				isGamePaused = false;
+			if (inputActions.Player.Pause.triggered)
+			{
+				if (!paused.activeInHierarchy)
+				{
+					Time.timeScale = 0f;
+					paused.SetActive(true);
+					resumeButton = GameObject.Find("Resume").GetComponent<Button>();
+					EventSystem.current.SetSelectedGameObject(null);
+					EventSystem.current.SetSelectedGameObject(resumeButton.gameObject);
+
+					isGamePaused = true;
+				}
+				else if (paused.activeInHierarchy)
+				{
+					Time.timeScale = 1f;
+					paused.SetActive(false);
+					EventSystem.current.SetSelectedGameObject(null);
+
+					isGamePaused = false;
+				}
 			}
 		}
 	}
