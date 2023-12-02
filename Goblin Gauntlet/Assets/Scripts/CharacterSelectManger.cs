@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,7 +9,7 @@ using UnityEngine.UI;
 public class CharacterSelectManager : MonoBehaviour
 {
 	// Singleton instance
-	public static CharacterSelectManager Instance = null;
+	public static CharacterSelectManager instance = null;
 
 	private PlayerInputManager playerInputManager;
 	private int maxPlayerCount;
@@ -21,18 +20,17 @@ public class CharacterSelectManager : MonoBehaviour
 	public List<GameObject> characterButtons;
 	private List<GameObject> playerCursors;
 
-	private Player playerReciever;
-	private PlayableCharacter characterReciever;
+
 
 	// Awake is called before Start
 	private void Awake()
 	{
 		// Ensure only one CharacterSelectManager instance exists
-		if (Instance == null)
+		if (instance == null)
 		{
-			Instance = this;
+			instance = this;
 		}
-		else if (Instance != this)
+		else if (instance != this)
 		{
 			Destroy(gameObject);
 		}
@@ -65,7 +63,7 @@ public class CharacterSelectManager : MonoBehaviour
 			GameObject newPlayerCursor = playerInput.gameObject;
 			if (playerCursorsParent != null)
 			{
-				newPlayerCursor.transform.SetParent(playerCursorsParent.transform);
+				newPlayerCursor.transform.parent = playerCursorsParent.transform;
 
 				string loadString = $"Sprites/PlayerCursors/Player{playerCursors.Count + 1}Cursor";
 
@@ -80,7 +78,8 @@ public class CharacterSelectManager : MonoBehaviour
 				newPlayerCursor.GetComponent<RectTransform>().localScale = characterButtons[0].GetComponent<RectTransform>().localScale;
 
 				// Assign an ID to the player
-				PlayerManager.Instance.Initialize(playerInput.playerIndex, playerInput);
+				PlayerManager playerManager = newPlayerCursor.AddComponent<PlayerManager>();
+				playerManager.Initialize(playerInput, playerCursors.Count + 1);
 
 				playerCursors.Add(newPlayerCursor);
 			}
@@ -91,47 +90,39 @@ public class CharacterSelectManager : MonoBehaviour
 		}
 	}
 
-	public void OnCharacterButtonClicked(Player playerRecieved, PlayableCharacter playableCharacterRecieved)
+	private void Update()
 	{
-		playerReciever = playerRecieved;
-		characterReciever = playableCharacterRecieved;
-		Debug.Log($"player.id: {playerReciever.id}");
-
-		Player player = PlayerManager.Instance.players[playerReciever.id];
-
-		player.character = characterReciever;
-		Debug.Log($"player.character: {player.character}");
-
-		string pathToReadyParent = $"PlayerCharacters/P{player.id + 1}_Character/P{player.id + 1}_Ready";
-		GameObject readyParent = GameObject.Find(pathToReadyParent);
-
-		string pathToReadyUpButton = $"PlayerCharacters/P{player.id + 1}_Character/P{player.id + 1}_Ready/btn_ReadyUp";
-		GameObject readyUpButton = GameObject.Find(pathToReadyUpButton);
-
-		Debug.Log($"readyParent: {readyParent.name}");
-
-		readyParent.SetActive(true);
-		
-		MultiplayerEventSystem multiplayerEventSystem = player.input.gameObject.GetComponent<MultiplayerEventSystem>();
-		multiplayerEventSystem.SetSelectedGameObject(readyUpButton);
-
-		Image playerCursorImage = player.input.gameObject.GetComponent<Image>();
-		playerCursorImage.enabled = false;
+		// check if a player has clicked on a 
 	}
 
-	public void OnReadyUpClick()
+	public void OnCharacterButtonClick(PlayerInput playerInput)
 	{
-		Player player = PlayerManager.Instance.players[playerReciever.id];
+		GameObject player = playerInput.gameObject.transform.GetChild(0).gameObject;
+		
+		PlayerManager playerManager = player.GetComponent<PlayerManager>();
+		int playerID = playerManager.playerID;
 
-		string pathToReadyUpButton = $"PlayerCharacters/P{player.id + 1}_Character/P{player.id + 1}_Ready/btn_ReadyUp";
-		GameObject readyUpButton = GameObject.Find(pathToReadyUpButton);
+		GameObject readyParent = GameObject.Find($"P{playerID}_Ready").gameObject;
+		GameObject readyUpButton = readyParent.transform.Find("btn_ReadyUp").gameObject;
+
+		readyParent.SetActive(true);
+
+		MultiplayerEventSystem multiplayerEventSystem = player.GetComponent<MultiplayerEventSystem>();
+		multiplayerEventSystem.SetSelectedGameObject(readyUpButton);
+	}
+
+	public void OnReadyUpClick(GameObject player)
+	{
+
+		PlayerManager playerManager = player.GetComponent<PlayerManager>();
+		int playerID = playerManager.playerID;
+
+		GameObject readyParent = GameObject.Find($"P{playerID}_Ready");
+		GameObject readyUpButton = readyParent.transform.Find("btn_ReadyUp").gameObject;
 
 		readyUpButton.SetActive(false);
 
-		MultiplayerEventSystem multiplayerEventSystem = player.input.gameObject.GetComponent<MultiplayerEventSystem>();
+		MultiplayerEventSystem multiplayerEventSystem = player.GetComponent<MultiplayerEventSystem>();
 		multiplayerEventSystem.SetSelectedGameObject(null);
-
-		// Set player.isReady to true
-		player.isReady = true;
 	}
 }

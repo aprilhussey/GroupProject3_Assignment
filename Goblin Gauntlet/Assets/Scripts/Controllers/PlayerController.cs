@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 	public float smoothRotationTime = 0.1f;
 
-	private PlayerInput playerInput;
+	private PlayerInput playerInputComponent;
 	// Commented out as this will need to be implemented at some point //
 	//private string currentControlScheme;
 	// Commented out as this will need to be implemented at some point //
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 		playerRigidbody = GetComponent<Rigidbody>();
 
-		playerInput = GetComponent<PlayerInput>();
+		playerInputComponent = GetComponent<PlayerInput>();
 	}
 
 	// Update is called once per frame
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 		if (!GameManager.isGamePaused)
 		{
 			// Commented out as this will need to be implemented at some point //
-			//currentControlScheme = playerInput.currentControlScheme;
+			//currentControlScheme = playerInputComponent.currentControlScheme;
 			//Debug.Log($"currentControlScheme = {currentControlScheme}");
 			// Commented out as this will need to be implemented at some point //
 
