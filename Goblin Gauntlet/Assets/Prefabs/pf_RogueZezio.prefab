@@ -938,7 +938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: 0
-  startPos: {x: 0, y: 0, z: 0}
+  startPos: {x: 158.7, y: 0.325, z: -100.1}
 --- !u!1 &8645081730864033387
 GameObject:
   m_ObjectHideFlags: 0
