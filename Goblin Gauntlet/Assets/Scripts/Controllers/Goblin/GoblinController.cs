@@ -332,9 +332,10 @@ public class GoblinController : MonoBehaviour, IDamageable
 	{
 		if (health > 0)
 		{
-			goblinBlood.Play();
+		
 			health -= amount;
 			healthBar.UpdateHealthBar();
+			goblinBlood.Play();
 		}
 	}
 
