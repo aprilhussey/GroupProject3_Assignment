@@ -79,6 +79,17 @@ public class CharacterSelectManager : MonoBehaviour
 				newPlayerCursor.GetComponent<RectTransform>().rotation = characterButtons[0].GetComponent<RectTransform>().rotation;
 				newPlayerCursor.GetComponent<RectTransform>().localScale = characterButtons[0].GetComponent<RectTransform>().localScale;
 
+				// Pair the PlayerInput with a specific device
+				InputDevice device = InputSystem.GetDeviceById(playerInput.devices[0].deviceId);
+				if (device != null)
+				{
+					playerInput.SwitchCurrentControlScheme(device);
+				}
+				else
+				{
+					Debug.LogError($"Device with ID {playerInput.devices[0].deviceId} not found.");
+				}
+
 				// Assign an ID to the player
 				PlayerManager.Instance.Initialize(playerInput.playerIndex, playerInput);
 
@@ -91,16 +102,9 @@ public class CharacterSelectManager : MonoBehaviour
 		}
 	}
 
-	public void OnCharacterButtonClicked(Player playerRecieved, PlayableCharacter playableCharacterRecieved)
+	public void OnCharacterButtonClicked(ref Player player)
 	{
-		playerReciever = playerRecieved;
-		characterReciever = playableCharacterRecieved;
-		Debug.Log($"player.id: {playerReciever.id}");
-
-		Player player = PlayerManager.Instance.players[playerReciever.id];
-
-		player.character = characterReciever;
-		Debug.Log($"player.character: {player.character}");
+		Debug.Log($"player.id: {player.id}");
 
 		string pathToReadyParent = $"PlayerCharacters/P{player.id + 1}_Character/P{player.id + 1}_Ready";
 		GameObject readyParent = GameObject.Find(pathToReadyParent);
@@ -119,10 +123,8 @@ public class CharacterSelectManager : MonoBehaviour
 		playerCursorImage.enabled = false;
 	}
 
-	public void OnReadyUpClick()
+	public void OnReadyUpButtonClicked(ref Player player)
 	{
-		Player player = PlayerManager.Instance.players[playerReciever.id];
-
 		string pathToReadyUpButton = $"PlayerCharacters/P{player.id + 1}_Character/P{player.id + 1}_Ready/btn_ReadyUp";
 		GameObject readyUpButton = GameObject.Find(pathToReadyUpButton);
 
