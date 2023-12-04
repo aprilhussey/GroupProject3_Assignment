@@ -7,7 +7,11 @@ TagManager:
   - Artifact
   - FollowRadius
   - AttackRadius
-  - Island
+  - TurnLeft
+  - TurnRight
+  - Enemy
+  - TurnUp
+  - TurnDown
   layers:
   - Default
   - TransparentFX
