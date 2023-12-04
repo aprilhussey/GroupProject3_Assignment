@@ -7,10 +7,11 @@ public class VictoryTrigger : MonoBehaviour
 	public GameObject victoryScreen;
 
 
-	void OnTriggerEnter(Collider collider)
+	public void OnTriggerEnter(Collider other)
 	{
-		if (collider.gameObject.tag == "Island")
+		if (other.CompareTag("Artifact"))
 		{
+			Debug.Log("Collider Collided");
 			victoryScreen.SetActive(true);
 		}
 	}

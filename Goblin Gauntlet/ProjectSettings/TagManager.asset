@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - TurnUp
   - TurnDown
+  - Island
   layers:
   - Default
   - TransparentFX

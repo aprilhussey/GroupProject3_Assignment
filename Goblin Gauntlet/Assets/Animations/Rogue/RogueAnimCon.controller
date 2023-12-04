@@ -48,7 +48,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -5264073085366901330, guid: bea3ed95e41b1354fb069ec126bf6957, type: 3}
+  m_Motion: {fileID: -5264073085366901330, guid: 0f6911fa2ff38ba47874c9ac81d1807f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -102,7 +102,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -2461568101491452011, guid: bea3ed95e41b1354fb069ec126bf6957, type: 3}
+  m_Motion: {fileID: -2461568101491452011, guid: 0f6911fa2ff38ba47874c9ac81d1807f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -172,19 +172,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Dead
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: attacking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -218,7 +218,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -8352602362591839388, guid: bea3ed95e41b1354fb069ec126bf6957, type: 3}
+  m_Motion: {fileID: 8573029572103733567, guid: 0f6911fa2ff38ba47874c9ac81d1807f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -247,7 +247,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -9200077708873028222, guid: bea3ed95e41b1354fb069ec126bf6957, type: 3}
+  m_Motion: {fileID: -9200077708873028222, guid: 0f6911fa2ff38ba47874c9ac81d1807f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
