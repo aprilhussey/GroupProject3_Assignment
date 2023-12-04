@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 	// Entity.cs variables
 	private string characterName;
 	[HideInInspector] public float health;
+	[HideInInspector] public bool canHeal = true;
 
 	// Character.cs variables
     private float speed;

@@ -26,36 +26,42 @@ public class PlatformMove : MonoBehaviour
         print("trigger entered!");
         if (other.gameObject.CompareTag("TurnLeft"))
         {
-           switch(moveDirection)
+            switch(moveDirection.x)
             {
-                case Vector3 moveDirection when moveDirection.Equals(Vector3.left):
+                case -1:
                     moveDirection = Vector3.up;
                     break;
-                case Vector3 moveDirection when moveDirection.Equals(Vector3.up):
-                    moveDirection = Vector3.right;
-                    break;
-                case Vector3 moveDirection when moveDirection.Equals(Vector3.right):
+                case 1:
                     moveDirection = Vector3.down;
                     break;
-                case Vector3 moveDirection when moveDirection.Equals(Vector3.down):
+            }
+            switch (moveDirection.y)
+            {
+                case -1:
                     moveDirection = Vector3.left;
+                    break;
+                case 1:
+                    moveDirection = Vector3.right;
                     break;
             }
         }
         else if (other.gameObject.CompareTag("TurnRight"))
         {
-            switch (moveDirection)
+            switch (moveDirection.x)
             {
-                case Vector3 moveDirection when moveDirection.Equals(Vector3.left):
+                case -1:
                     moveDirection = Vector3.down;
                     break;
-                case Vector3 moveDirection when moveDirection.Equals(Vector3.down):
-                    moveDirection = Vector3.right;
-                    break;
-                case Vector3 moveDirection when moveDirection.Equals(Vector3.right):
+                case 1:
                     moveDirection = Vector3.up;
                     break;
-                case Vector3 moveDirection when moveDirection.Equals(Vector3.up):
+            }
+            switch (moveDirection.y)
+            {
+                case -1:
+                    moveDirection = Vector3.right;
+                    break;
+                case 1:
                     moveDirection = Vector3.left;
                     break;
             }

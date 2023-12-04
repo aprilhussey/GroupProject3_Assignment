@@ -89,6 +89,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 		AudioSource[] audioSources = GetComponents<AudioSource>();
 		goblinDeathSound = audioSources[0];
 		goblinSpawnSound = audioSources[1];
+		goblinAttackSound = audioSources[2];
 
         sphereColliders = GetComponentsInChildren<SphereCollider>();
 
@@ -145,6 +146,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 		{
 			goblinDeathSound.Play();
 			Debug.Log("Goblin dead");
+			new WaitForSeconds(1);
 			Destroy(gameObject);
 		}
 
@@ -163,7 +165,12 @@ public class GoblinController : MonoBehaviour, IDamageable
 					ability.UseAbility(this.gameObject);
 					abilityState = Ability.AbilityState.active;
 					abilityActiveTime = ability.activeTime;
-				}
+                    if (!aggressivePlayed)
+                    {
+                        goblinAttackSound.Play();
+                        aggressivePlayed = true;
+                    }
+                }
 				break;
 
 			case Ability.AbilityState.active:
@@ -247,11 +254,6 @@ public class GoblinController : MonoBehaviour, IDamageable
 			{
 				closestPlayerDistance = distanceToPlayer;
 				nearestPlayer = player;
-				if (!aggressivePlayed)
-				{
-					goblinAttackSound.Play();
-					aggressivePlayed = true;
-				}
 			}
 		}
 
