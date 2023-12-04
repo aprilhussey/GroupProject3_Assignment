@@ -50,6 +50,9 @@ public class GoblinController : MonoBehaviour, IDamageable
 
 	[SerializeField] FloatingHealthBar healthBar;
 
+	public ParticleSystem goblinBlood;
+	
+
 	// Awake is called before Start
 	void Awake()
     {
@@ -112,6 +115,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 		CheckIfNull();
 
 		goblinSpawnSound.Play();
+
 	}
 
     // Update is called once per frame
@@ -346,8 +350,10 @@ public class GoblinController : MonoBehaviour, IDamageable
 	{
 		if (health > 0)
 		{
+		
 			health -= amount;
 			healthBar.UpdateHealthBar();
+			goblinBlood.Play();
 		}
 	}
 

@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 895591139197061095, guid: 19ab7ad28f0cb8f42ad8ceacfbd200de, type: 3}
+      propertyPath: goblinBlood
+      value: 
+      objectReference: {fileID: 3915965562799117811}
+    - target: {fileID: 895591139197061095, guid: 19ab7ad28f0cb8f42ad8ceacfbd200de, type: 3}
       propertyPath: characterData
       value: 
       objectReference: {fileID: 11400000, guid: 70de1417f95a06e46871e412f462c050, type: 2}
@@ -73,6 +77,9 @@ PrefabInstance:
     - {fileID: 871959957681573766, guid: 19ab7ad28f0cb8f42ad8ceacfbd200de, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1009905693088568739, guid: 19ab7ad28f0cb8f42ad8ceacfbd200de, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 6104800384552961506}
     - targetCorrespondingSourceObject: {fileID: 4635699278809978784, guid: 19ab7ad28f0cb8f42ad8ceacfbd200de, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6388233779893690421}
@@ -112,6 +119,78 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &5166372785879098859 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1009905693088568739, guid: 19ab7ad28f0cb8f42ad8ceacfbd200de, type: 3}
+  m_PrefabInstance: {fileID: 5310099436232372296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6528498384022566055
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5166372785879098859}
+    m_Modifications:
+    - target: {fileID: 1018228212889743685, guid: 7e3cf039e5300844b8e90ab7e2747418, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.01999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018228212889743685, guid: 7e3cf039e5300844b8e90ab7e2747418, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018228212889743685, guid: 7e3cf039e5300844b8e90ab7e2747418, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.079
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018228212889743685, guid: 7e3cf039e5300844b8e90ab7e2747418, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018228212889743685, guid: 7e3cf039e5300844b8e90ab7e2747418, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018228212889743685, guid: 7e3cf039e5300844b8e90ab7e2747418, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018228212889743685, guid: 7e3cf039e5300844b8e90ab7e2747418, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018228212889743685, guid: 7e3cf039e5300844b8e90ab7e2747418, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018228212889743685, guid: 7e3cf039e5300844b8e90ab7e2747418, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018228212889743685, guid: 7e3cf039e5300844b8e90ab7e2747418, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226845969494212373, guid: 7e3cf039e5300844b8e90ab7e2747418, type: 3}
+      propertyPath: m_Name
+      value: GoblinDeath
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7e3cf039e5300844b8e90ab7e2747418, type: 3}
+--- !u!198 &3915965562799117811 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7836737646392877396, guid: 7e3cf039e5300844b8e90ab7e2747418, type: 3}
+  m_PrefabInstance: {fileID: 6528498384022566055}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6104800384552961506 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1018228212889743685, guid: 7e3cf039e5300844b8e90ab7e2747418, type: 3}
+  m_PrefabInstance: {fileID: 6528498384022566055}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6858183693744965598
 PrefabInstance:
   m_ObjectHideFlags: 0
