@@ -15,6 +15,9 @@ public class ArtifactController : MonoBehaviour, IDamageable
 	// Particle Spark
 	public ParticleSystem artefactSpark;
 
+	//Defeat Screen
+	public GameObject deathScreen;
+
 	// Awake is called before Start
 	void Awake()
 	{
@@ -32,6 +35,7 @@ public class ArtifactController : MonoBehaviour, IDamageable
 		// If artifact health is less than or equal to 0
 		if (health <= 0)
 		{
+			deathScreen.SetActive(true);
 			Debug.Log("Artifact destroyed");
 			Destroy(gameObject);
 		}
