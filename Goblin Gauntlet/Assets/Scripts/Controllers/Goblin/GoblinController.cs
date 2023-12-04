@@ -33,6 +33,10 @@ public class GoblinController : MonoBehaviour, IDamageable
 	// Other variables
 	private List<GameObject> playersSeen;
 	[HideInInspector] public GameObject target = null;
+	private AudioSource goblinDeathSound;
+	private AudioSource goblinSpawnSound;
+	private AudioSource goblinAttackSound;
+	private bool aggressivePlayed = false;
 	private bool targetInAttackRadius;
 	//private bool attacked;
 	//private bool attacking;
@@ -45,6 +49,9 @@ public class GoblinController : MonoBehaviour, IDamageable
 	private Ability.AbilityState basicAttackState;
 
 	[SerializeField] FloatingHealthBar healthBar;
+
+	public ParticleSystem goblinBlood;
+	
 
 	// Awake is called before Start
 	void Awake()
@@ -82,7 +89,12 @@ public class GoblinController : MonoBehaviour, IDamageable
     // Start is called before the first frame update
 	void Start()
     {
-		sphereColliders = GetComponentsInChildren<SphereCollider>();
+		AudioSource[] audioSources = GetComponents<AudioSource>();
+		goblinDeathSound = audioSources[0];
+		goblinSpawnSound = audioSources[1];
+		goblinAttackSound = audioSources[2];
+
+        sphereColliders = GetComponentsInChildren<SphereCollider>();
 
 		// Loop through colliders
 		foreach (SphereCollider sphereCollider in sphereColliders)
@@ -101,6 +113,9 @@ public class GoblinController : MonoBehaviour, IDamageable
 			}
         }
 		CheckIfNull();
+
+		goblinSpawnSound.Play();
+
 	}
 
     // Update is called once per frame
@@ -133,7 +148,9 @@ public class GoblinController : MonoBehaviour, IDamageable
 		// If goblin health is less than or equal to 0
 		if (health <= 0)
 		{
+			goblinDeathSound.Play();
 			Debug.Log("Goblin dead");
+			new WaitForSeconds(1);
 			Destroy(gameObject);
 		}
 
@@ -152,7 +169,12 @@ public class GoblinController : MonoBehaviour, IDamageable
 					ability.UseAbility(this.gameObject);
 					abilityState = Ability.AbilityState.active;
 					abilityActiveTime = ability.activeTime;
-				}
+                    if (!aggressivePlayed)
+                    {
+                        goblinAttackSound.Play();
+                        aggressivePlayed = true;
+                    }
+                }
 				break;
 
 			case Ability.AbilityState.active:
@@ -328,8 +350,10 @@ public class GoblinController : MonoBehaviour, IDamageable
 	{
 		if (health > 0)
 		{
+		
 			health -= amount;
 			healthBar.UpdateHealthBar();
+			goblinBlood.Play();
 		}
 	}
 

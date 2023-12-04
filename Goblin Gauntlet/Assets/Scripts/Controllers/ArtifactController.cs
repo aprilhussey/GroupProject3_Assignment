@@ -12,6 +12,13 @@ public class ArtifactController : MonoBehaviour, IDamageable
 
 	[SerializeField] FloatingHealthBar healthBar;
 
+	// Particle Spark
+	public ParticleSystem artefactSpark;
+
+	//Defeat Screen
+	public GameObject deathScreen;
+	public GameObject VictoryScreen;
+
 	// Awake is called before Start
 	void Awake()
 	{
@@ -22,12 +29,14 @@ public class ArtifactController : MonoBehaviour, IDamageable
 		healthBar = GetComponentInChildren<FloatingHealthBar>();
 	}
 
+
     // Update is called once per frame
     void Update()
     {
 		// If artifact health is less than or equal to 0
 		if (health <= 0)
 		{
+			deathScreen.SetActive(true);
 			Debug.Log("Artifact destroyed");
 			Destroy(gameObject);
 		}
@@ -40,8 +49,10 @@ public class ArtifactController : MonoBehaviour, IDamageable
 	{
 		if (health > 0)
 		{
+			artefactSpark.Play();
 			health -= amount;
 			healthBar.UpdateHealthBar();
 		}
 	}
+
 }

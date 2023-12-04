@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 	// Entity.cs variables
 	private string characterName;
 	[HideInInspector] public float health;
+	[HideInInspector] public bool canHeal = true;
 
 	// Character.cs variables
     private float speed;
@@ -55,6 +56,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 	private Ability.AbilityState basicAttackState;
     private Ability.AbilityState mainAbilityState;
 	private Ability.AbilityState specialAbilityState;
+
+	//Damage Particle System
+	public ParticleSystem playerDamageSpark; 
 
 	// Awake is called before Start
 	void Awake()
@@ -148,6 +152,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 	{
 		if (health > 0)
 		{
+			playerDamageSpark.Play();
 			health -= amount;
 		}
 	}
