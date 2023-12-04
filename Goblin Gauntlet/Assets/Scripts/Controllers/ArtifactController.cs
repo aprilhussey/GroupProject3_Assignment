@@ -17,6 +17,7 @@ public class ArtifactController : MonoBehaviour, IDamageable
 
 	//Defeat Screen
 	public GameObject deathScreen;
+	public GameObject VictoryScreen;
 
 	// Awake is called before Start
 	void Awake()
@@ -53,4 +54,5 @@ public class ArtifactController : MonoBehaviour, IDamageable
 			healthBar.UpdateHealthBar();
 		}
 	}
+
 }
