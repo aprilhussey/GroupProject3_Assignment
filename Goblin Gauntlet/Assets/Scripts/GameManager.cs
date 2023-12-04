@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
 		MainMenu,
 		CharacterSelection,
 		Game,
-		Paused
+		Paused,
+		Level002
 	}
 
 	public GameState gameState;
@@ -151,6 +152,10 @@ public class GameManager : MonoBehaviour
 			
 			case GameState.Game:
 				SceneManager.LoadScene("Game");
+				break;
+
+			case GameState.Level002:
+				SceneManager.LoadScene("Level002");
 				break;
 
 			case GameState.Paused:
