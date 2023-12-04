@@ -9,6 +9,9 @@ TagManager:
   - AttackRadius
   - TurnLeft
   - TurnRight
+  - Enemy
+  - TurnUp
+  - TurnDown
   layers:
   - Default
   - TransparentFX
