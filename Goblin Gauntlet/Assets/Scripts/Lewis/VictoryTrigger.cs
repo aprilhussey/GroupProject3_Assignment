@@ -9,7 +9,7 @@ public class VictoryTrigger : MonoBehaviour
 
 	void OnTriggerEnter(Collider collider)
 	{
-		if (collider.gameObject.name == "Island")
+		if (collider.gameObject.tag == "Island")
 		{
 			victoryScreen.SetActive(true);
 		}
