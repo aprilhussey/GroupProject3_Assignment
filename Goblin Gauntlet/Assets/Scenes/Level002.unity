@@ -2993,6 +2993,7 @@ GameObject:
   m_Component:
   - component: {fileID: 453382034}
   - component: {fileID: 453382035}
+  - component: {fileID: 453382036}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3043,6 +3044,19 @@ MonoBehaviour:
   paused: {fileID: 72202414}
   okayButton: {fileID: 794738302}
   resumeButton: {fileID: 492863510}
+--- !u!114 &453382036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453382033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d12aac91b081c41a0b68b3c7c41a9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: LewisScene003
 --- !u!1 &492863509
 GameObject:
   m_ObjectHideFlags: 0
@@ -4006,7 +4020,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 453382035}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: OkayButton
         m_Mode: 1
