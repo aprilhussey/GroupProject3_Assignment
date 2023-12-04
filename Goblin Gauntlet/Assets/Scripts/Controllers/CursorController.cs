@@ -9,130 +9,62 @@ using UnityEngine.UI;
 
 public class CursorController : MonoBehaviour
 {
-	private List<GameObject> characterButtons;
-
-	[SerializeField]
-	private MultiplayerEventSystem multiplayerEventSystem;
-
-	private GameObject selectedCharacterButton;
-
 	private PlayerInput playerInput;
 	private Player player;
 
-	private GameObject playerCharactersParent;
-	//private List<GameObject> readyUpButtons;
-	private Button[] readyUpButtons;
+	private GameObject playerCursor;
+
+	private MultiplayerEventSystem multiplayerEventSystem;
+	private GameObject currentSelectedGameObject;
 
 	// Awake is called before Start
-	private void Awake()
+	void Awake()
 	{
-		characterButtons = CharacterSelectManager.Instance.characterButtons;
-		selectedCharacterButton = characterButtons[0];
-
-		multiplayerEventSystem = this.GetComponent<MultiplayerEventSystem>();
-		multiplayerEventSystem.playerRoot = GameObject.Find("Canvas");
-
 		playerInput = this.GetComponent<PlayerInput>();
 		player = PlayerManager.Instance.FindPlayerByIndex(playerInput.playerIndex);
 
-		playerCharactersParent = GameObject.Find("PlayerCharacters");
-		readyUpButtons = playerCharactersParent.GetComponentsInChildren<Button>(true);
-		
+		playerCursor = this.GetComponentInChildren<RectTransform>().gameObject;
+
+		multiplayerEventSystem = this.GetComponent<MultiplayerEventSystem>();
 	}
 
 	// Start is called before the first frame update
 	void Start()
-    {
-		// Local function to add event listerners
-		void AddCharacterButtonListener(GameObject characterButton, Player player)
-		{
-			characterButton.GetComponent<Button>().onClick.AddListener(() => OnCharacterButtonClick(player));
-		}
-
-		void AddReadyUpButtonListener(Button readyUpButton, Player player)
-		{
-			readyUpButton.onClick.AddListener(() => OnReadyUpButtonClick(player));
-		}
-
-		// Subscribe to the OnClick() event of each character button
-		foreach (GameObject characterButton in characterButtons)
-		{
-			AddCharacterButtonListener(characterButton, player);
-		}
-
-		// Subscribe to the OnClick() event of each ready up button
-		foreach (Button readyUpButton in readyUpButtons)
-		{
-			AddReadyUpButtonListener(readyUpButton, player);
-		}
-
-		multiplayerEventSystem.SetSelectedGameObject(selectedCharacterButton);
-	}
-
-    // Update is called once per frame
-    void Update()
-    {
-		if (multiplayerEventSystem.currentSelectedGameObject != null)
-		{
-			Debug.Log($"Current selected GameObject: {multiplayerEventSystem.currentSelectedGameObject.name}");
-			
-			MoveCursorToSelectedCharacterButton();
-		}
-    }
-
-    void MoveCursorToSelectedCharacterButton()
-    {
-		for (int i = 0; i < characterButtons.Count; i++)
-		{
-			if (multiplayerEventSystem.currentSelectedGameObject.name == characterButtons[i].name)
-			{
-				this.gameObject.GetComponent<RectTransform>().anchoredPosition = characterButtons[i].GetComponent<RectTransform>().anchoredPosition;
-			}
-		}
-	}
-
-	public void OnCharacterButtonClick(Player player)
 	{
-		// Get the currently selected button
-		GameObject selectedButton = multiplayerEventSystem.currentSelectedGameObject;
+		currentSelectedGameObject = multiplayerEventSystem.currentSelectedGameObject;
+		playerCursor.GetComponent<RectTransform>().anchoredPosition = currentSelectedGameObject.GetComponent<RectTransform>().anchoredPosition;
+		//Debug.Log($"P{player.id + 1} multiplayerEventSystem.currentSelectedGameObject: {multiplayerEventSystem.currentSelectedGameObject}");
 
-		if (selectedButton != null)
-		{
-			// Set player.character to selectedButton's playableCharacter
-			PlayableCharacterHolder characterHolder = selectedButton.GetComponent<PlayableCharacterHolder>();
+		string loadCursorImage = $"Sprites/PlayerCursors/Player{player.id + 1}Cursor";
+		playerCursor.GetComponent<Image>().sprite = Resources.Load<Sprite>(loadCursorImage);
 
-			if (characterHolder != null)
-			{
-				// Set player.character to selectedButton's playableCharacter
-				player.character = characterHolder.playableCharacter;
-				CharacterSelectManager.Instance.OnCharacterButtonClicked(ref player);
-			}
-			else
-			{
-				Debug.LogError("PlayableCharacterHolder component not found on the selected button.");
-			}
-		}
-		else
+		playerCursor.GetComponent<RectTransform>().anchoredPosition = currentSelectedGameObject.GetComponent<RectTransform>().anchoredPosition;
+		playerCursor.GetComponent<RectTransform>().sizeDelta = currentSelectedGameObject.GetComponent<RectTransform>().sizeDelta;
+		playerCursor.GetComponent<RectTransform>().anchorMin = currentSelectedGameObject.GetComponent<RectTransform>().anchorMin;
+		playerCursor.GetComponent<RectTransform>().anchorMax = currentSelectedGameObject.GetComponent<RectTransform>().anchorMax;
+		playerCursor.GetComponent<RectTransform>().pivot = currentSelectedGameObject.GetComponent<RectTransform>().pivot;
+		playerCursor.GetComponent<RectTransform>().rotation = currentSelectedGameObject.GetComponent<RectTransform>().rotation;
+		playerCursor.GetComponent<RectTransform>().localScale = currentSelectedGameObject.GetComponent<RectTransform>().localScale;
+	}
+
+	// Update is called once per frame
+	void Update()
+    {
+		currentSelectedGameObject = multiplayerEventSystem.currentSelectedGameObject;
+		Debug.Log($"P{player.id + 1} currentSelectedGameObject: {currentSelectedGameObject.name}");
+
+		if (currentSelectedGameObject != null)
 		{
-			Debug.LogError("Selected button is null.");
+			playerCursor.GetComponent<RectTransform>().anchoredPosition = currentSelectedGameObject.GetComponent<RectTransform>().anchoredPosition;
 		}
 	}
 
-	public void OnReadyUpButtonClick(Player player)
+	public void OnCharacterButtonClick()
 	{
-		CharacterSelectManager.Instance.OnReadyUpButtonClicked(ref player);
+		Debug.Log($"{currentSelectedGameObject.name} was clicked by P{player.id + 1}");
 	}
 
-	private void OnDestroy()
+	public void OnReadyUpButtonClick()
 	{
-		foreach (GameObject characterButton in characterButtons)
-		{
-			characterButton.GetComponent<Button>().onClick.RemoveListener(() => OnCharacterButtonClick(player));
-		}
-
-		foreach (Button readyUpButton in readyUpButtons)
-		{
-			readyUpButton.onClick.RemoveListener(() => OnReadyUpButtonClick(player));
-		}
 	}
 }
