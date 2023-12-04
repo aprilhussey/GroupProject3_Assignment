@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 	private float specialAbilityCooldownTime;
 	private float specialAbilityActiveTime;
 
+	public bool attacking = false;
+
 	// Other variables
 	[HideInInspector] public float damage;
 

@@ -9,6 +9,7 @@ public class RogueAnimScript : MonoBehaviour
     private PlayerController PlayerControl;
     private Rigidbody rb;
     private Animator animator;
+    private bool attacking;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,7 @@ public class RogueAnimScript : MonoBehaviour
         PlayerControl = GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        
     }
 
     //Update is called once per frame
@@ -28,5 +30,6 @@ public class RogueAnimScript : MonoBehaviour
 
         speed = rb.velocity.magnitude;
         animator.SetFloat("speed", speed);
+        animator.SetBool("attacking", PlayerControl.attacking);
     }
 }
