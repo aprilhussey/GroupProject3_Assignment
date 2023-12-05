@@ -46,9 +46,15 @@ public class PlayerSpawnManager : MonoBehaviour
 		{
 			// Spawn pf_CharacterSelectPlayerMenu
 			// Initialize new player in PlayerManager
+
 			PlayerManager.Instance.Initialize(playerInput.playerIndex, playerInput);
 
-			playerInputManager.playerPrefab = DeterminePrefab(playerInput);
+			//playerInput.gameObject.transform.position = spawnLocations[playerInput.playerIndex].transform.positiont
+
+			playerInput.gameObject.GetComponent<PlayerDetails>().playerID = playerInput.playerIndex;
+            playerInput.gameObject.GetComponent<PlayerDetails>().startPos = spawnLocations[playerInput.playerIndex].transform.position;
+
+            playerInputManager.playerPrefab = DeterminePrefab(playerInput);
 		}
 		else
 		{

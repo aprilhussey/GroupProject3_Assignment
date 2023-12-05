@@ -3,7 +3,32 @@ guid: f779ad97034419e4e9a719f807bb0c23
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cylinder_ext.001
+    second: {fileID: 2100000, guid: 4e411a95dae180a48b9827211e7aa7a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #27.001
+    second: {fileID: 2100000, guid: 4e411a95dae180a48b9827211e7aa7a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #28.001
+    second: {fileID: 2100000, guid: 4e411a95dae180a48b9827211e7aa7a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #29.001
+    second: {fileID: 2100000, guid: 4e411a95dae180a48b9827211e7aa7a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: initialShadingGroup.001
+    second: {fileID: 2100000, guid: 4e411a95dae180a48b9827211e7aa7a4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -153,7 +178,7 @@ ModelImporter:
       takeName: Goblin_SK|GoblinIdle
       internalID: -4874963761186918516
       firstFrame: 0
-      lastFrame: 39
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -308,8 +333,8 @@ ModelImporter:
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
