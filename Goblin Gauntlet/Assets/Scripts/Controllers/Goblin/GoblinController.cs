@@ -90,9 +90,9 @@ public class GoblinController : MonoBehaviour, IDamageable
 	void Start()
     {
 		AudioSource[] audioSources = GetComponents<AudioSource>();
-		goblinDeathSound = audioSources[0];
-		goblinSpawnSound = audioSources[1];
-		goblinAttackSound = audioSources[2];
+		//goblinDeathSound = audioSources[0];
+		//goblinSpawnSound = audioSources[1];
+		//goblinAttackSound = audioSources[2];
 
         sphereColliders = GetComponentsInChildren<SphereCollider>();
 
@@ -114,7 +114,7 @@ public class GoblinController : MonoBehaviour, IDamageable
         }
 		CheckIfNull();
 
-		goblinSpawnSound.Play();
+		//goblinSpawnSound.Play();
 
 	}
 
@@ -148,7 +148,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 		// If goblin health is less than or equal to 0
 		if (health <= 0)
 		{
-			goblinDeathSound.Play();
+			//goblinDeathSound.Play();
 			Debug.Log("Goblin dead");
 			new WaitForSeconds(1);
 			Destroy(gameObject);
@@ -171,7 +171,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 					abilityActiveTime = ability.activeTime;
                     if (!aggressivePlayed)
                     {
-                        goblinAttackSound.Play();
+                        //goblinAttackSound.Play();
                         aggressivePlayed = true;
                     }
                 }
@@ -352,7 +352,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 		{
 		
 			health -= amount;
-			healthBar.UpdateHealthBar();
+			//healthBar.UpdateHealthBar();
 			goblinBlood.Play();
 		}
 	}

@@ -2709,7 +2709,7 @@ Transform:
   m_GameObject: {fileID: 422624958}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7402181, z: 0, w: 0.67236686}
-  m_LocalPosition: {x: 13.69, y: 0, z: 9.91}
+  m_LocalPosition: {x: 4.08, y: 0, z: 9.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2730,7 +2730,7 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 1176199413879127531, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
   spawnInterval: 5
   initialDelay: 4
-  spawnAmount: 10
+  spawnAmount: 1
 --- !u!1 &432911090
 GameObject:
   m_ObjectHideFlags: 0
@@ -5133,7 +5133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1817215175045696841, guid: 824cb743e63026e42b769321ddc3a18f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.416
+      value: -0.71
       objectReference: {fileID: 0}
     - target: {fileID: 1817215175045696841, guid: 824cb743e63026e42b769321ddc3a18f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5187,6 +5187,14 @@ PrefabInstance:
       propertyPath: health
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 5827400824372729866, guid: 824cb743e63026e42b769321ddc3a18f, type: 3}
+      propertyPath: deathScreen
+      value: 
+      objectReference: {fileID: 653372156}
+    - target: {fileID: 5827400824372729866, guid: 824cb743e63026e42b769321ddc3a18f, type: 3}
+      propertyPath: VictoryScreen
+      value: 
+      objectReference: {fileID: 5985343}
     - target: {fileID: 7518410239559039041, guid: 824cb743e63026e42b769321ddc3a18f, type: 3}
       propertyPath: m_Name
       value: pf_Artifact
@@ -5984,7 +5992,7 @@ Transform:
   m_GameObject: {fileID: 1263525409}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.49136004, z: 0, w: -0.8709566}
-  m_LocalPosition: {x: 20.84, y: 0, z: -1.93}
+  m_LocalPosition: {x: 14.6, y: 0, z: -1.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6005,7 +6013,7 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 1176199413879127531, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
   spawnInterval: 5
   initialDelay: 2
-  spawnAmount: 10
+  spawnAmount: 1
 --- !u!1 &1284226913
 GameObject:
   m_ObjectHideFlags: 0
@@ -6146,7 +6154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1315597203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8188,7 +8196,7 @@ Transform:
   m_GameObject: {fileID: 1746119456}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.08115564, z: 0, w: 0.9967014}
-  m_LocalPosition: {x: 12.18, y: 0, z: -11.73}
+  m_LocalPosition: {x: 2.7, y: 0, z: -11.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8209,7 +8217,7 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 1176199413879127531, guid: cbb8b3a66ff322642881b50f8067b9fd, type: 3}
   spawnInterval: 5
   initialDelay: 0
-  spawnAmount: 10
+  spawnAmount: 1
 --- !u!1 &1763142132
 GameObject:
   m_ObjectHideFlags: 0
