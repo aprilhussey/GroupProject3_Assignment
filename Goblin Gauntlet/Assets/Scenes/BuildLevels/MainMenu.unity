@@ -770,9 +770,9 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 1051384466}
+    m_SelectOnUp: {fileID: 1245303999}
+    m_SelectOnDown: {fileID: 1051384466}
+    m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
   m_Colors:
@@ -1463,10 +1463,10 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 1245303999}
-    m_SelectOnRight: {fileID: 513309154}
+    m_SelectOnUp: {fileID: 513309154}
+    m_SelectOnDown: {fileID: 1245303999}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
   m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1747,6 +1747,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4868062505634253011, guid: b44d7112e013e194ab7d44c8d62a22d5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5034043795012188079, guid: b44d7112e013e194ab7d44c8d62a22d5, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1804,6 +1808,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7196509404628962005, guid: b44d7112e013e194ab7d44c8d62a22d5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7699231529372147631, guid: b44d7112e013e194ab7d44c8d62a22d5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7713144641988233000, guid: b44d7112e013e194ab7d44c8d62a22d5, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -1943,10 +1955,10 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1051384466}
+    m_SelectOnDown: {fileID: 513309154}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 1051384466}
+    m_SelectOnRight: {fileID: 0}
   m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
