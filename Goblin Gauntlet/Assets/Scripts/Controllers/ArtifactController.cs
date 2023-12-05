@@ -38,7 +38,7 @@ public class ArtifactController : MonoBehaviour, IDamageable
 		{
 			deathScreen.SetActive(true);
 			Debug.Log("Artifact destroyed");
-			Destroy(gameObject);
+			//Destroy(gameObject);
 		}
 
 		Debug.Log($"{gameObject.name} health = {health}");

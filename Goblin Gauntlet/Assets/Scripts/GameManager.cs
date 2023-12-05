@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 		CharacterSelection,
 		Game,
 		Paused,
+		Level001,
 		Level002
 	}
 
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
 
 	// TEMP //
 	// TEMP //
-	public PlayerController playerController;
+	//public PlayerController playerController;
 	public ArtifactController artifactController;
 
 	public GameObject gameOver;
@@ -82,7 +83,7 @@ public class GameManager : MonoBehaviour
 	{
 		if (scene.name == "Game")
 		{
-			playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+			//playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 			artifactController = GameObject.FindWithTag("Artifact").GetComponent<ArtifactController>();
 
 			gameOver = GameObject.Find("GameOver");
@@ -96,11 +97,11 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (playerController != null && artifactController != null)
+		if (artifactController != null)
 		{
-			if (playerController.health <= 0 || artifactController.health <= 0)
+			if (artifactController.health <= 0)
 			{
-				ChangeGameState(GameState.Game);
+				ChangeGameState(GameState.MainMenu);
 				/*Time.timeScale = 0f;
 				gameOver.SetActive(true);
 				okayButton = GameObject.Find("Okay").GetComponent<Button>();
@@ -152,6 +153,10 @@ public class GameManager : MonoBehaviour
 			
 			case GameState.Game:
 				SceneManager.LoadScene("Game");
+				break;
+
+			case GameState.Level001:
+				SceneManager.LoadScene("Level001");
 				break;
 
 			case GameState.Level002:

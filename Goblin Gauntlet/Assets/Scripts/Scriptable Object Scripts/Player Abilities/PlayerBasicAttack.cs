@@ -78,7 +78,7 @@ public class PlayerBasicAttack : Ability
 	{
 		playerController = parent.GetComponent<PlayerController>();
 
-		Debug.Log($"{parent.name} basic attack ended");
+		//Debug.Log($"{parent.name} basic attack ended");
 		playerController.attacking = false;
 
 		nearestEnemy = null;

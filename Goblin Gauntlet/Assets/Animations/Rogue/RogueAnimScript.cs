@@ -29,7 +29,7 @@ public class RogueAnimScript : MonoBehaviour
         }
 
         speed = rb.velocity.magnitude;
-        Debug.Log("speed; "+ speed);
+        //Debug.Log("speed; "+ speed);
         animator.SetFloat("speed", speed);
         animator.SetBool("attacking", PlayerControl.attacking);
     }

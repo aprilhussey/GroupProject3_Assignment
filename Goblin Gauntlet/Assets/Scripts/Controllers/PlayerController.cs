@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 			// If player health is less than or equal to 0
 			if (health <= 0)
 			{
-				Debug.Log($"{gameObject.name} destroyed");
+				//Debug.Log($"{gameObject.name} destroyed");
 				Destroy(gameObject);
 			}
 
