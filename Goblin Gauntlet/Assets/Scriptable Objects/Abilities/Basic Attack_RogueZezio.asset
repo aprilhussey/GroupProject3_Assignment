@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Attack
   activeTime: 1
-  cooldownTime: 0.25
+  cooldownTime: 0.005
   damage: 3
   attackRadius: 2.5
   fieldOfAttack: 90
