@@ -2,16 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static GameManager;
 
 public class PlayerManager : MonoBehaviour
 {
-	public PlayerInput playerInput;
-	public int playerID;
+	// Singleton instance
+	public static PlayerManager Instance = null;
+
+	public List<Player> players;
+
+	void Awake()
+	{
+		// Ensure only one PlayerManager instance exists
+		if (Instance == null)
+		{
+			Instance = this;
+		}
+		else if (Instance != this)
+		{
+			Destroy(gameObject);
+		}
+
+		// Don't destroy PlayerManager when switching scenes
+		DontDestroyOnLoad(gameObject);
+
+		players = new List<Player>();
+	}
 
 	// Initialize your player here
-	public void Initialize(PlayerInput input, int id)
+	public void Initialize(int index, PlayerInput input)
 	{
-		playerInput = input;
-		playerID = id;
+		int id = players.Count;
+		Player player = new Player(id, index, input);
+		players.Add(player);
+	}
+
+	public Player FindPlayerByIndex(int index)
+	{
+		foreach (Player player in players)
+		{
+			if (player.index == index)
+			{
+				return player;
+			}
+		}
+		return null;
 	}
 }
