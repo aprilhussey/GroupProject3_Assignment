@@ -10,6 +10,7 @@ public class Player
 	public PlayerInput input;
 	public bool isReady;
 	public PlayableCharacter character;
+	public GameObject characterPrefab;
 
 	public Player(int id, int index, PlayerInput input)
 	{
@@ -18,5 +19,6 @@ public class Player
 		this.index = index;
 		isReady = false;
 		character = null;
+		characterPrefab = null;
 	}
 }

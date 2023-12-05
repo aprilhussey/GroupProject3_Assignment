@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour
 
 	public List<Player> players;
 
+	public List<GameObject> characterPrefabs;
+
 	void Awake()
 	{
 		// Ensure only one PlayerManager instance exists
@@ -27,6 +29,35 @@ public class PlayerManager : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 
 		players = new List<Player>();
+	}
+
+	private void Update()
+	{
+		if (players != null)
+		{
+			foreach (Player player in players)
+			{
+				if (player.character != null)
+				{
+					characterPrefabs = CharacterSelectManager.Instance.characterPrefabs;
+
+					foreach (GameObject characterPrefab in characterPrefabs)
+					{
+						if (characterPrefab.GetComponent<PlayerController>() != null)
+						{
+							PlayableCharacter characterData = characterPrefab.GetComponent<PlayerController>().characterData;
+							if (characterData != null)
+							{ 
+								if (characterData == player.character)
+								{
+									player.characterPrefab = characterPrefab;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	// Initialize your player here
@@ -47,5 +78,32 @@ public class PlayerManager : MonoBehaviour
 			}
 		}
 		return null;
+	}
+
+	public void SetCharacterPrefab(int id)
+	{
+		Player player = players[id];
+
+		characterPrefabs = CharacterSelectManager.Instance.characterPrefabs;
+
+        if (player != null)
+		{
+			foreach (GameObject characterPrefab in characterPrefabs)
+			{
+				if (player.character == characterPrefab.GetComponent<PlayerController>().characterData)
+				{
+					player.characterPrefab = characterPrefab;
+				}
+				else
+				{
+					Debug.LogError($"player.character doesn't exist within characterPrefabs on the CharacterSelectManager");
+				}
+			}
+		}
+		else
+		{
+			Debug.Log($"player is null");
+		}
+
 	}
 }
