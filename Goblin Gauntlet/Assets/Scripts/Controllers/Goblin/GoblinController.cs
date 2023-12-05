@@ -149,7 +149,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 		if (health <= 0)
 		{
 			//goblinDeathSound.Play();
-			Debug.Log("Goblin dead");
+			//Debug.Log("Goblin dead");
 			new WaitForSeconds(1);
 			Destroy(gameObject);
 		}
