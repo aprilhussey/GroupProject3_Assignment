@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 	public void OnMainAbility(InputAction.CallbackContext context)
 	{
-		CheckAbilityState(context, mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
+		//CheckAbilityState(context, mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
 	}
 
 	public void OnSpecialAbility(InputAction.CallbackContext context)
