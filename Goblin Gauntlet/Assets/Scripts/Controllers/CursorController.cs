@@ -29,6 +29,8 @@ public class CursorController : MonoBehaviour
 	private GameObject canvasReadyParent;
 	private GameObject canvasReadyUpButton;
 
+	private Image canvasPlayerTitleImage;
+
 	// Awake is called before Start
 	void Awake()
 	{
@@ -49,6 +51,8 @@ public class CursorController : MonoBehaviour
 
 		canvasReadyParent = GameObject.Find($"MainCanvas/PlayerCharacters/P{player.id + 1}_Character/P{player.id + 1}_Ready");
 		canvasReadyUpButton = GameObject.Find($"MainCanvas/PlayerCharacters/P{player.id + 1}_Character/P{player.id + 1}_Ready/btn_ReadyUp");
+
+		canvasPlayerTitleImage = GameObject.Find($"MainCanvas/PlayerCharacters/P{player.id + 1}_Character").GetComponent<Image>();
 	}
 
 	// Start is called before the first frame update
@@ -64,6 +68,9 @@ public class CursorController : MonoBehaviour
 		// Set canvas varaibles
 		canvasCurrentSelectedGameObject = canvasMultiplayerEventSystem.currentSelectedGameObject;
 		SetCursor(canvasCursor, canvasCurrentSelectedGameObject);
+
+		string loadCanvasPlayerTitleImageColor = $"Sprites/PlayerTitles/Player{player.id + 1}TitleColor";
+		canvasPlayerTitleImage.sprite = Resources.Load<Sprite>(loadCanvasPlayerTitleImageColor);
 	}
 
 	// Update is called once per frame

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CharacterSelectManager : MonoBehaviour
 {
@@ -26,6 +27,25 @@ public class CharacterSelectManager : MonoBehaviour
 
 		playerInputManager = GetComponent<PlayerInputManager>();
 		maxPlayerCount = playerInputManager.maxPlayerCount;
+	}
+
+	void Start()
+	{
+		Image canvasP1TitleImage = GameObject.Find($"MainCanvas/PlayerCharacters/P1_Character").GetComponent<Image>();
+		string loadCanvasP1TitleImageGray = $"Sprites/PlayerTitles/Player1TitleGray";
+		canvasP1TitleImage.sprite = Resources.Load<Sprite>(loadCanvasP1TitleImageGray);
+
+		Image canvasP2TitleImage = GameObject.Find($"MainCanvas/PlayerCharacters/P2_Character").GetComponent<Image>();
+		string loadCanvasP2TitleImageGray = $"Sprites/PlayerTitles/Player2TitleGray";
+		canvasP2TitleImage.sprite = Resources.Load<Sprite>(loadCanvasP2TitleImageGray);
+
+		Image canvasP3TitleImage = GameObject.Find($"MainCanvas/PlayerCharacters/P3_Character").GetComponent<Image>();
+		string loadCanvasP3TitleImageGray = $"Sprites/PlayerTitles/Player3TitleGray";
+		canvasP3TitleImage.sprite = Resources.Load<Sprite>(loadCanvasP3TitleImageGray);
+
+		Image canvasP4TitleImage = GameObject.Find($"MainCanvas/PlayerCharacters/P4_Character").GetComponent<Image>();
+		string loadCanvasP4TitleImageGray = $"Sprites/PlayerTitles/Player4TitleGray";
+		canvasP4TitleImage.sprite = Resources.Load<Sprite>(loadCanvasP4TitleImageGray);
 	}
 
 	void Update()
