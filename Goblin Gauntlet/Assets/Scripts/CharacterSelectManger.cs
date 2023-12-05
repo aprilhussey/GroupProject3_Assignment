@@ -28,6 +28,18 @@ public class CharacterSelectManager : MonoBehaviour
 		maxPlayerCount = playerInputManager.maxPlayerCount;
 	}
 
+	void Update()
+	{
+        if (PlayerManager.Instance.players.Count == maxPlayerCount)
+        {
+			if (AreAllPlayersReady())
+			{
+				// Load the first level
+				Debug.Log($"All players are ready");
+			}
+		}
+	}
+
 	public void OnPlayerJoined(PlayerInput playerInput)
 	{
 		if (PlayerManager.Instance.players.Count < maxPlayerCount)	// If the amount of players in the player manager is less than the max player count
@@ -43,11 +55,17 @@ public class CharacterSelectManager : MonoBehaviour
 		}
 	}
 
-	public void OnCharacterButtonClick()
+	private bool AreAllPlayersReady()
 	{
-	}
-
-	public void OnReadyUpButtonClick()
-	{
+		foreach (Player player in PlayerManager.Instance.players)
+		{
+			// If any player is not ready, return false
+			if (!player.isReady)
+			{
+				return false;
+			}
+		}
+		// All players are ready
+		return true;
 	}
 }
