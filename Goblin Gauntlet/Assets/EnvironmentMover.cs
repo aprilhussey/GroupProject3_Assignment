@@ -15,7 +15,7 @@ public class EnvironmentMover : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(points[pointIndex].name);
+        //Debug.Log(points[pointIndex].name);
         if(pointIndex <= points.Length - 1)
         {
             transform.position = Vector3.MoveTowards(transform.position, points[pointIndex].transform.position, speed * Time.deltaTime);

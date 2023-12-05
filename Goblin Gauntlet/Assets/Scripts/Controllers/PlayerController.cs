@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 			// If player health is less than or equal to 0
 			if (health <= 0)
 			{
-				Debug.Log($"{gameObject.name} destroyed");
+				//Debug.Log($"{gameObject.name} destroyed");
 				Destroy(gameObject);
 			}
 
@@ -174,12 +174,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 	public void OnMainAbility(InputAction.CallbackContext context)
 	{
-		CheckAbilityState(context, mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
+		//CheckAbilityState(context, mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
 	}
 
 	public void OnSpecialAbility(InputAction.CallbackContext context)
 	{
-		CheckAbilityState(context, specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
+		//CheckAbilityState(context, specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
 	}
 
 	void CheckAbilityState(InputAction.CallbackContext context, Ability ability, ref Ability.AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
