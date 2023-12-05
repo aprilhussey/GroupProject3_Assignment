@@ -8,7 +8,7 @@ public class VictoryTriggerTrigger : MonoBehaviour
 
 	public void OnTriggerExit(Collider other)
 	{
-		if (other.CompareTag("Artifact"))
+		if (other.CompareTag("Player"))
 		{
 			Debug.Log("Collider Left");
 			victoryTrigger.SetActive(true);

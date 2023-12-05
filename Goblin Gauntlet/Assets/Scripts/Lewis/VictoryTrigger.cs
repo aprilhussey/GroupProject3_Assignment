@@ -9,7 +9,7 @@ public class VictoryTrigger : MonoBehaviour
 
 	public void OnTriggerEnter(Collider other)
 	{
-		if (other.CompareTag("Artifact"))
+		if (other.CompareTag("Player"))
 		{
 			Debug.Log("Collider Collided");
 			victoryScreen.SetActive(true);
