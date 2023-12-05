@@ -489,10 +489,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7705826145552174444, guid: 0f6911fa2ff38ba47874c9ac81d1807f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bc0ae2c70daf22b438abf9a5b1f9ea09, type: 2}
+    - target: {fileID: -7506843357397270648, guid: 0f6911fa2ff38ba47874c9ac81d1807f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 453aa80d94ef5a642a3b9d04b3c13835, type: 2}
+    - target: {fileID: -5079762136873895833, guid: 0f6911fa2ff38ba47874c9ac81d1807f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bc0ae2c70daf22b438abf9a5b1f9ea09, type: 2}
+    - target: {fileID: -611811638160633538, guid: 0f6911fa2ff38ba47874c9ac81d1807f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bc0ae2c70daf22b438abf9a5b1f9ea09, type: 2}
     - target: {fileID: 919132149155446097, guid: 0f6911fa2ff38ba47874c9ac81d1807f, type: 3}
       propertyPath: m_Name
       value: SK_Rogue
       objectReference: {fileID: 0}
+    - target: {fileID: 996012195763469185, guid: 0f6911fa2ff38ba47874c9ac81d1807f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bc0ae2c70daf22b438abf9a5b1f9ea09, type: 2}
     - target: {fileID: 5866666021909216657, guid: 0f6911fa2ff38ba47874c9ac81d1807f, type: 3}
       propertyPath: m_Controller
       value: 
