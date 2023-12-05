@@ -49,21 +49,3 @@ public class PlayerManager : MonoBehaviour
 		return null;
 	}
 }
-
-public class Player
-{
-	public int id;
-	public int index;
-	public PlayerInput input;
-	public bool isReady;
-	public PlayableCharacter character;
-
-	public Player(int id, int index, PlayerInput input)
-	{
-		this.id = id;
-		this.input = input;
-		this.index = index;
-		isReady = false;
-		character = null;
-	}
-}
