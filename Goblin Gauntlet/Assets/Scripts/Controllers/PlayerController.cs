@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
@@ -10,8 +11,10 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 	// Entity.cs variables
 	private string characterName;
-	[HideInInspector] public float health;
-	[HideInInspector] public bool canHeal = true;
+	[HideInInspector]
+	public float health;
+	[HideInInspector]
+	public bool canHeal = true;
 
 	// Character.cs variables
     private float speed;
@@ -20,22 +23,25 @@ public class PlayerController : MonoBehaviour, IDamageable
     // PlayableCharacter.cs variables
     private CharacterClass characterClass;
 
-	private PlayerBasicAttack basicAttack;
-	[HideInInspector] public float basicAttackCooldownTime;
+	[HideInInspector]
+	public PlayerBasicAttack basicAttack;
+	[HideInInspector]
+	public float basicAttackCooldownTime;
 	private float basicAttackActiveTime;
 
-	private Ability mainAbility;
+	[HideInInspector]
+	public Ability mainAbility;
     private float mainAbilityCooldownTime;
 	private float mainAbilityActiveTime;
 
-	private Ability specialAbility;
+	[HideInInspector]
+	public Ability specialAbility;
 	private float specialAbilityCooldownTime;
 	private float specialAbilityActiveTime;
 
-	public bool attacking = false;
-
 	// Other variables
-	[HideInInspector] public float damage;
+	[HideInInspector]
+	public float damage;
 
 	private Vector2 movementInput = Vector2.zero;
 	private Vector2 lookInput = Vector2.zero;
@@ -56,6 +62,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 	private Ability.AbilityState basicAttackState;
     private Ability.AbilityState mainAbilityState;
 	private Ability.AbilityState specialAbilityState;
+
+	private InputActions inputActions;
+
+	private bool basicAttackInput;
+	private bool mainAbilityInput;
+	private bool specialAbilityInput;
 
 	//Damage Particle System
 	public ParticleSystem playerDamageSpark; 
@@ -85,9 +97,17 @@ public class PlayerController : MonoBehaviour, IDamageable
 		mainAbilityState = Ability.AbilityState.ready;
         specialAbilityState = Ability.AbilityState.ready;
 
+		basicAttackInput = false;
+		mainAbilityInput = false;
+		specialAbilityInput = false;
+
 		playerRigidbody = GetComponent<Rigidbody>();
 
 		playerInputComponent = GetComponent<PlayerInput>();
+
+		// Input actions
+		inputActions = new InputActions();
+		inputActions.Enable();
 	}
 
 	// Update is called once per frame
@@ -136,15 +156,25 @@ public class PlayerController : MonoBehaviour, IDamageable
 				// Commented out as this will need to be implemented at some point //
 			}
 
+			if (movementInput.sqrMagnitude < 0.01f)	// If no movementInput is detected...
+			{
+				// ... set movementInput and playerRigidbody.angularVelocity to zero
+				movementInput = Vector2.zero;
+				playerRigidbody.angularVelocity = Vector3.zero;
+			}
+
 			// If player health is less than or equal to 0
 			if (health <= 0)
 			{
 				//Debug.Log($"{gameObject.name} destroyed");
 				Destroy(gameObject);
 			}
-
 			Debug.Log($"{gameObject.name} health = {health}");
 		}
+
+		CheckAbilityState(ref basicAttackInput, basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
+		//CheckAbilityState(ref mainAbilityInput, mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
+		//CheckAbilityState(ref specialAbilityInput, specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
 	}
 
 	// Class needs to derive from 'IDamageable' for this function to work
@@ -169,27 +199,28 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 	public void OnBasicAttack(InputAction.CallbackContext context)
 	{
-		CheckAbilityState(context, basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
+		basicAttackInput = context.action.triggered;
+		CheckAbilityState(ref basicAttackInput, basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
 	}
 
 	public void OnMainAbility(InputAction.CallbackContext context)
 	{
-		//CheckAbilityState(context, mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
+		//mainAbilityInput = context.action.triggered;
+		//CheckAbilityState(ref mainAbilityInput, mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
 	}
 
 	public void OnSpecialAbility(InputAction.CallbackContext context)
 	{
-		//CheckAbilityState(context, specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
+		//specialAbilityInput = context.action.triggered;
+		//CheckAbilityState(ref specialAbilityInput, specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
 	}
 
-	void CheckAbilityState(InputAction.CallbackContext context, Ability ability, ref Ability.AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
+	void CheckAbilityState(ref bool abilityInput, Ability ability, ref Ability.AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
     {
-		bool inputActionTriggered = context.action.triggered;
-
 		switch (abilityState)
 		{
 			case Ability.AbilityState.ready:
-				if (inputActionTriggered)
+				if (abilityInput)
 				{
 					ability.UseAbility(this.gameObject);
 					abilityState = Ability.AbilityState.active;
@@ -207,6 +238,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 				{
 					abilityState = Ability.AbilityState.cooldown;
 					abilityCooldownTime = ability.cooldownTime;
+
 				}
 				break;
 

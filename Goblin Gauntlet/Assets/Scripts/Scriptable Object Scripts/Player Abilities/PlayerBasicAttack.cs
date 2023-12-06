@@ -13,12 +13,15 @@ public class PlayerBasicAttack : Ability
 	private List<GameObject> enemiesSeen;
 	private GameObject nearestEnemy;
 
+	public bool attacking = false;
+
 	public override void UseAbility(GameObject parent)
 	{
 		playerController = parent.GetComponent<PlayerController>();
 
+		attacking = true;
 		Debug.Log($"{parent.name} basic attack used");
-		playerController.attacking = true;
+
 		enemiesSeen = new List<GameObject>();
 		nearestEnemy = null;
 
@@ -76,11 +79,8 @@ public class PlayerBasicAttack : Ability
 
 	public override void EndAbility(GameObject parent)
 	{
-		playerController = parent.GetComponent<PlayerController>();
-
-		//Debug.Log($"{parent.name} basic attack ended");
-		playerController.attacking = false;
-
+		attacking = false;
+		Debug.Log($"{parent.name} basic attack ended");
 		nearestEnemy = null;
 	}
 }

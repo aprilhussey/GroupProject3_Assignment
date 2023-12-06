@@ -6,31 +6,29 @@ using UnityEngine;
 public class RogueAnimScript : MonoBehaviour
 {
     private float speed;
-    private PlayerController PlayerControl;
-    private Rigidbody rb;
+    private PlayerController playerController;
+    private Rigidbody playerRigidbody;
     private Animator animator;
-    private bool attacking;
 
     // Start is called before the first frame update
     void Start()
     {
-        PlayerControl = GetComponent<PlayerController>();
-        rb = GetComponent<Rigidbody>();
+        playerController = GetComponent<PlayerController>();
+        playerRigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        
     }
 
     //Update is called once per frame
     void Update()
     {
-        if (PlayerControl.health <= 0)
+        if (playerController.health <= 0)
         {
             animator.SetBool("Dead", true);
         }
 
-        speed = rb.velocity.magnitude;
+        speed = playerRigidbody.velocity.magnitude;
         //Debug.Log("speed; "+ speed);
         animator.SetFloat("speed", speed);
-        animator.SetBool("attacking", PlayerControl.attacking);
+        animator.SetBool("basicAttacking", playerController.basicAttack.attacking);
     }
 }
