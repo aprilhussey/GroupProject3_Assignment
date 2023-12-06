@@ -156,6 +156,13 @@ public class PlayerController : MonoBehaviour, IDamageable
 				// Commented out as this will need to be implemented at some point //
 			}
 
+			if (movementInput.sqrMagnitude < 0.01f)	// If no movementInput is detected...
+			{
+				// ... set movementInput and playerRigidbody.angularVelocity to zero
+				movementInput = Vector2.zero;
+				playerRigidbody.angularVelocity = Vector3.zero;
+			}
+
 			// If player health is less than or equal to 0
 			if (health <= 0)
 			{
