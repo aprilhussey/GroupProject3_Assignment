@@ -988,7 +988,7 @@ MonoBehaviour:
   - {fileID: 626864409}
   - {fileID: 1410977361}
   - {fileID: 1284226914}
-  speed: 20
+  speed: 10
 --- !u!154 &111734479
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -2133,9 +2133,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabToSpawn: {fileID: 1176199413879127531, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
-  spawnInterval: 7
-  initialDelay: 4
-  spawnAmount: 5
+  spawnInterval: 5
+  initialDelay: 0
+  spawnAmount: 40
 --- !u!1 &457316862
 GameObject:
   m_ObjectHideFlags: 0
@@ -4986,9 +4986,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabToSpawn: {fileID: 1176199413879127531, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
-  spawnInterval: 6
-  initialDelay: 2
-  spawnAmount: 3
+  spawnInterval: 5
+  initialDelay: 0
+  spawnAmount: 40
 --- !u!1 &1284226913
 GameObject:
   m_ObjectHideFlags: 0
@@ -6742,9 +6742,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabToSpawn: {fileID: 1176199413879127531, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
-  spawnInterval: 10
+  spawnInterval: 5
   initialDelay: 0
-  spawnAmount: 5
+  spawnAmount: 40
 --- !u!1 &1763142132
 GameObject:
   m_ObjectHideFlags: 0
@@ -7531,7 +7531,7 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 1176199413879127531, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
   spawnInterval: 5
   initialDelay: 0
-  spawnAmount: 10
+  spawnAmount: 40
 --- !u!1 &1940372650
 GameObject:
   m_ObjectHideFlags: 0
