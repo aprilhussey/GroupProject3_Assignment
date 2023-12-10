@@ -5183,7 +5183,7 @@ Terrain:
   m_DetailObjectDistance: 86
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 200
-  m_SplatMapDistance: 1000
+  m_SplatMapDistance: 0
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
@@ -5202,7 +5202,7 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
-  m_EnableHeightmapRayTracing: 1
+  m_EnableHeightmapRayTracing: 0
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
 --- !u!4 &1236714368
@@ -9663,7 +9663,7 @@ Terrain:
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 200
-  m_SplatMapDistance: 1000
+  m_SplatMapDistance: 80
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
