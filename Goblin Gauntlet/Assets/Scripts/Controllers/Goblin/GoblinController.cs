@@ -30,6 +30,8 @@ public class GoblinController : MonoBehaviour, IDamageable
     private SphereCollider followRadiusCollider;
     private SphereCollider attackRadiusCollider;
 
+	private Rigidbody rb;
+
 	// Other variables
 	private List<GameObject> playersSeen;
 	[HideInInspector] public GameObject target = null;
@@ -75,6 +77,8 @@ public class GoblinController : MonoBehaviour, IDamageable
 		sphereColliders = GetComponentsInChildren<SphereCollider>();
 		followRadiusCollider = null;
 		attackRadiusCollider = null;
+
+		rb = GetComponent<Rigidbody>();
 
 		playersSeen = new List<GameObject>();
 
@@ -350,7 +354,10 @@ public class GoblinController : MonoBehaviour, IDamageable
 	{
 		if (health > 0)
 		{
-		
+			Debug.Log("Knockback Applied");
+			Vector3 difference = target.transform.position - transform.position;
+			difference = difference.normalized * 10f;
+			rb.AddForce(difference, ForceMode.Impulse);
 			health -= amount;
 			//healthBar.UpdateHealthBar();
 			goblinBlood.Play();

@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 			playerRigidbody.velocity = movement;
 
 			// Handle player rotation
-			if (movementInput.sqrMagnitude > 0.01f) // Check if there's input
+			if (movementInput.sqrMagnitude > 0.1f) // Check if there's input
 			{
 				playerRigidbody.velocity = movement;
 
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 				// Commented out as this will need to be implemented at some point //
 			}
 
-			if (movementInput.sqrMagnitude < 0.01f)	// If no movementInput is detected...
+			if (movementInput.sqrMagnitude < 0.1f)	// If no movementInput is detected...
 			{
 				// ... set movementInput and playerRigidbody.angularVelocity to zero
 				movementInput = Vector2.zero;
@@ -182,8 +182,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 	{
 		if (health > 0)
 		{
-			playerDamageSpark.Play();
-			health -= amount;
+			StartCoroutine(DamageEffects(amount));
 		}
 	}
 
@@ -256,6 +255,15 @@ public class PlayerController : MonoBehaviour, IDamageable
 				break;
 		}
 	}
+
+	IEnumerator DamageEffects(float amount)
+	{
+        playerDamageSpark.Play();
+        health -= amount;
+        Gamepad.current.SetMotorSpeeds(0.8f, 0f);
+		yield return new WaitForSeconds(0.5f);
+        Gamepad.current.SetMotorSpeeds(0f, 0f);
+    }
 
 	/*void OnDrawGizmos()
 	{
