@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
 	// Start is called before the first frame
 	void Start()
 	{
-		timer = -initialDelay;	// Set the timer to negative initial delay
+		timer -= initialDelay;	// Set the timer to negative initial delay
 	}
 
 	// Update is called once per frame
