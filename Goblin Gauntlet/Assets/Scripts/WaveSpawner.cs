@@ -29,7 +29,7 @@ public class WaveSpawner : MonoBehaviour
     {
         GenerateWave();
 
-        if (delaySpawnBy != null)
+        if (delaySpawnBy !<= 0)
         {
             spawnTimer = delaySpawnBy;
         }
@@ -68,7 +68,7 @@ public class WaveSpawner : MonoBehaviour
 
     public void GenerateWave()
     {
-        if (waveCurrency != null)
+        if (waveCurrency != 0)
         {
             GenerateEnemies();
 

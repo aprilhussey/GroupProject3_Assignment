@@ -207,9 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baab91706eebc9d4fa69815038f2dc24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - enemyPrefab: {fileID: 1176199413879127531, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
-    cost: 1
+  enemies: []
   waveCurrency: 10
   waveDuration: 10
   delaySpawnBy: 0
@@ -222,7 +220,11 @@ MonoBehaviour:
   - {fileID: 5806972369786551974}
   - {fileID: 6451214303054782714}
   - {fileID: 4778663802263831220}
-  enemiesToSpawn: []
+  enemiesToSpawn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &6297374637873618188
 GameObject:
   m_ObjectHideFlags: 0

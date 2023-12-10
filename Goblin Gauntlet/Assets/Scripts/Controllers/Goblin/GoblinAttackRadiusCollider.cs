@@ -6,20 +6,26 @@ public class GoblinAttackRadiusCollider : MonoBehaviour
 {
 	private GoblinController goblinController;
 
-	// Start is called before the first frame update
-	void Start()
+	// Awake is called before Start
+	void Awake()
 	{
-		// Get reference to GoblinCOntroller.cs on parent game object
+		// Get reference to GoblinController.cs on parent game object
 		goblinController = GetComponentInParent<GoblinController>();
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
-		goblinController.AttackRadiusEntered(other.gameObject);
+		if (goblinController != null)
+		{
+			goblinController.AttackRadiusEntered(other.gameObject);
+		}
 	}
 
 	void OnTriggerExit(Collider other)
 	{
-		goblinController.AttackRadiusExited(other.gameObject);
-	}
+		if (goblinController != null)
+		{
+			goblinController.AttackRadiusExited(other.gameObject);
+		}
+}
 }

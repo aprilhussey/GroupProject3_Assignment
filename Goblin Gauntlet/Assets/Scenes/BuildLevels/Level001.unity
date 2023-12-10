@@ -1081,7 +1081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &169035577
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2433,6 +2433,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544536026}
   m_CullTransparentMesh: 1
+--- !u!1 &544817779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7391666549166509590, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
+  m_PrefabInstance: {fileID: 1777299392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &586787411
 GameObject:
   m_ObjectHideFlags: 0
@@ -3953,6 +3958,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893355787}
   m_CullTransparentMesh: 1
+--- !u!1 &931111859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6729297150952283583, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
+  m_PrefabInstance: {fileID: 1777299392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &948675234
 GameObject:
   m_ObjectHideFlags: 0
@@ -5264,6 +5274,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1338841587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6128465037697884457, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
+  m_PrefabInstance: {fileID: 1777299392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1375001717
 GameObject:
   m_ObjectHideFlags: 0
@@ -5814,11 +5829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df827e55ce0d094ba653bc3aff275da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnLocations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  spawnLocations: []
   playerPrefabs:
   - {fileID: 8419127536225119428, guid: ba4dfef8bdb40114cb8cb56846adf44e, type: 3}
   - {fileID: 8419127536225119428, guid: 17056e4c9ff8472418d409042897fde4, type: 3}
@@ -6096,6 +6107,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534508147}
   m_CullTransparentMesh: 1
+--- !u!1 &1543412939 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1708839084327169022, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
+  m_PrefabInstance: {fileID: 1777299392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1601474497
 GameObject:
   m_ObjectHideFlags: 0
@@ -7197,6 +7213,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6412384880401149068, guid: 74fdc133930960546b93135531dec648, type: 3}
+      propertyPath: enemiesToSpawn.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412384880401149068, guid: 74fdc133930960546b93135531dec648, type: 3}
+      propertyPath: enemiesToSpawn.Array.data[0]
+      value: 
+      objectReference: {fileID: 1338841587}
+    - target: {fileID: 6412384880401149068, guid: 74fdc133930960546b93135531dec648, type: 3}
+      propertyPath: enemiesToSpawn.Array.data[1]
+      value: 
+      objectReference: {fileID: 1543412939}
+    - target: {fileID: 6412384880401149068, guid: 74fdc133930960546b93135531dec648, type: 3}
+      propertyPath: enemiesToSpawn.Array.data[2]
+      value: 
+      objectReference: {fileID: 931111859}
+    - target: {fileID: 6412384880401149068, guid: 74fdc133930960546b93135531dec648, type: 3}
+      propertyPath: enemiesToSpawn.Array.data[3]
+      value: 
+      objectReference: {fileID: 544817779}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
