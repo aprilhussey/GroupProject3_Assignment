@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour
 
 	public List<Player> players;
 
+	private List<GameObject> characterPrefabs;
+
 	void Awake()
 	{
 		// Ensure only one PlayerManager instance exists
@@ -47,5 +49,40 @@ public class PlayerManager : MonoBehaviour
 			}
 		}
 		return null;
+	}
+
+	public void SetCharacterPrefab(int id)
+	{
+		Player player = players[id];
+
+		characterPrefabs = CharacterSelectManager.Instance.characterPrefabs;
+
+        if (player != null)
+		{
+			foreach (GameObject characterPrefab in characterPrefabs)
+			{
+				if (player.character == characterPrefab.GetComponent<PlayerController>().characterData)
+				{
+					player.characterPrefab = characterPrefab;
+				}
+				else
+				{
+					Debug.LogError($"player.character doesn't exist within characterPrefabs on the CharacterSelectManager");
+				}
+			}
+		}
+		else
+		{
+			Debug.Log($"player is null");
+		}
+
+	}
+
+	public void SetPlayerInputData(ref PlayerInput playerInput)
+	{
+		Player player = players[playerInput.playerIndex];
+
+		// Switch the control scheme of playerInput to the device
+		playerInput.SwitchCurrentControlScheme(player.controlScheme, player.devices);
 	}
 }

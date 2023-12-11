@@ -12,6 +12,8 @@ public class CharacterSelectManager : MonoBehaviour
 	private PlayerInputManager playerInputManager;
 	private int maxPlayerCount;
 
+	public List<GameObject> characterPrefabs = new List<GameObject>();
+
 	// Awake is called before Start
 	private void Awake()
 	{
@@ -31,7 +33,7 @@ public class CharacterSelectManager : MonoBehaviour
 
 	void Start()
 	{
-		Image canvasP1TitleImage = GameObject.Find($"MainCanvas/PlayerCharacters/P1_Character").GetComponent<Image>();
+		/*Image canvasP1TitleImage = GameObject.Find($"MainCanvas/PlayerCharacters/P1_Character").GetComponent<Image>();
 		string loadCanvasP1TitleImageGray = $"Sprites/PlayerTitles/Player1TitleGray";
 		canvasP1TitleImage.sprite = Resources.Load<Sprite>(loadCanvasP1TitleImageGray);
 
@@ -45,7 +47,7 @@ public class CharacterSelectManager : MonoBehaviour
 
 		Image canvasP4TitleImage = GameObject.Find($"MainCanvas/PlayerCharacters/P4_Character").GetComponent<Image>();
 		string loadCanvasP4TitleImageGray = $"Sprites/PlayerTitles/Player4TitleGray";
-		canvasP4TitleImage.sprite = Resources.Load<Sprite>(loadCanvasP4TitleImageGray);
+		canvasP4TitleImage.sprite = Resources.Load<Sprite>(loadCanvasP4TitleImageGray);*/
 	}
 
 	void Update()
@@ -56,6 +58,7 @@ public class CharacterSelectManager : MonoBehaviour
 			{
 				// Load the first level
 				Debug.Log($"All players are ready");
+				GameManager.Instance.ChangeGameState(GameManager.GameState.Game);
 			}
 		}
 	}

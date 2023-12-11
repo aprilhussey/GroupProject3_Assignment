@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour
 	public LayerMask playerLayer;
 	public LayerMask enemyLayer;
 	public LayerMask obstructionLayer;
+
+	[SerializeField]
+	private Vector3 spawnLocation;
 
 	// TEMP //
 	// TEMP //
@@ -81,16 +85,30 @@ public class GameManager : MonoBehaviour
 
 	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
-		if (scene.name == "Game")
+		if (scene.name == "Game" || scene.name == "Level001" || scene.name == "Level002")
 		{
 			//playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 			artifactController = GameObject.FindWithTag("Artifact").GetComponent<ArtifactController>();
 
-			gameOver = GameObject.Find("GameOver");
-			gameOver.SetActive(false);
+			//gameOver = GameObject.Find("GameOver");
+			//gameOver.SetActive(false);
 
-			paused = GameObject.Find("Paused");
-			paused.SetActive(false);
+			//paused = GameObject.Find("Paused");
+			//paused.SetActive(false);
+
+			/*foreach (Player player in PlayerManager.Instance.players)
+			{
+				// Instantiate the correct prefab based on the player's index or selection
+				GameObject playerPrefab = Instantiate(GetPlayerPrefab(player.index), spawnLocation, Quaternion.identity);
+				PlayerInput playerInputComponent = playerPrefab.GetComponent<PlayerInput>();
+
+				// Transfer the PlayerInput component from the old character to the new one
+				InputSystem.DisableDevice(player.input.devices[0]); // Disable the old input device
+				playerInputComponent.SwitchCurrentControlScheme(player.input.currentControlScheme, player.input.devices); // Switch control scheme
+				InputSystem.EnableDevice(player.input.devices[0]); // Re-enable the input device
+
+				//player.input.SwitchCurrentActionMap("Player");
+			}*/
 		}
 	}
 

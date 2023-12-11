@@ -133,7 +133,10 @@ public class CursorController : MonoBehaviour
 
 		multiplayerEventSystem.SetSelectedGameObject(null);
 
+		PlayerManager.Instance.SetCharacterPrefab(player.id);
 		PlayerManager.Instance.players[player.id].isReady = true;
+
+		Debug.Log($"player.characterPrefab = {PlayerManager.Instance.players[player.id].characterPrefab.name}");
 
 		// Set canvas variables
 		canvasReadyUpButton.SetActive(false);
