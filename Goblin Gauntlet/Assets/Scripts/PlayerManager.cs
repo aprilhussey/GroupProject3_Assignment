@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviour
 
 	public List<Player> players;
 
-	public List<GameObject> characterPrefabs;
+	private List<GameObject> characterPrefabs;
 
 	void Awake()
 	{
@@ -30,35 +30,6 @@ public class PlayerManager : MonoBehaviour
 
 		players = new List<Player>();
 	}
-
-	/*private void Update()
-	{
-		if (players != null)
-		{
-			foreach (Player player in players)
-			{
-				if (player.character != null)
-				{
-					characterPrefabs = CharacterSelectManager.Instance.characterPrefabs;
-
-					foreach (GameObject characterPrefab in characterPrefabs)
-					{
-						if (characterPrefab.GetComponent<PlayerController>() != null)
-						{
-							PlayableCharacter characterData = characterPrefab.GetComponent<PlayerController>().characterData;
-							if (characterData != null)
-							{ 
-								if (characterData == player.character)
-								{
-									player.characterPrefab = characterPrefab;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}*/
 
 	// Initialize your player here
 	public void Initialize(int index, PlayerInput input)
@@ -112,6 +83,6 @@ public class PlayerManager : MonoBehaviour
 		Player player = players[playerInput.playerIndex];
 
 		// Switch the control scheme of playerInput to the device
-		playerInput.SwitchCurrentControlScheme(player.controlScheme, player.device);
+		playerInput.SwitchCurrentControlScheme(player.controlScheme, player.devices);
 	}
 }

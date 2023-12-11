@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 
 public class Player
 {
@@ -9,7 +11,7 @@ public class Player
 	public int index;
 	public PlayerInput input;
 
-	public InputDevice device;
+	public InputDevice[] devices;
 	public string controlScheme;
 
 	public bool isReady;
@@ -22,7 +24,7 @@ public class Player
 		this.index = index;
 		this.input = input;
 
-		device = input.devices[0];
+		devices = input.devices.ToArray();
 		controlScheme = input.currentControlScheme;
 
 		isReady = false;
