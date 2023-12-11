@@ -770,6 +770,7 @@ MonoBehaviour:
   basicAttackCooldownTime: 0
   damage: 0
   smoothRotationTime: 0.1
+  playerInput: {fileID: 0}
 --- !u!114 &4756457189127077893
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour
 		players = new List<Player>();
 	}
 
-	private void Update()
+	/*private void Update()
 	{
 		if (players != null)
 		{
@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
 				}
 			}
 		}
-	}
+	}*/
 
 	// Initialize your player here
 	public void Initialize(int index, PlayerInput input)
@@ -105,5 +105,13 @@ public class PlayerManager : MonoBehaviour
 			Debug.Log($"player is null");
 		}
 
+	}
+
+	public void SetPlayerInputData(ref PlayerInput playerInput)
+	{
+		Player player = players[playerInput.playerIndex];
+
+		// Switch the control scheme of playerInput to the device
+		playerInput.SwitchCurrentControlScheme(player.controlScheme, player.device);
 	}
 }

@@ -326,10 +326,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: RogueZezioPrefab
-      value: 
-      objectReference: {fileID: 8419127536225119428, guid: ba4dfef8bdb40114cb8cb56846adf44e, type: 3}
     - target: {fileID: 4673675605664133176, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -55,7 +55,8 @@ MonoBehaviour:
   obstructionLayer:
     serializedVersion: 2
     m_Bits: 0
-  playerController: {fileID: 1594118640347792843, guid: ba4dfef8bdb40114cb8cb56846adf44e, type: 3}
+  spawnLocation: {x: 0, y: 0, z: 0}
+  playerController: {fileID: 0}
   artifactController: {fileID: 0}
   gameOver: {fileID: 0}
   paused: {fileID: 0}
@@ -73,3 +74,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a318adc16ce7e3d4fa19170dd5519aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterPrefabs:
+  - {fileID: 8419127536225119428, guid: ba4dfef8bdb40114cb8cb56846adf44e, type: 3}

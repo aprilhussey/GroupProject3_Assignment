@@ -27,15 +27,6 @@ public class GameManager : MonoBehaviour
 	public LayerMask obstructionLayer;
 
 	[SerializeField]
-	private GameObject PaladinAzrealPrefab;
-	[SerializeField]
-	private GameObject WarlockDahliaPrefab;
-	[SerializeField]
-	private GameObject ClericEvePrefab;
-	[SerializeField]
-	private GameObject RogueZezioPrefab;
-
-	[SerializeField]
 	private Vector3 spawnLocation;
 
 	// TEMP //
@@ -97,39 +88,25 @@ public class GameManager : MonoBehaviour
 			//playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 			artifactController = GameObject.FindWithTag("Artifact").GetComponent<ArtifactController>();
 
-			gameOver = GameObject.Find("GameOver");
-			gameOver.SetActive(false);
+			//gameOver = GameObject.Find("GameOver");
+			//gameOver.SetActive(false);
 
-			paused = GameObject.Find("Paused");
-			paused.SetActive(false);
+			//paused = GameObject.Find("Paused");
+			//paused.SetActive(false);
 
-			foreach (Player player in PlayerManager.Instance.players)
+			/*foreach (Player player in PlayerManager.Instance.players)
 			{
 				// Instantiate the correct prefab based on the player's index or selection
-				/*GameObject playerPrefab = Instantiate(GetPlayerPrefab(player.index), spawnLocation, Quaternion.identity);
+				GameObject playerPrefab = Instantiate(GetPlayerPrefab(player.index), spawnLocation, Quaternion.identity);
 				PlayerInput playerInputComponent = playerPrefab.GetComponent<PlayerInput>();
 
 				// Transfer the PlayerInput component from the old character to the new one
 				InputSystem.DisableDevice(player.input.devices[0]); // Disable the old input device
 				playerInputComponent.SwitchCurrentControlScheme(player.input.currentControlScheme, player.input.devices); // Switch control scheme
-				InputSystem.EnableDevice(player.input.devices[0]); // Re-enable the input device*/
+				InputSystem.EnableDevice(player.input.devices[0]); // Re-enable the input device
 
-				player.input.SwitchCurrentActionMap("Player");
-			}
-		}
-	}
-
-	private GameObject GetPlayerPrefab(int index)
-	{
-		// Return the correct prefab based on the player's index or selection
-		// This is just an example, you'll need to implement your own logic here
-		switch (index)
-		{
-			case 0: return PaladinAzrealPrefab;
-			case 1: return WarlockDahliaPrefab;
-			case 2: return ClericEvePrefab;
-			case 3: return RogueZezioPrefab;
-			default: return null;
+				//player.input.SwitchCurrentActionMap("Player");
+			}*/
 		}
 	}
 
