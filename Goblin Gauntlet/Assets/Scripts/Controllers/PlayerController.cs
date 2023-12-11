@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 		playerRigidbody = GetComponent<Rigidbody>();
 
-		playerInputComponent = GetComponent<PlayerInput>();
+		playerInput = GetComponent<PlayerInput>();
 
 		// Input actions
 		inputActions = new InputActions();

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CharacterSelectManager : MonoBehaviour
 {
 	// Singleton instance
-	public static CharacterSelectManager instance = null;
+	public static CharacterSelectManager Instance = null;
 
 	private PlayerInputManager playerInputManager;
 	private int maxPlayerCount;
@@ -18,11 +18,11 @@ public class CharacterSelectManager : MonoBehaviour
 	private void Awake()
 	{
 		// Ensure only one CharacterSelectManager instance exists
-		if (instance == null)
+		if (Instance == null)
 		{
-			instance = this;
+			Instance = this;
 		}
-		else if (instance != this)
+		else if (Instance != this)
 		{
 			Destroy(gameObject);
 		}
