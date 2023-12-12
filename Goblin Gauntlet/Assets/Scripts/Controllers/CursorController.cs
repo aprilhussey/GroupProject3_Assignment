@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -158,5 +157,74 @@ public class CursorController : MonoBehaviour
 		cursor.GetComponent<RectTransform>().pivot = selectedGameObject.GetComponent<RectTransform>().pivot;
 		cursor.GetComponent<RectTransform>().rotation = selectedGameObject.GetComponent<RectTransform>().rotation;
 		cursor.GetComponent<RectTransform>().localScale = selectedGameObject.GetComponent<RectTransform>().localScale;
+	}
+
+	public void OnCancelClick(InputAction.CallbackContext context)
+	{
+		if (readyParent.activeInHierarchy)
+		{
+			PlayableCharacter selectedCharacterData = PlayerManager.Instance.players[player.id].character;
+
+			if (selectedCharacterData != null)
+			{
+				GameObject characterButtonsParent = GameObject.Find("CharacterButtons");
+
+				if (characterButtonsParent != null)
+				{
+					List<GameObject> characterButtons = new List<GameObject>();
+					for (int i = 0; i < characterButtonsParent.transform.childCount; i++)
+					{
+						Transform child = characterButtonsParent.transform.GetChild(i);
+						characterButtons.Add(child.gameObject);
+					}
+
+					if (characterButtons != null)
+					{
+						foreach (GameObject characterButton in characterButtons)
+						{
+							if (characterButton.GetComponent<PlayableCharacterHolder>().playableCharacter == selectedCharacterData)
+							{
+								multiplayerEventSystem.SetSelectedGameObject(characterButton);
+
+								// Set canvas variables
+								canvasMultiplayerEventSystem.SetSelectedGameObject(GameObject.Find($"MainCanvas/CharacterButtons/" + characterButton.name));
+								//canvasCurrentSelectedGameObject = canvasMultiplayerEventSystem.currentSelectedGameObject;
+							}
+							else
+							{
+								Debug.Log($"characterButton.playableCharacter is not the same as selectedCharacterData");
+							}
+						}
+					}
+					else
+					{
+						Debug.LogWarning($"characterButtons is null");
+					}
+				}
+				else
+				{
+					Debug.LogWarning($"characterButtonsParent is null");
+				}
+			}
+			else
+			{
+				Debug.LogWarning($"selectedCharacterData is null");
+			}
+
+			readyParent.SetActive(false);
+			
+			Image playerCursorImage = playerCursor.GetComponent<Image>();
+			playerCursorImage.enabled = true;
+
+			// Set canvas varaibles
+			canvasReadyParent.SetActive(false);
+
+			Image canvasCursorImage = canvasCursor.GetComponent<Image>();
+			canvasCursorImage.enabled = true;
+		}
+		else
+		{
+			Debug.Log($"readyParent is not active in Heirarchy");
+		}
 	}
 }
