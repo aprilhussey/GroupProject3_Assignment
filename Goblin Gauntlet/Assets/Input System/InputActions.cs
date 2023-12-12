@@ -80,6 +80,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AltMovement"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""b64f81ae-2743-4225-b98f-60bd0ee69645"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -346,6 +355,116 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrow Keys"",
+                    ""id"": ""6978807c-f59c-4497-9e29-06d211d2c2df"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""52f1b892-d789-4578-81fd-7428213d7c4a"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""bbd917ec-7a51-4715-a839-095715e54da6"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""88711567-607f-4f15-893d-d2c9000e4fdb"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""c8b07723-7cd1-4450-8c35-54b00033356f"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad Right Stick"",
+                    ""id"": ""37ea200b-7c43-405e-a490-076a419d39c3"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""0b045cba-ca9a-4ca1-9f3e-40958d97b121"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""b656766f-75af-45b4-890a-d6b15ccd4a7f"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""53629d0c-7b7d-4e7e-aeba-a35bbc9b4d45"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""806e0a56-e08c-42b0-a9b3-30706d9f154a"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -915,6 +1034,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_MainAbility = m_Player.FindAction("MainAbility", throwIfNotFound: true);
         m_Player_SpecialAbility = m_Player.FindAction("SpecialAbility", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_AltMovement = m_Player.FindAction("AltMovement", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -994,6 +1114,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MainAbility;
     private readonly InputAction m_Player_SpecialAbility;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_AltMovement;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -1004,6 +1125,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @MainAbility => m_Wrapper.m_Player_MainAbility;
         public InputAction @SpecialAbility => m_Wrapper.m_Player_SpecialAbility;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @AltMovement => m_Wrapper.m_Player_AltMovement;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1031,6 +1153,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @AltMovement.started += instance.OnAltMovement;
+            @AltMovement.performed += instance.OnAltMovement;
+            @AltMovement.canceled += instance.OnAltMovement;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1053,6 +1178,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @AltMovement.started -= instance.OnAltMovement;
+            @AltMovement.performed -= instance.OnAltMovement;
+            @AltMovement.canceled -= instance.OnAltMovement;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1214,6 +1342,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnMainAbility(InputAction.CallbackContext context);
         void OnSpecialAbility(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnAltMovement(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

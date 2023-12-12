@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 	public float health;
 	[HideInInspector]
 	public bool canHeal = true;
+	public bool canMove = true;
 
 	// Character.cs variables
     private float speed;
@@ -126,37 +127,41 @@ public class PlayerController : MonoBehaviour, IDamageable
 			Vector3 movementDirection = movementInput.x * Camera.main.transform.right + movementInput.y * cameraForward;
 
 			// Move player using velocity
-			Vector3 movement = new Vector3(movementDirection.x * speed, playerRigidbody.velocity.y, movementDirection.z * speed);
+			if (canMove)
+			{
+                Vector3 movement = new Vector3(movementDirection.x * speed, playerRigidbody.velocity.y, movementDirection.z * speed);
 
-			playerRigidbody.velocity = movement;
+                playerRigidbody.velocity = movement;
+
+                if (movementInput.sqrMagnitude > 0.1f) // Check if there's input
+                {
+                    playerRigidbody.velocity = movement;
+
+                    // Use gamepad controls
+                    float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
+                    float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothRotationTime);
+                    this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
+
+                    // Commented out as this will need to be implemented at some point //
+                    /*if (currentControlScheme == "Gamepad")
+                    {
+                        // Use gamepad controls
+                        float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
+                        float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothRotationTime);
+                        this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
+
+                    }
+                    if (currentControlScheme == "KeyboardMouse")
+                    {
+                        // Use keyboard and mouse controls
+                    }*/
+                    // Commented out as this will need to be implemented at some point //
+                }
+            }
 
 			// Handle player rotation
-			if (movementInput.sqrMagnitude > 0.01f) // Check if there's input
-			{
-				playerRigidbody.velocity = movement;
 
-				// Use gamepad controls
-				float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
-				float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothRotationTime);
-				this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
-
-				// Commented out as this will need to be implemented at some point //
-				/*if (currentControlScheme == "Gamepad")
-				{
-					// Use gamepad controls
-					float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
-					float smoothedAngle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref rotationSpeed, smoothRotationTime);
-					this.transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
-
-				}
-				if (currentControlScheme == "KeyboardMouse")
-				{
-					// Use keyboard and mouse controls
-				}*/
-				// Commented out as this will need to be implemented at some point //
-			}
-
-			if (movementInput.sqrMagnitude < 0.01f)	// If no movementInput is detected...
+			if (movementInput.sqrMagnitude < 0.1f)	// If no movementInput is detected...
 			{
 				// ... set movementInput and playerRigidbody.angularVelocity to zero
 				movementInput = Vector2.zero;
@@ -174,7 +179,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 		CheckAbilityState(ref basicAttackInput, basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
 		//CheckAbilityState(ref mainAbilityInput, mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
-		//CheckAbilityState(ref specialAbilityInput, specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
+		CheckAbilityState(ref specialAbilityInput, specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
 	}
 
 	// Class needs to derive from 'IDamageable' for this function to work
@@ -182,8 +187,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 	{
 		if (health > 0)
 		{
-			playerDamageSpark.Play();
-			health -= amount;
+			StartCoroutine(DamageEffects(amount));
 		}
 	}
 
@@ -211,8 +215,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 	public void OnSpecialAbility(InputAction.CallbackContext context)
 	{
-		//specialAbilityInput = context.action.triggered;
-		//CheckAbilityState(ref specialAbilityInput, specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
+		specialAbilityInput = context.action.triggered;
+		CheckAbilityState(ref specialAbilityInput, specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
 	}
 
 	void CheckAbilityState(ref bool abilityInput, Ability ability, ref Ability.AbilityState abilityState, ref float abilityCooldownTime, ref float abilityActiveTime)
@@ -256,6 +260,15 @@ public class PlayerController : MonoBehaviour, IDamageable
 				break;
 		}
 	}
+
+	IEnumerator DamageEffects(float amount)
+	{
+        playerDamageSpark.Play();
+        health -= amount;
+        Gamepad.current.SetMotorSpeeds(0.8f, 0f);
+		yield return new WaitForSeconds(0.5f);
+        Gamepad.current.SetMotorSpeeds(0f, 0f);
+    }
 
 	/*void OnDrawGizmos()
 	{

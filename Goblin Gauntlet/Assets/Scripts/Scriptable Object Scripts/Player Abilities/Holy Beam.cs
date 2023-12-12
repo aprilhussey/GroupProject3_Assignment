@@ -15,9 +15,12 @@ public class HolyBeam : Ability
         playerController = parent.GetComponent<PlayerController>();
 
         Debug.Log("Holy Beam ability used");
-        childObject = Instantiate(paladinBeam) as GameObject;
-        childObject.transform.parent = playerController.transform;
-        childObject.transform.position = playerController.transform.position + new Vector3(0, 1.5f, 10.5f);
+        Vector3 playerPos = playerController.transform.position;
+        Vector3 playerDirection = playerController.transform.forward;
+        Quaternion playerRotation = playerController.transform.rotation;
+        float spawnDistance = 10;
+        Vector3 spawnPos = playerPos + playerDirection * spawnDistance;
+        childObject = Instantiate(paladinBeam, spawnPos, playerRotation * Quaternion.Euler(270,0,0));
     }
 
     public override void EndAbility(GameObject parent)
