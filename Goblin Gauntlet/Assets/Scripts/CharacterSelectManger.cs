@@ -14,6 +14,8 @@ public class CharacterSelectManager : MonoBehaviour
 
 	public List<GameObject> characterPrefabs = new List<GameObject>();
 
+	public List<GameObject> characterSelectPrefabs = new List<GameObject>();
+
 	// Awake is called before Start
 	private void Awake()
 	{
@@ -90,5 +92,50 @@ public class CharacterSelectManager : MonoBehaviour
 		}
 		// All players are ready
 		return true;
+	}
+
+	public void SpawnCharacterPrefab(int playerID, PlayableCharacter characterData)
+	{
+		Vector3 spawnLocation = new Vector3();
+		Quaternion spawnRotation = new Quaternion();
+
+		switch (playerID)
+		{
+			case 0:
+				// Player 1
+				spawnLocation = new Vector3(-160, 0, 300);
+				spawnRotation = Quaternion.Euler(0, 145, 0);
+				break;
+			case 1:
+				// Player 2
+				spawnLocation = new Vector3(-45, 0, 300);
+				spawnRotation = Quaternion.Euler(0, 165, 0);
+				break;
+			case 2:
+				// Player 3
+				spawnLocation = new Vector3(70, 0, 300);
+				spawnRotation = Quaternion.Euler(0, 195, 0);
+				break;
+			case 3:
+				// Player 4
+				spawnLocation = new Vector3(185, 0, 300);
+				spawnRotation = Quaternion.Euler(0, 210, 0);
+				break;
+		}
+
+		if (characterSelectPrefabs != null)
+		{
+			foreach (GameObject characterSelectPrefab in characterSelectPrefabs)
+			{
+				PlayableCharacter characterPrefabData = characterSelectPrefab.GetComponent<PlayableCharacterHolder>().playableCharacter;
+				if (characterData == characterPrefabData)
+				{
+					Instantiate(characterSelectPrefab, spawnLocation, spawnRotation);
+
+					// Change the scale
+					//instantiatedPrefab.transform.localScale = new Vector3(27.9f, 27.9f, 27.9f);
+				}
+			}
+		}
 	}
 }

@@ -48,9 +48,6 @@ public class CursorController : MonoBehaviour
 		canvasMultiplayerEventSystem = canvasCursor.GetComponent<MultiplayerEventSystem>();
 		canvasMultiplayerEventSystem.SetSelectedGameObject(GameObject.Find($"MainCanvas/CharacterButtons/PaladinAzreal_CharacterButton"));
 
-		canvasReadyParent = GameObject.Find($"MainCanvas/PlayerCharacters/P{player.id + 1}_Character/P{player.id + 1}_Ready");
-		canvasReadyUpButton = GameObject.Find($"MainCanvas/PlayerCharacters/P{player.id + 1}_Character/P{player.id + 1}_Ready/btn_ReadyUp");
-
 		canvasPlayerTitleImage = GameObject.Find($"MainCanvas/PlayerCharacters/P{player.id + 1}_Character").GetComponent<Image>();
 	}
 
@@ -67,6 +64,9 @@ public class CursorController : MonoBehaviour
 		// Set canvas varaibles
 		canvasCurrentSelectedGameObject = canvasMultiplayerEventSystem.currentSelectedGameObject;
 		SetCursor(canvasCursor, canvasCurrentSelectedGameObject);
+
+		canvasReadyParent = GameObject.Find($"MainCanvas/PlayerCharacters/P{player.id + 1}_Character/P{player.id + 1}_Ready");
+		canvasReadyUpButton = canvasReadyParent.transform.Find("btn_ReadyUp").gameObject;
 
 		string loadCanvasButtonBackgroundColor = $"Sprites/Buttons/ButtonBackgroundColor";
 		canvasPlayerTitleImage.sprite = Resources.Load<Sprite>(loadCanvasButtonBackgroundColor);
@@ -124,6 +124,8 @@ public class CursorController : MonoBehaviour
 
 		Image canvasCursorImage = canvasCursor.GetComponent<Image>();
 		canvasCursorImage.enabled = false;
+
+		CharacterSelectManager.Instance.SpawnCharacterPrefab(player.id, character);
 	}
 
 	public void OnReadyUpButtonClick()
