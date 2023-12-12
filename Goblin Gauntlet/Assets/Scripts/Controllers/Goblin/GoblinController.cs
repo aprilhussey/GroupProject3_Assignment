@@ -362,6 +362,9 @@ public class GoblinController : MonoBehaviour, IDamageable
 			health -= amount;
 			//healthBar.UpdateHealthBar();
 			goblinBlood.Play();
+			GetComponent<Material>().color = Color.red;
+			new WaitForSeconds(0.5f);
+			GetComponent<Material>().color = Color.white;
 		}
 	}
 

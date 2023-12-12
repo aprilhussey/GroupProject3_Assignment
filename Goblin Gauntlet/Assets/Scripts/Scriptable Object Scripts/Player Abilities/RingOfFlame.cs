@@ -16,7 +16,7 @@ public class RingOfFlame : Ability
 
         Debug.Log("Ring of Flame ability used");
         playerController.canMove = false;
-        childObject = Instantiate(warlockReticle, playerController.transform.position, Quaternion.identity, playerController.transform);
+        childObject = Instantiate(warlockReticle, playerController.transform.position + new Vector3(0,0.1f,0), Quaternion.identity, playerController.transform);
     }
 
     public override void EndAbility(GameObject parent)

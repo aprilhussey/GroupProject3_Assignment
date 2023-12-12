@@ -17,7 +17,7 @@ public class HealingCircle : Ability
         Debug.Log("Healing Circle ability used");
         childObject = Instantiate(clericHeal) as GameObject;
         childObject.transform.parent = playerController.transform;
-        childObject.transform.position = playerController.transform.position;
+        childObject.transform.position = playerController.transform.position + new Vector3(0,0.2f,0);
     }
 
     public override void EndAbility(GameObject parent)
