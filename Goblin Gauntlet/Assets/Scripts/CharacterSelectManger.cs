@@ -58,7 +58,7 @@ public class CharacterSelectManager : MonoBehaviour
 			{
 				// Load the first level
 				Debug.Log($"All players are ready");
-				GameManager.Instance.ChangeGameState(GameManager.GameState.Game);
+				GameManager.Instance.ChangeGameState(GameManager.GameState.Level001);
 			}
 		}
 	}

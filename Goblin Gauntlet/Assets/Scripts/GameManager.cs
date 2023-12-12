@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 	public enum GameState
 	{
 		MainMenu,
-		CharacterSelection,
+		CharacterSelect,
 		Game,
 		Paused,
 		Level001,
@@ -165,8 +165,8 @@ public class GameManager : MonoBehaviour
 				SceneManager.LoadScene("MainMenu");
 				break;
 
-			case GameState.CharacterSelection:
-				SceneManager.LoadScene("CharacterSelection");
+			case GameState.CharacterSelect:
+				SceneManager.LoadScene("CharacterSelectWorking");
 				break;
 			
 			case GameState.Game:
@@ -187,30 +187,37 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	// TEMP //
-	// TEMP //
-	public void StartButton()
+	// MAIN MENU BUTTONS //
+	public void OnPlayButtonClick()
 	{
-		ChangeGameState(GameState.Game);
+		ChangeGameState(GameState.CharacterSelect);
 	}
 
-	public void OkayButton()
+	public void OnSettingsButtonClick()
+	{
+		Debug.Log($"Show settings");
+	}
+
+	public void OnQuitButtonClick()
+	{
+		Application.Quit();
+	}
+	// MAIN MENU BUTTONS //
+
+	public void OnOkayButtonClick()
 	{
 		ChangeGameState(GameState.MainMenu);
 	}
 
-	public void ResumeButton()
+	public void OnResumeButtonClick()
 	{
 		paused.SetActive(false);
 		Time.timeScale = 1f;
 		isGamePaused = false;
 	}
 
-	public void MainMenuButton()
+	public void OnMainMenuButtonClick()
 	{
 		ChangeGameState(GameState.MainMenu);
 	}
-
-	// TEMP //
-	// TEMP //
 }
