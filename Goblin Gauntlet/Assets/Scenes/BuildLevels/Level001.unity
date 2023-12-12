@@ -3796,7 +3796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 943563665}
   m_Layer: 0
-  m_Name: NewGoblinWave1 (2)
+  m_Name: NewGoblinWave3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5722,7 +5722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1558694514}
   m_Layer: 0
-  m_Name: NewGoblinWave1 (1)
+  m_Name: NewGoblinWave2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7237,7 +7237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1944475512}
   m_Layer: 0
-  m_Name: NewGoblinWave1 (3)
+  m_Name: NewGoblinWave4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
