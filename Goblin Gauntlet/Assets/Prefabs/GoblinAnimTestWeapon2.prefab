@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoblinAnimTestWeapon2
       objectReference: {fileID: 0}
+    - target: {fileID: 6477285048686497187, guid: 19ab7ad28f0cb8f42ad8ceacfbd200de, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 189605103187600001, guid: 19ab7ad28f0cb8f42ad8ceacfbd200de, type: 3}
     - {fileID: 871959957681573766, guid: 19ab7ad28f0cb8f42ad8ceacfbd200de, type: 3}

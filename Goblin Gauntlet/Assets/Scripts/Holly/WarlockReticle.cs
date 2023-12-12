@@ -14,7 +14,6 @@ public class WarlockReticle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.parent = null;
         StartCoroutine(ReticleCooldown());
         rb = GetComponent<Rigidbody>();
     }
@@ -26,11 +25,12 @@ public class WarlockReticle : MonoBehaviour
         transform.Translate(new Vector3(inputVector.x, 0, inputVector.y) * 10 * Time.deltaTime);
         if (reticleUsed)
         {
+            transform.parent.GetComponent<PlayerController>().canMove = true;
             Destroy(gameObject);
         }
     }
 
-    void OnAltMove(InputValue value)
+    void OnAltMovement(InputValue value)
     {
         print("moving");
         inputVector = value.Get<Vector2>();
@@ -38,7 +38,7 @@ public class WarlockReticle : MonoBehaviour
 
     void OnSpecialAttack()
     {
-        GameObject warlockFlame = Instantiate(warlockRing, transform.position + new Vector3(0, 200, 0), Quaternion.identity, transform) as GameObject;
+        GameObject warlockFlame = Instantiate(warlockRing, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity, transform) as GameObject;
         warlockFlame.transform.localScale = new Vector3(1, 200, 1);
         reticleUsed = true;
     }
@@ -46,7 +46,7 @@ public class WarlockReticle : MonoBehaviour
     IEnumerator ReticleCooldown()
     {
         yield return new WaitForSeconds(cooldownTime);
-        GameObject warlockFlame = Instantiate(warlockRing, transform.position + new Vector3(0, 200, 0), Quaternion.identity, transform) as GameObject;
+        GameObject warlockFlame = Instantiate(warlockRing, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity, transform) as GameObject;
         warlockFlame.transform.localScale = new Vector3(1, 200, 1);
         reticleUsed = true;
     }

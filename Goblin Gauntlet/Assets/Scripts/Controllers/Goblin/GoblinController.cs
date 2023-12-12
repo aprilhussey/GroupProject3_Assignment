@@ -354,10 +354,11 @@ public class GoblinController : MonoBehaviour, IDamageable
 	{
 		if (health > 0)
 		{
+			
 			Debug.Log("Knockback Applied");
-			Vector3 difference = target.transform.position - transform.position;
-			difference = difference.normalized * 10f;
-			rb.AddForce(difference, ForceMode.Impulse);
+			Vector3 difference = nearestPlayer.transform.position - transform.position;
+			difference = difference.normalized * 2f;
+			rb.AddForce(-difference, ForceMode.Impulse);
 			health -= amount;
 			//healthBar.UpdateHealthBar();
 			goblinBlood.Play();
