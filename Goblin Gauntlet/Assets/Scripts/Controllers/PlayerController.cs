@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 	public float smoothRotationTime = 0.1f;
 
-	public PlayerInput playerInput;
+	private PlayerInput playerInput;
 	// Commented out as this will need to be implemented at some point //
 	//private string currentControlScheme;
 	// Commented out as this will need to be implemented at some point //

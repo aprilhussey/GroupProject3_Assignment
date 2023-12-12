@@ -67,7 +67,7 @@ public class PlayerManager : MonoBehaviour
 				}
 				else
 				{
-					Debug.LogError($"player.character doesn't exist within characterPrefabs on the CharacterSelectManager");
+					// Do nothing
 				}
 			}
 		}
