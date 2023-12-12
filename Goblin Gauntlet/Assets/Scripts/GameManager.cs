@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
 				break;
 
 			case GameState.CharacterSelect:
-				SceneManager.LoadScene("CharacterSelectWorking");
+				SceneManager.LoadScene("CharacterSelect");
 				break;
 			
 			case GameState.Game:

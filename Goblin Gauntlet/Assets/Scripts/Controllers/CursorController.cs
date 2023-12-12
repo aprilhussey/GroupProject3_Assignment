@@ -69,8 +69,8 @@ public class CursorController : MonoBehaviour
 		canvasCurrentSelectedGameObject = canvasMultiplayerEventSystem.currentSelectedGameObject;
 		SetCursor(canvasCursor, canvasCurrentSelectedGameObject);
 
-		string loadCanvasPlayerTitleImageColor = $"Sprites/PlayerTitles/Player{player.id + 1}TitleColor";
-		canvasPlayerTitleImage.sprite = Resources.Load<Sprite>(loadCanvasPlayerTitleImageColor);
+		string loadCanvasButtonBackgroundColor = $"Sprites/Buttons/ButtonBackgroundColor";
+		canvasPlayerTitleImage.sprite = Resources.Load<Sprite>(loadCanvasButtonBackgroundColor);
 	}
 
 	// Update is called once per frame
