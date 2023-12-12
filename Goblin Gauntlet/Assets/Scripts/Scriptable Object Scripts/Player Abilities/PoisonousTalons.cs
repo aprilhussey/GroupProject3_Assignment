@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,22 +7,106 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Poisonous Talons", menuName = "Scriptable Object/Ability/Poisonious Talons")]
 public class PoisonousTalons : Ability
 {
-    private PlayerController playerController;
-    public float damageBuff;
+	private PlayerController playerController;
 
-    public override void UseAbility(GameObject parent)
-    {
+	public float poisonDamage = 1f;
+	public float poisonDuration = 3f;
+
+	public float attackRadius = 2.5f;
+	public float fieldOfAttack = 45f;
+
+	private List<GameObject> enemiesSeen;
+	private GameObject nearestEnemy;
+
+	public bool specialAttacking = false;
+
+	public override void UseAbility(GameObject parent)
+	{
 		playerController = parent.GetComponent<PlayerController>();
 
-		Debug.Log("Poisonous Talons ability used");
-        playerController.damage += damageBuff;
-    }
+		specialAttacking = true;
+		Debug.Log($"{parent.name} special attack used");
 
-    public override void EndAbility(GameObject parent)
-    {
-		playerController = parent.GetComponent<PlayerController>();
+		enemiesSeen = new List<GameObject>();
+		nearestEnemy = null;
 
-		Debug.Log("Poisonous Talons ability ended");
-        playerController.damage -= damageBuff;
-    }
+		Collider[] enemiesInViewRadius = Physics.OverlapSphere(parent.transform.position, attackRadius,
+			GameManager.Instance.enemyLayer);
+
+		foreach (Collider enemyCollider in enemiesInViewRadius)
+		{
+			Vector3 directionToEnemy = (enemyCollider.transform.position -
+				parent.transform.position).normalized;
+
+			// Check if enemy is within the field of view
+			if (Vector3.Angle(parent.transform.forward, directionToEnemy) < fieldOfAttack / 2)
+			{
+				float distanceToEnemy = Vector3.Distance(parent.transform.position,
+					enemyCollider.transform.forward);
+
+				// Check if there are obstructions between the AI and the player
+				if (!Physics.Raycast(parent.transform.position, directionToEnemy, distanceToEnemy,
+					GameManager.Instance.obstructionLayer))
+				{
+					GameObject enemySeen = enemyCollider.gameObject;
+					//Debug.Log($"Enemy detected: {enemySeen.name}");
+
+					if (!enemiesSeen.Contains(enemySeen))
+					{
+						//Debug.Log($"New enemy detected: {enemySeen.name}");
+						enemiesSeen.Add(enemySeen);
+					}
+				}
+			}
+		}
+
+		float closestEnemyDistance = Mathf.Infinity;
+		foreach (GameObject enemy in enemiesSeen)
+		{
+			float distanceToEnemy = Vector3.Distance(parent.transform.position, enemy.transform.position);
+
+			// If distanceToEnemy is less than the closestEnemyDistance set closestEnemyDistance
+			// to distanceToEnemy
+			if (distanceToEnemy < closestEnemyDistance)
+			{
+				closestEnemyDistance = distanceToEnemy;
+				nearestEnemy = enemy;
+
+				//Debug.Log($"nearestEnemy = {nearestEnemy}");
+			}
+		}
+
+		if (nearestEnemy != null)
+		{
+			StartCoroutine(ApplyPoisonDebuff(nearestEnemy, poisonDamage, poisonDuration));
+		}
+	}
+
+	private void StartCoroutine(IEnumerator enumerator)
+	{
+		throw new NotImplementedException();
+	}
+
+	public override void EndAbility(GameObject parent)
+	{
+		specialAttacking = false;
+		Debug.Log($"{parent.name} basic attack ended");
+		nearestEnemy = null;
+	}
+
+	private IEnumerator ApplyPoisonDebuff(GameObject enemy, float damage, float duration)
+	{
+		float poisonTickTime = 1f;  // Damage applied every second
+		float timePassed = 0;
+
+		while (timePassed < duration)
+		{
+			enemy.GetComponent<IDamageable>().TakeDamage(damage);
+
+			Debug.Log($"Enemy taking damage from poison debuff");
+
+			timePassed += poisonTickTime;
+			yield return new WaitForSeconds(poisonTickTime);
+		}
+	}
 }
