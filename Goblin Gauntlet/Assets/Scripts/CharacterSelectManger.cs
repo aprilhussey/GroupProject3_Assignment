@@ -52,15 +52,31 @@ public class CharacterSelectManager : MonoBehaviour
 		canvasP4TitleImage.sprite = Resources.Load<Sprite>(loadCanvasP4TitleImageGray);*/
 	}
 
+	private float delayTime = 3f;
+	private float timer = 0f;
+
 	void Update()
 	{
         if (PlayerManager.Instance.players.Count == maxPlayerCount)
         {
 			if (AreAllPlayersReady())
 			{
-				// Load the first level
-				Debug.Log($"All players are ready");
-				GameManager.Instance.ChangeGameState(GameManager.GameState.Level001);
+				timer += Time.deltaTime;
+				Debug.Log($"timer {timer}");
+				if (timer > delayTime)
+				{
+					// All players are ready
+					// Delay time has passed
+					timer = 0;
+
+					// Load the first level
+					Debug.Log($"All players are ready");
+					GameManager.Instance.ChangeGameState(GameManager.GameState.Level001);
+				}
+			}
+			else
+			{
+				timer = 0;
 			}
 		}
 	}

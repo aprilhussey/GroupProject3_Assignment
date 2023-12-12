@@ -109,26 +109,32 @@ public class CursorController : MonoBehaviour
 		PlayableCharacter character = currentSelectedGameObject.GetComponent<PlayableCharacterHolder>().playableCharacter;
 		PlayerManager.Instance.players[player.id].character = character;
 
-		Debug.Log($"readyParent: {readyParent.name}");
-		readyParent.SetActive(true);
+		//Debug.Log($"readyParent: {readyParent.name}");
+		//readyParent.SetActive(true);
 
-		multiplayerEventSystem.SetSelectedGameObject(readyUpButton);
+		//multiplayerEventSystem.SetSelectedGameObject(readyUpButton);
+		multiplayerEventSystem.SetSelectedGameObject(null);
 
 		Image playerCursorImage = playerCursor.GetComponent<Image>();
 		playerCursorImage.enabled = false;
 
 		// Set canvas varaibles
-		canvasReadyParent.SetActive(true);
+		//canvasReadyParent.SetActive(true);
 
-		canvasMultiplayerEventSystem.SetSelectedGameObject(canvasReadyUpButton);
+		//canvasMultiplayerEventSystem.SetSelectedGameObject(canvasReadyUpButton);
+
+		canvasMultiplayerEventSystem.SetSelectedGameObject(null);
 
 		Image canvasCursorImage = canvasCursor.GetComponent<Image>();
 		canvasCursorImage.enabled = false;
 
 		CharacterSelectManager.Instance.SpawnCharacterPrefab(player.id, character);
+
+		PlayerManager.Instance.SetCharacterPrefab(player.id);
+		PlayerManager.Instance.players[player.id].isReady = true;
 	}
 
-	public void OnReadyUpButtonClick()
+	/*public void OnReadyUpButtonClick()
 	{
 		readyUpButton.SetActive(false);
 
@@ -143,7 +149,7 @@ public class CursorController : MonoBehaviour
 		canvasReadyUpButton.SetActive(false);
 
 		canvasMultiplayerEventSystem.SetSelectedGameObject(null);
-	}
+	}*/
 
 	private void SetCursor(GameObject cursor, GameObject selectedGameObject)
 	{
