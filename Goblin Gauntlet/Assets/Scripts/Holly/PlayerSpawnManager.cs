@@ -52,7 +52,7 @@ public class PlayerSpawnManager : MonoBehaviour
 			//playerInput.gameObject.transform.position = spawnLocations[playerInput.playerIndex].transform.positiont
 
 			playerInput.gameObject.GetComponent<PlayerDetails>().playerID = playerInput.playerIndex;
-            playerInput.gameObject.GetComponent<PlayerDetails>().startPos = spawnLocations[playerInput.playerIndex].transform.position;
+            //playerInput.gameObject.GetComponent<PlayerDetails>().startPos = spawnLocations[playerInput.playerIndex].transform.position;
 
             playerInputManager.playerPrefab = DeterminePrefab(playerInput);
 		}
