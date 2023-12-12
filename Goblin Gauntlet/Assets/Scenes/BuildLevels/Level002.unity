@@ -2765,54 +2765,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418468249}
   m_CullTransparentMesh: 1
---- !u!1 &422624958
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 422624959}
-  - component: {fileID: 422624960}
-  m_Layer: 0
-  m_Name: Goblin Spawner (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &422624959
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 422624958}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7402181, z: 0, w: 0.67236686}
-  m_LocalPosition: {x: 11.000001, y: 0, z: 8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1085558042}
-  m_LocalEulerAnglesHint: {x: 0, y: -95.5, z: 0}
---- !u!114 &422624960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 422624958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bf500edbc8103c46b360392b44741bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 1176199413879127531, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
-  spawnInterval: 5
-  initialDelay: 4
-  spawnAmount: 10
 --- !u!1 &453382033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,6 +2819,7 @@ MonoBehaviour:
   obstructionLayer:
     serializedVersion: 2
     m_Bits: 128
+  spawnLocation: {x: 0, y: 0, z: 0}
   artifactController: {fileID: 5827400824102833952}
   gameOver: {fileID: 1019000058}
   paused: {fileID: 72202414}
@@ -4247,6 +4200,66 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1020415580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1020415582}
+  - component: {fileID: 1020415581}
+  m_Layer: 0
+  m_Name: Enemy Spawners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1020415581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020415580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baab91706eebc9d4fa69815038f2dc24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - enemyPrefab: {fileID: 1176199413879127531, guid: f17622265ad0d4a45b888b5c6c7807c5, type: 3}
+    cost: 5
+  waveCurrency: 50
+  waveDuration: 120
+  delaySpawnBy: 0
+  spawnLocations:
+  - {fileID: 1383236498}
+  - {fileID: 2088534765}
+  - {fileID: 1237993686}
+  - {fileID: 1441108411}
+  enemiesToSpawn: []
+--- !u!4 &1020415582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020415580}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.36, y: 0.32, z: -8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1383236498}
+  - {fileID: 2088534765}
+  - {fileID: 1237993686}
+  - {fileID: 1441108411}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1036736842
 GameObject:
   m_ObjectHideFlags: 0
@@ -4535,41 +4548,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1111797062}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1085558040
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1085558042}
-  m_Layer: 0
-  m_Name: Enemy Spawners
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1085558042
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085558040}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.82, y: -3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1746119457}
-  - {fileID: 1937844603}
-  - {fileID: 422624959}
-  - {fileID: 1263525410}
-  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1096200703
 GameObject:
@@ -5284,6 +5262,37 @@ LightingSettings:
   m_PVRTiledBaking: 0
   m_NumRaysToShootPerTexel: -1
   m_RespectSceneVisibilityWhenBakingGI: 0
+--- !u!1 &1237993685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1237993686}
+  m_Layer: 0
+  m_Name: NewGoblinWave1 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1237993686
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237993685}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.08115564, z: 0, w: 0.9967014}
+  m_LocalPosition: {x: -4.45, y: -1.43, z: 17.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1020415582}
+  m_LocalEulerAnglesHint: {x: 0, y: -9.31, z: 0}
 --- !u!1 &1248237860
 GameObject:
   m_ObjectHideFlags: 0
@@ -5464,54 +5473,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260958769}
   m_CullTransparentMesh: 1
---- !u!1 &1263525409
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1263525410}
-  - component: {fileID: 1263525411}
-  m_Layer: 0
-  m_Name: Goblin Spawner (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1263525410
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1263525409}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.49136004, z: 0, w: -0.8709566}
-  m_LocalPosition: {x: -5, y: 0, z: -3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1085558042}
-  m_LocalEulerAnglesHint: {x: 0, y: -301.14, z: 0}
---- !u!114 &1263525411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1263525409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bf500edbc8103c46b360392b44741bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 1176199413879127531, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
-  spawnInterval: 5
-  initialDelay: 2
-  spawnAmount: 10
 --- !u!1 &1289692830
 GameObject:
   m_ObjectHideFlags: 0
@@ -6219,6 +6180,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1358972271}
   m_CullTransparentMesh: 1
+--- !u!1 &1383236497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1383236498}
+  m_Layer: 0
+  m_Name: NewGoblinWave1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1383236498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383236497}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.08115564, z: 0, w: 0.9967014}
+  m_LocalPosition: {x: 8.87, y: -4.1, z: 8.28}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1020415582}
+  m_LocalEulerAnglesHint: {x: 0, y: -9.31, z: 0}
 --- !u!1 &1384793973
 GameObject:
   m_ObjectHideFlags: 0
@@ -6430,6 +6422,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439223954}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1441108410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1441108411}
+  m_Layer: 0
+  m_Name: NewGoblinWave1 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1441108411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441108410}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.08115564, z: 0, w: 0.9967014}
+  m_LocalPosition: {x: 4.93, y: -1.43, z: 16.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1020415582}
+  m_LocalEulerAnglesHint: {x: 0, y: -9.31, z: 0}
 --- !u!1 &1442812728
 GameObject:
   m_ObjectHideFlags: 0
@@ -7155,54 +7178,6 @@ Transform:
   - {fileID: 1107997950}
   m_Father: {fileID: 719648200}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1746119456
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1746119457}
-  - component: {fileID: 1746119458}
-  m_Layer: 0
-  m_Name: Goblin Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1746119457
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746119456}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.08115564, z: 0, w: 0.9967014}
-  m_LocalPosition: {x: 3.28, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1085558042}
-  m_LocalEulerAnglesHint: {x: 0, y: -9.31, z: 0}
---- !u!114 &1746119458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746119456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bf500edbc8103c46b360392b44741bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 1176199413879127531, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
-  spawnInterval: 5
-  initialDelay: 0
-  spawnAmount: 10
 --- !u!1 &1757778211
 GameObject:
   m_ObjectHideFlags: 0
@@ -8856,54 +8831,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
---- !u!1 &1937844602
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1937844603}
-  - component: {fileID: 1937844604}
-  m_Layer: 0
-  m_Name: Goblin Spawner (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1937844603
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937844602}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.08115564, z: 0, w: 0.9967014}
-  m_LocalPosition: {x: -8, y: 0, z: 5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1085558042}
-  m_LocalEulerAnglesHint: {x: 0, y: -9.31, z: 0}
---- !u!114 &1937844604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937844602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bf500edbc8103c46b360392b44741bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 1176199413879127531, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
-  spawnInterval: 5
-  initialDelay: 0
-  spawnAmount: 10
 --- !u!1 &1952427423
 GameObject:
   m_ObjectHideFlags: 0
@@ -9864,6 +9791,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083037094}
   m_CullTransparentMesh: 1
+--- !u!1 &2088534764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2088534765}
+  m_Layer: 0
+  m_Name: NewGoblinWave1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2088534765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088534764}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.08115564, z: 0, w: 0.9967014}
+  m_LocalPosition: {x: -4.63, y: -3.92, z: -1.31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1020415582}
+  m_LocalEulerAnglesHint: {x: 0, y: -9.31, z: 0}
 --- !u!1 &2098195321
 GameObject:
   m_ObjectHideFlags: 0
@@ -10282,7 +10240,6 @@ SceneRoots:
   - {fileID: 811523199}
   - {fileID: 1801806419}
   - {fileID: 1922574060}
-  - {fileID: 1085558042}
   - {fileID: 711924406}
   - {fileID: 1315597207}
   - {fileID: 214248226}
@@ -10298,3 +10255,4 @@ SceneRoots:
   - {fileID: 409998118}
   - {fileID: 1699421547}
   - {fileID: 1111797062}
+  - {fileID: 1020415582}
