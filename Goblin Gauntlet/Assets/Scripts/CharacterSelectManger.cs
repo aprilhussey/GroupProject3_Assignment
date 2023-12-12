@@ -7,20 +7,24 @@ using UnityEngine.UI;
 public class CharacterSelectManager : MonoBehaviour
 {
 	// Singleton instance
-	public static CharacterSelectManager instance = null;
+	public static CharacterSelectManager Instance = null;
 
 	private PlayerInputManager playerInputManager;
 	private int maxPlayerCount;
+
+	public List<GameObject> characterPrefabs = new List<GameObject>();
+
+	public List<GameObject> characterSelectPrefabs = new List<GameObject>();
 
 	// Awake is called before Start
 	private void Awake()
 	{
 		// Ensure only one CharacterSelectManager instance exists
-		if (instance == null)
+		if (Instance == null)
 		{
-			instance = this;
+			Instance = this;
 		}
-		else if (instance != this)
+		else if (Instance != this)
 		{
 			Destroy(gameObject);
 		}
@@ -31,7 +35,7 @@ public class CharacterSelectManager : MonoBehaviour
 
 	void Start()
 	{
-		Image canvasP1TitleImage = GameObject.Find($"MainCanvas/PlayerCharacters/P1_Character").GetComponent<Image>();
+		/*Image canvasP1TitleImage = GameObject.Find($"MainCanvas/PlayerCharacters/P1_Character").GetComponent<Image>();
 		string loadCanvasP1TitleImageGray = $"Sprites/PlayerTitles/Player1TitleGray";
 		canvasP1TitleImage.sprite = Resources.Load<Sprite>(loadCanvasP1TitleImageGray);
 
@@ -45,7 +49,7 @@ public class CharacterSelectManager : MonoBehaviour
 
 		Image canvasP4TitleImage = GameObject.Find($"MainCanvas/PlayerCharacters/P4_Character").GetComponent<Image>();
 		string loadCanvasP4TitleImageGray = $"Sprites/PlayerTitles/Player4TitleGray";
-		canvasP4TitleImage.sprite = Resources.Load<Sprite>(loadCanvasP4TitleImageGray);
+		canvasP4TitleImage.sprite = Resources.Load<Sprite>(loadCanvasP4TitleImageGray);*/
 	}
 
 	void Update()
@@ -56,6 +60,7 @@ public class CharacterSelectManager : MonoBehaviour
 			{
 				// Load the first level
 				Debug.Log($"All players are ready");
+				GameManager.Instance.ChangeGameState(GameManager.GameState.Level001);
 			}
 		}
 	}
@@ -87,5 +92,50 @@ public class CharacterSelectManager : MonoBehaviour
 		}
 		// All players are ready
 		return true;
+	}
+
+	public void SpawnCharacterPrefab(int playerID, PlayableCharacter characterData)
+	{
+		Vector3 spawnLocation = new Vector3();
+		Quaternion spawnRotation = new Quaternion();
+
+		switch (playerID)
+		{
+			case 0:
+				// Player 1
+				spawnLocation = new Vector3(-160, 0, 300);
+				spawnRotation = Quaternion.Euler(0, 145, 0);
+				break;
+			case 1:
+				// Player 2
+				spawnLocation = new Vector3(-45, 0, 300);
+				spawnRotation = Quaternion.Euler(0, 165, 0);
+				break;
+			case 2:
+				// Player 3
+				spawnLocation = new Vector3(70, 0, 300);
+				spawnRotation = Quaternion.Euler(0, 195, 0);
+				break;
+			case 3:
+				// Player 4
+				spawnLocation = new Vector3(185, 0, 300);
+				spawnRotation = Quaternion.Euler(0, 210, 0);
+				break;
+		}
+
+		if (characterSelectPrefabs != null)
+		{
+			foreach (GameObject characterSelectPrefab in characterSelectPrefabs)
+			{
+				PlayableCharacter characterPrefabData = characterSelectPrefab.GetComponent<PlayableCharacterHolder>().playableCharacter;
+				if (characterData == characterPrefabData)
+				{
+					Instantiate(characterSelectPrefab, spawnLocation, spawnRotation);
+
+					// Change the scale
+					//instantiatedPrefab.transform.localScale = new Vector3(27.9f, 27.9f, 27.9f);
+				}
+			}
+		}
 	}
 }

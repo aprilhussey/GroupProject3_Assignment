@@ -26,7 +26,7 @@ public class PlayerBasicAttack : Ability
 		nearestEnemy = null;
 
 		Collider[] enemiesInViewRadius = Physics.OverlapSphere(parent.transform.position, attackRadius,
-			GameManager.instance.enemyLayer);
+			GameManager.Instance.enemyLayer);
 
 		foreach (Collider enemyCollider in enemiesInViewRadius)
 		{
@@ -41,7 +41,7 @@ public class PlayerBasicAttack : Ability
 
 				// Check if there are obstructions between the AI and the player
 				if (!Physics.Raycast(parent.transform.position, directionToEnemy, distanceToEnemy,
-					GameManager.instance.obstructionLayer))
+					GameManager.Instance.obstructionLayer))
 				{
 					GameObject enemySeen = enemyCollider.gameObject;
 					//Debug.Log($"Enemy detected: {enemySeen.name}");
