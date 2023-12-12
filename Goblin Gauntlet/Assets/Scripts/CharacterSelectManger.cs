@@ -62,7 +62,7 @@ public class CharacterSelectManager : MonoBehaviour
 			if (AreAllPlayersReady())
 			{
 				timer += Time.deltaTime;
-				Debug.Log($"timer {timer}");
+				//Debug.Log($"timer {timer}");
 				if (timer > delayTime)
 				{
 					// All players are ready

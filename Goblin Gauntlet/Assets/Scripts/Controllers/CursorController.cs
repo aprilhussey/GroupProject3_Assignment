@@ -79,7 +79,7 @@ public class CursorController : MonoBehaviour
 
 		if (currentSelectedGameObject != null)
 		{
-			Debug.Log($"P{player.id + 1} currentSelectedGameObject: {currentSelectedGameObject.name}");
+			//Debug.Log($"P{player.id + 1} currentSelectedGameObject: {currentSelectedGameObject.name}");
 			
 			playerCursor.GetComponent<RectTransform>().anchoredPosition = currentSelectedGameObject.GetComponent<RectTransform>().anchoredPosition;
 		}
@@ -96,7 +96,7 @@ public class CursorController : MonoBehaviour
 
 		if (canvasCurrentSelectedGameObject != null)
 		{
-			Debug.Log($"P{player.id + 1} canvasCurrentSelectedGameObject: {canvasCurrentSelectedGameObject.name}");
+			//Debug.Log($"P{player.id + 1} canvasCurrentSelectedGameObject: {canvasCurrentSelectedGameObject.name}");
 
 			canvasCursor.GetComponent<RectTransform>().anchoredPosition = canvasCurrentSelectedGameObject.GetComponent<RectTransform>().anchoredPosition;
 		}

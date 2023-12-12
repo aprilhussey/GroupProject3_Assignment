@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 				//Debug.Log($"{gameObject.name} destroyed");
 				Destroy(gameObject);
 			}
-			Debug.Log($"{gameObject.name} health = {health}");
+			//Debug.Log($"{gameObject.name} health = {health}");
 		}
 
 		CheckAbilityState(ref basicAttackInput, basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
