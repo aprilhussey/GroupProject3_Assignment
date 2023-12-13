@@ -68,6 +68,7 @@ public class PlayerManager : MonoBehaviour
 				else
 				{
 					// Do nothing
+					break;
 				}
 			}
 		}
