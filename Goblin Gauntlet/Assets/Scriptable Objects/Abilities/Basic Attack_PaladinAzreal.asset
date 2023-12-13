@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Basic Attack_PaladinAzreal
   m_EditorClassIdentifier: 
   abilityName: Attack
-  activeTime: 0.1
-  cooldownTime: 0.0001
+  activeTime: 1
+  cooldownTime: 0.01
   damage: 1.5
-  attackRadius: 4
+  attackRadius: 10
   fieldOfAttack: 90
-  attacking: 1
+  attacking: 0

@@ -18,3 +18,4 @@ MonoBehaviour:
   damage: 3
   attackRadius: 2.5
   fieldOfAttack: 90
+  attacking: 0

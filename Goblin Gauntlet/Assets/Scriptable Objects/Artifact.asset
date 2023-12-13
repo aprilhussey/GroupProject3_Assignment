@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Artifact
   m_EditorClassIdentifier: 
   entityName: Artifact
-  health: 25
+  health: 100000
