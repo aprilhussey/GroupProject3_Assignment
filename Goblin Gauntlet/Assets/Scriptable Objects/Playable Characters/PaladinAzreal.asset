@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityName: Azreal
   health: 18
-  speed: 2
+  speed: 2.5
   rotationSpeed: 3
   characterClass: 0
   basicAttack: {fileID: 11400000, guid: 74cfd73d58431e74994a8440dad09476, type: 2}
