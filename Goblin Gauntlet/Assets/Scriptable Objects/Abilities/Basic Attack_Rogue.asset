@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Basic Attack_Rogue
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBasicAttack
-  abilityName: 
+  abilityName: BasicAttackRogue
   activeTime: 0.1
   cooldownTime: 0.01
   damage: 3
