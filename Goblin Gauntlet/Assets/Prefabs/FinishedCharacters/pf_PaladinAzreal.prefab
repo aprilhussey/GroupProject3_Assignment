@@ -4174,7 +4174,7 @@ GameObject:
   - component: {fileID: 1594118640347792843}
   - component: {fileID: 4756457189127077893}
   - component: {fileID: 1007436252323341844}
-  - component: {fileID: 6485943673288483448}
+  - component: {fileID: 4590647668698904068}
   m_Layer: 3
   m_Name: pf_PaladinAzreal
   m_TagString: Player
@@ -4440,7 +4440,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6485943673288483448
+--- !u!114 &4590647668698904068
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 1594118640347792843}
   - component: {fileID: 4756457189127077893}
   - component: {fileID: 1007436252323341844}
-  - component: {fileID: 8673789975522201923}
+  - component: {fileID: 5843381803902202972}
   m_Layer: 3
   m_Name: pf_RogueZezio
   m_TagString: Player
@@ -410,7 +410,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8673789975522201923
+--- !u!114 &5843381803902202972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
