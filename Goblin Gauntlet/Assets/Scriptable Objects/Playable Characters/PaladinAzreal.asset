@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: PaladinAzreal
   m_EditorClassIdentifier: 
   entityName: Azreal
-  health: 100
-  speed: 3
-  rotationSpeed: 5
+  health: 18
+  speed: 2.5
+  rotationSpeed: 3
   characterClass: 0
-  basicAttack: {fileID: 11400000, guid: 74cfd73d58431e74994a8440dad09476, type: 2}
+  basicAttack: {fileID: 11400000, guid: b44ad8512293c674284ee5d6e580bcb1, type: 2}
   mainAbility: {fileID: 0}
   specialAbility: {fileID: 11400000, guid: c5db02674badc424992512295e9ae45b, type: 2}

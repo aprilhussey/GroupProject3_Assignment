@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 1594118640347792843}
   - component: {fileID: 4756457189127077893}
   - component: {fileID: 1007436252323341844}
-  - component: {fileID: 6485943673288483448}
+  - component: {fileID: 8673789975522201923}
   m_Layer: 3
   m_Name: pf_RogueZezio
   m_TagString: Player
@@ -228,19 +228,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8419127536225119428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4de723abafb08a14db71cfa9dc2fcdbe, type: 3}
+  m_Script: {fileID: 11500000, guid: f729fd084876e0047a5e61dfca337ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterData: {fileID: 11400000, guid: c6f7c8847692494489f3c7b0fe4bb7f2, type: 2}
-  health: 0
-  canHeal: 1
-  basicAttack: {fileID: 0}
-  basicAttackCooldownTime: 0
-  mainAbility: {fileID: 0}
-  specialAbility: {fileID: 0}
-  damage: 0
-  smoothRotationTime: 0.1
-  playerDamageSpark: {fileID: 5399221449320304992}
 --- !u!114 &4756457189127077893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +258,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1594118640347792843}
+      - m_Target: {fileID: 8673789975522201923}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnMovement
         m_Mode: 0
@@ -284,7 +274,7 @@ MonoBehaviour:
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1594118640347792843}
+      - m_Target: {fileID: 8673789975522201923}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnLook
         m_Mode: 0
@@ -300,7 +290,7 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1594118640347792843}
+      - m_Target: {fileID: 8673789975522201923}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnBasicAttack
         m_Mode: 0
@@ -316,7 +306,7 @@ MonoBehaviour:
     m_ActionName: Player/Attack[/Mouse/leftButton,/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1594118640347792843}
+      - m_Target: {fileID: 8673789975522201923}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnMainAbility
         m_Mode: 0
@@ -332,7 +322,7 @@ MonoBehaviour:
     m_ActionName: Player/MainAbility[/Keyboard/q,/XInputControllerWindows/buttonWest]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1594118640347792843}
+      - m_Target: {fileID: 8673789975522201923}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnSpecialAbility
         m_Mode: 0
@@ -390,6 +380,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0cd2c29b-2b2b-4ca6-99c6-09e992c4e7e4
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b64f81ae-2743-4225-b98f-60bd0ee69645
+    m_ActionName: Player/AltMovement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -416,7 +410,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6485943673288483448
+--- !u!114 &8673789975522201923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -425,9 +419,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8419127536225119428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ead88cb315915f143a43efa8e06f5a5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d51f7f3a40d4f243b02b01461ba787b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterData: {fileID: 11400000, guid: c6f7c8847692494489f3c7b0fe4bb7f2, type: 2}
+  health: 0
+  canHeal: 1
+  canMove: 1
+  basicAttack: {fileID: 0}
+  basicAttackCooldownTime: 0
+  mainAbility: {fileID: 0}
+  specialAbility: {fileID: 0}
+  damage: 0
+  smoothRotationTime: 0.1
+  playerDamageSpark: {fileID: 5399221449320304992}
 --- !u!1001 &3685163582211093644
 PrefabInstance:
   m_ObjectHideFlags: 0
