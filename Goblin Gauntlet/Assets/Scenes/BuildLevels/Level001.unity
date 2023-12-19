@@ -1083,7 +1083,7 @@ Terrain:
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 200
-  m_SplatMapDistance: 100
+  m_SplatMapDistance: 40
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
@@ -1431,6 +1431,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224014077}
   m_CullTransparentMesh: 1
+--- !u!1 &259464693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 259464694}
+  m_Layer: 0
+  m_Name: NewGoblinWave1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &259464694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259464693}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.08115564, z: 0, w: 0.9967014}
+  m_LocalPosition: {x: 7.48, y: -0.16, z: 11.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1994615036}
+  m_LocalEulerAnglesHint: {x: 0, y: -9.31, z: 0}
 --- !u!1 &260013648
 GameObject:
   m_ObjectHideFlags: 0
@@ -3786,37 +3817,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893355787}
   m_CullTransparentMesh: 1
---- !u!1 &943563664
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 943563665}
-  m_Layer: 0
-  m_Name: NewGoblinWave3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &943563665
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943563664}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.08115564, z: 0, w: 0.9967014}
-  m_LocalPosition: {x: 1.29, y: -1.43, z: 9.33}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1085558042}
-  m_LocalEulerAnglesHint: {x: 0, y: -9.31, z: 0}
 --- !u!1 &948675234
 GameObject:
   m_ObjectHideFlags: 0
@@ -4021,7 +4021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6207790053795957443, guid: f02da94d3d43de74f81448ffcb84c2ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.71
+      value: 10.87
       objectReference: {fileID: 0}
     - target: {fileID: 6207790053795957443, guid: f02da94d3d43de74f81448ffcb84c2ee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4029,7 +4029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6207790053795957443, guid: f02da94d3d43de74f81448ffcb84c2ee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.579999
+      value: -10.83
       objectReference: {fileID: 0}
     - target: {fileID: 6207790053795957443, guid: f02da94d3d43de74f81448ffcb84c2ee, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4064,7 +4064,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f02da94d3d43de74f81448ffcb84c2ee, type: 3}
---- !u!1 &1047400937
+--- !u!1 &1051975464
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4072,28 +4072,28 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1047400938}
+  - component: {fileID: 1051975465}
   m_Layer: 0
-  m_Name: NewGoblinWave1
+  m_Name: NewGoblinWave4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1047400938
+--- !u!4 &1051975465
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1047400937}
+  m_GameObject: {fileID: 1051975464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.08115564, z: 0, w: 0.9967014}
-  m_LocalPosition: {x: 3.569, y: -1.43, z: -11.73}
+  m_LocalPosition: {x: -0.15, y: -0.73, z: 5.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1085558042}
+  m_Father: {fileID: 1994615036}
   m_LocalEulerAnglesHint: {x: 0, y: -9.31, z: 0}
 --- !u!1 &1074219617
 GameObject:
@@ -4170,66 +4170,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074219617}
   m_CullTransparentMesh: 1
---- !u!1 &1085558040
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1085558042}
-  - component: {fileID: 1085558043}
-  m_Layer: 0
-  m_Name: Enemy Spawners
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1085558042
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085558040}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.87, y: 2.2, z: -8.659999}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1047400938}
-  - {fileID: 1558694514}
-  - {fileID: 943563665}
-  - {fileID: 1944475512}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1085558043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085558040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baab91706eebc9d4fa69815038f2dc24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemies:
-  - enemyPrefab: {fileID: 1176199413879127531, guid: f17622265ad0d4a45b888b5c6c7807c5, type: 3}
-    cost: 5
-  waveCurrency: 50
-  waveDuration: 120
-  delaySpawnBy: 0
-  spawnLocations:
-  - {fileID: 1047400938}
-  - {fileID: 1558694514}
-  - {fileID: 943563665}
-  - {fileID: 1944475512}
-  enemiesToSpawn: []
 --- !u!1 &1088406266
 GameObject:
   m_ObjectHideFlags: 0
@@ -5712,37 +5652,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534508147}
   m_CullTransparentMesh: 1
---- !u!1 &1558694513
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1558694514}
-  m_Layer: 0
-  m_Name: NewGoblinWave2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1558694514
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558694513}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.08115564, z: 0, w: 0.9967014}
-  m_LocalPosition: {x: -4.32, y: -1.43, z: -3.73}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1085558042}
-  m_LocalEulerAnglesHint: {x: 0, y: -9.31, z: 0}
 --- !u!1 &1601474497
 GameObject:
   m_ObjectHideFlags: 0
@@ -6078,6 +5987,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1648238064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1648238065}
+  m_Layer: 0
+  m_Name: NewGoblinWave2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1648238065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648238064}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.08115564, z: 0, w: 0.9967014}
+  m_LocalPosition: {x: 0.29, y: -3.92, z: -1.31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1994615036}
+  m_LocalEulerAnglesHint: {x: 0, y: -9.31, z: 0}
 --- !u!1 &1655711363
 GameObject:
   m_ObjectHideFlags: 0
@@ -6427,6 +6367,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 336418246154082995, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 336418246154082995, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 550586401545095796, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 550586401545095796, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.67
+      objectReference: {fileID: 0}
     - target: {fileID: 1084512858083437277, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -6474,6 +6430,22 @@ PrefabInstance:
     - target: {fileID: 4916061804943816882, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
       propertyPath: m_ProvidesContacts
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719208653307470455, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719208653307470455, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596719119252003433, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596719119252003433, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.72
       objectReference: {fileID: 0}
     - target: {fileID: 6911759188656428643, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
       propertyPath: m_Enabled
@@ -7227,37 +7199,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940372650}
   m_CullTransparentMesh: 1
---- !u!1 &1944475511
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1944475512}
-  m_Layer: 0
-  m_Name: NewGoblinWave4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1944475512
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944475511}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.08115564, z: 0, w: 0.9967014}
-  m_LocalPosition: {x: 14.58, y: -1.43, z: 0.53}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1085558042}
-  m_LocalEulerAnglesHint: {x: 0, y: -9.31, z: 0}
 --- !u!1 &1947112586
 GameObject:
   m_ObjectHideFlags: 0
@@ -7333,6 +7274,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947112586}
   m_CullTransparentMesh: 1
+--- !u!1 &1957688030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1957688031}
+  m_Layer: 0
+  m_Name: NewGoblinWave3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1957688031
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957688030}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.08115564, z: 0, w: 0.9967014}
+  m_LocalPosition: {x: 0.21, y: -0.36, z: 2.95}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1994615036}
+  m_LocalEulerAnglesHint: {x: 0, y: -9.31, z: 0}
 --- !u!1 &1969296165
 GameObject:
   m_ObjectHideFlags: 0
@@ -7483,6 +7455,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1975029946}
   m_CullTransparentMesh: 1
+--- !u!1 &1994615034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1994615036}
+  - component: {fileID: 1994615035}
+  m_Layer: 0
+  m_Name: Enemy Spawners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1994615035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994615034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baab91706eebc9d4fa69815038f2dc24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - enemyPrefab: {fileID: 1176199413879127531, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
+    cost: 1
+  waveCurrency: 60
+  waveDuration: 130
+  delaySpawnBy: 0
+  spawnLocations:
+  - {fileID: 259464694}
+  - {fileID: 1648238065}
+  - {fileID: 1957688031}
+  - {fileID: 1051975465}
+  enemiesToSpawn: []
+--- !u!4 &1994615036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994615034}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.13, y: 0.32, z: -13.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 259464694}
+  - {fileID: 1648238065}
+  - {fileID: 1957688031}
+  - {fileID: 1051975465}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2014992527
 GameObject:
   m_ObjectHideFlags: 0
@@ -7905,7 +7937,6 @@ SceneRoots:
   - {fileID: 2025495896}
   - {fileID: 811523199}
   - {fileID: 1801806419}
-  - {fileID: 1085558042}
   - {fileID: 1669652877}
   - {fileID: 711924406}
   - {fileID: 214248226}
@@ -7916,3 +7947,4 @@ SceneRoots:
   - {fileID: 169035578}
   - {fileID: 1777299392}
   - {fileID: 1174943842}
+  - {fileID: 1994615036}
