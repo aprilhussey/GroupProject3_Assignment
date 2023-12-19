@@ -4288,7 +4288,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1594118640347792843}
+      - m_Target: {fileID: 6485943673288483448}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnMovement
         m_Mode: 0
@@ -4304,7 +4304,7 @@ MonoBehaviour:
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1594118640347792843}
+      - m_Target: {fileID: 6485943673288483448}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnLook
         m_Mode: 0
@@ -4320,7 +4320,7 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1594118640347792843}
+      - m_Target: {fileID: 6485943673288483448}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnBasicAttack
         m_Mode: 0
@@ -4336,7 +4336,7 @@ MonoBehaviour:
     m_ActionName: Player/Attack[/Mouse/leftButton,/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1594118640347792843}
+      - m_Target: {fileID: 6485943673288483448}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnMainAbility
         m_Mode: 0
@@ -4352,7 +4352,7 @@ MonoBehaviour:
     m_ActionName: Player/MainAbility[/Keyboard/q,/XInputControllerWindows/buttonWest]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1594118640347792843}
+      - m_Target: {fileID: 6485943673288483448}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnSpecialAbility
         m_Mode: 0
