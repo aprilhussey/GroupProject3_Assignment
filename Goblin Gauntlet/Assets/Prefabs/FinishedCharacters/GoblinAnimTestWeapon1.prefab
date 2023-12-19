@@ -592,6 +592,10 @@ PrefabInstance:
       propertyPath: goblinBlood
       value: 
       objectReference: {fileID: 7390955937749452335}
+    - target: {fileID: 895591139197061095, guid: 19ab7ad28f0cb8f42ad8ceacfbd200de, type: 3}
+      propertyPath: characterData
+      value: 
+      objectReference: {fileID: 11400000, guid: 415b47a400048b84cbf7f7b715c76950, type: 2}
     - target: {fileID: 1009905693088568739, guid: 19ab7ad28f0cb8f42ad8ceacfbd200de, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.98

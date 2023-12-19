@@ -17,6 +17,6 @@ MonoBehaviour:
   speed: 3
   rotationSpeed: 5
   characterClass: 2
-  basicAttack: {fileID: 11400000, guid: b367f945a3788174db98cf3f2ab6d667, type: 2}
+  basicAttack: {fileID: 11400000, guid: ca6eba74de52c8e41a1109bb93bcab21, type: 2}
   mainAbility: {fileID: 0}
   specialAbility: {fileID: 0}
