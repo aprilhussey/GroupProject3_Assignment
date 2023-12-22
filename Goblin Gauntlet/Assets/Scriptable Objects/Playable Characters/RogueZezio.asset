@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RogueZezio
   m_EditorClassIdentifier: 
   entityName: Zezio
-  health: 100
+  health: 13
   speed: 3.5
   rotationSpeed: 5
   characterClass: 3

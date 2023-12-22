@@ -18,5 +18,5 @@ MonoBehaviour:
   rotationSpeed: 5
   fieldOfView: 45
   visionDistance: 5
-  attackDistance: 1
+  attackDistance: 0.6
   basicAttack: {fileID: 11400000, guid: f02bccf45173fab4ca22c5aa59f592e7, type: 2}
