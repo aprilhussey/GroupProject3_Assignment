@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityName: Zezio
   health: 100
-  speed: 3
+  speed: 3.5
   rotationSpeed: 5
   characterClass: 3
   basicAttack: {fileID: 11400000, guid: 98a0082692ac81a4fa666d81d1c4e6e6, type: 2}
