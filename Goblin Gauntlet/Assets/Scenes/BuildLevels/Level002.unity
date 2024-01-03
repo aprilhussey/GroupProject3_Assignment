@@ -2617,7 +2617,7 @@ MonoBehaviour:
   playerPrefabs:
   - {fileID: 8419127536225119428, guid: ba4dfef8bdb40114cb8cb56846adf44e, type: 3}
   - {fileID: 8419127536225119428, guid: 17056e4c9ff8472418d409042897fde4, type: 3}
-  - {fileID: 8419127536225119428, guid: ba4dfef8bdb40114cb8cb56846adf44e, type: 3}
+  - {fileID: 9049595214799060663, guid: af970cde7aeebad469aa126367ae2179, type: 3}
   - {fileID: 8419127536225119428, guid: 17056e4c9ff8472418d409042897fde4, type: 3}
 --- !u!114 &409998117
 MonoBehaviour:
@@ -2665,7 +2665,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 8419127536225119428, guid: 17056e4c9ff8472418d409042897fde4, type: 3}
+  m_PlayerPrefab: {fileID: 9049595214799060663, guid: af970cde7aeebad469aa126367ae2179, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -4230,7 +4230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - enemyPrefab: {fileID: 1176199413879127531, guid: f17622265ad0d4a45b888b5c6c7807c5, type: 3}
+  - enemyPrefab: {fileID: 1176199413879127531, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
     cost: 5
   waveCurrency: 50
   waveDuration: 120
