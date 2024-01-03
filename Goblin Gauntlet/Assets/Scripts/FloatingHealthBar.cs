@@ -26,7 +26,7 @@ public class FloatingHealthBar : MonoBehaviour
     {
         if (artifactController != null)
         {
-			maxHealth = artifactController.health;
+			maxHealth = artifactController.currentHealth;
 		}
 
 		if (goblinController != null)
@@ -40,7 +40,7 @@ public class FloatingHealthBar : MonoBehaviour
     {
         if (artifactController != null)
         {
-            currentHealth = artifactController.health;
+            currentHealth = artifactController.currentHealth;
         }
 		
         if (goblinController != null)

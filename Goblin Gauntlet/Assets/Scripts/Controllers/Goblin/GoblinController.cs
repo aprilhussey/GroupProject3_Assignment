@@ -135,12 +135,12 @@ public class GoblinController : MonoBehaviour, IDamageable
 
 			if (target == nearestPlayer)
 			{
-				targetHealth = target.GetComponent<PlayerController>().health;
+				targetHealth = target.GetComponent<PlayerController>().currentHealth;
 			}
 
 			if (target == artifact)
 			{
-				targetHealth = target.GetComponent<ArtifactController>().health;
+				targetHealth = target.GetComponent<ArtifactController>().currentHealth;
 			}
 
 			if (targetHealth <= 0)
@@ -233,7 +233,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 					GameObject playerSeen = playerCollider.gameObject;
 					//Debug.Log($"Player detected: {playerSeen.name}");
 
-					if (playerSeen.GetComponent<PlayerController>().health > 0) // Check that the player still has health
+					if (playerSeen.GetComponent<PlayerController>().currentHealth > 0) // Check that the player still has health
 					{
 						if (!playersSeen.Contains(playerSeen))
 						{
@@ -272,14 +272,14 @@ public class GoblinController : MonoBehaviour, IDamageable
 
 		if (closestPlayerDistance < distanceToArtifact)
 		{
-			if (nearestPlayer.GetComponent<PlayerController>().health > 0) // Check that the nearestPlayer still has health
+			if (nearestPlayer.GetComponent<PlayerController>().currentHealth > 0) // Check that the nearestPlayer still has health
 			{
 				target = nearestPlayer;
 			}
 		}
 		else
 		{
-			if (artifact.GetComponent<ArtifactController>().health > 0) // Check that the artifact still has health
+			if (artifact.GetComponent<ArtifactController>().currentHealth > 0) // Check that the artifact still has health
 			{
 				target = artifact;
 			}

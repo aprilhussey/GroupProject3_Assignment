@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 	// Entity.cs variables
 	private string characterName;
 	[HideInInspector]
-	public float health;
+	public float maxHealth;
+	[HideInInspector]
+	public float currentHealth;
 	[HideInInspector]
 	public bool canHeal = true;
 	public bool canMove = true;
@@ -78,7 +80,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         // Access character data - Entity.cs
         characterName = characterData.entityName;
-        health = characterData.health;
+		maxHealth = characterData.health;
+		currentHealth = characterData.health;
 
 		// Access character data - Character.cs
 		damage = characterData.basicAttack.damage;
@@ -109,6 +112,13 @@ public class PlayerController : MonoBehaviour, IDamageable
 		// Input actions
 		inputActions = new InputActions();
 		inputActions.Enable();
+	}
+
+	// Start is called before the first frame
+	void Start()
+	{
+		PlayerManager.Instance.CreatePlayerTile(ref playerInput);
+		PlayerManager.Instance.SetPlayerMaxHealthOnHealthBar(ref playerInput, maxHealth);
 	}
 
 	// Update is called once per frame
@@ -169,23 +179,23 @@ public class PlayerController : MonoBehaviour, IDamageable
 			}
 
 			// If player health is less than or equal to 0
-			if (health <= 0)
+			if (currentHealth <= 0)
 			{
 				//Debug.Log($"{gameObject.name} destroyed");
 				Destroy(gameObject);
 			}
-			Debug.Log($"{gameObject.name} health = {health}");
-		}
+			Debug.Log($"{gameObject.name} health = {currentHealth}");
 
-		CheckAbilityState(ref basicAttackInput, basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
-		//CheckAbilityState(ref mainAbilityInput, mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
-		CheckAbilityState(ref specialAbilityInput, specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
+			CheckAbilityState(ref basicAttackInput, basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
+			//CheckAbilityState(ref mainAbilityInput, mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);
+			CheckAbilityState(ref specialAbilityInput, specialAbility, ref specialAbilityState, ref specialAbilityCooldownTime, ref specialAbilityActiveTime);
+		}
 	}
 
 	// Class needs to derive from 'IDamageable' for this function to work
 	public void TakeDamage(float amount)
 	{
-		if (health > 0)
+		if (currentHealth > 0)
 		{
 			StartCoroutine(DamageEffects(amount));
 		}
@@ -264,7 +274,10 @@ public class PlayerController : MonoBehaviour, IDamageable
 	IEnumerator DamageEffects(float amount)
 	{
         playerDamageSpark.Play();
-        health -= amount;
+        currentHealth -= amount;
+
+		PlayerManager.Instance.UpdatePlayerHealthBar(ref playerInput, currentHealth);
+
         Gamepad.current.SetMotorSpeeds(0.8f, 0f);
 		yield return new WaitForSeconds(0.5f);
         Gamepad.current.SetMotorSpeeds(0f, 0f);

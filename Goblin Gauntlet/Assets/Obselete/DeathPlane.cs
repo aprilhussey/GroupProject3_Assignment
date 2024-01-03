@@ -12,7 +12,7 @@ public class DeathPlane : MonoBehaviour
         }
         else
         {
-            other.gameObject.GetComponent<PlayerController>().health = 0;
+            other.gameObject.GetComponent<PlayerController>().currentHealth = 0;
         }
     }
 }

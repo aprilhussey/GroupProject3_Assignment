@@ -2359,6 +2359,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: playableCharacters.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: playableCharacters.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 80ad4f9cedaed5e4d9cb80da106ad138, type: 2}
+    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: playableCharacters.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b4941c517c0773c4b890c6d68fdde8b5, type: 2}
+    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: playableCharacters.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: da7e358e116f065469b4a3d15c04d798, type: 2}
+    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: playableCharacters.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: c6f7c8847692494489f3c7b0fe4bb7f2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
