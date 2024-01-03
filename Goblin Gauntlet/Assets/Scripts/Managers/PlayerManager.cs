@@ -105,15 +105,22 @@ public class PlayerManager : MonoBehaviour
 		playerHealthBar.SetHealth(health);
 	}
 
-	public void SetCharacterIcon(ref PlayerInput playerInput)
+	public void CreatePlayerTile(ref PlayerInput playerInput)
 	{
-		Image characterIconImage = GameObject.Find($"P{playerInput.playerIndex + 1}_CharacterIcon").GetComponent<Image>();
+		GameObject playerTileParent = GameObject.Find($"P{playerInput.playerIndex + 1}_CharacterTile");
+		GameObject playerTilePrefab = Resources.Load<GameObject>("Prefabs/HUD_PlayerTile");
+
+		GameObject playerTile = Instantiate(playerTilePrefab);
+		playerTile.transform.SetParent(playerTileParent.transform, false);
+
+		Image playerTileImage = playerTile.GetComponent<Image>();
 
 		foreach (PlayableCharacter playableCharacter in playableCharacters)
 		{
 			if (players[playerInput.playerIndex].character.name == playableCharacter.name)
 			{
-				characterIconImage.sprite = Resources.Load<Sprite>($"Sprites/CharacterIcons/{playableCharacter.name}_CharacterIcon");
+				playerTileImage.sprite = Resources.Load<Sprite>($"Sprites/CharacterIcons/{playableCharacter.name}_CharacterIcon");
+				playerTile.SetActive(true);
 			}
 		}
 	}
