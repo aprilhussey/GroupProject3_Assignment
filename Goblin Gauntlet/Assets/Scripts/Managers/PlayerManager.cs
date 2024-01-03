@@ -86,4 +86,17 @@ public class PlayerManager : MonoBehaviour
 		// Switch the control scheme of playerInput to the device
 		playerInput.SwitchCurrentControlScheme(player.controlScheme, player.devices);
 	}
+
+	public void SetPlayerMaxHealthOnHealthBar(ref PlayerInput playerInput, float maxHealth)
+	{
+		HealthBar playerHealthBar = GameObject.Find($"P{playerInput.playerIndex + 1}HealthBar").GetComponent<HealthBar>();
+			
+		playerHealthBar.SetMaxHealth(maxHealth);
+	}
+
+	public void UpdatePlayerHealthBar(ref PlayerInput playerInput, float health)
+	{
+		HealthBar playerHealthBar = GameObject.Find($"P{playerInput.playerIndex + 1}HealthBar").GetComponent<HealthBar>();
+		playerHealthBar.SetHealth(health);
+	}
 }

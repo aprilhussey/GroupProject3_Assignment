@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
 	{
 		if (artifactController != null)
 		{
-			if (artifactController.health <= 0)
+			if (artifactController.currentHealth <= 0)
 			{
 				ChangeGameState(GameState.MainMenu);
 				/*Time.timeScale = 0f;
