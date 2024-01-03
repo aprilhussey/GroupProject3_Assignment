@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static GameManager;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class PlayerManager : MonoBehaviour
 	public List<Player> players;
 
 	private List<GameObject> characterPrefabs;
+
+	[SerializeField]
+	private List<PlayableCharacter> playableCharacters;
 
 	void Awake()
 	{
@@ -63,12 +67,13 @@ public class PlayerManager : MonoBehaviour
 			{
 				if (player.character == characterPrefab.GetComponent<PlayerController>().characterData)
 				{
+					
+					Debug.Log($"player character name: {player.character.name}");
 					player.characterPrefab = characterPrefab;
 				}
 				else
 				{
 					// Do nothing
-					break;
 				}
 			}
 		}
@@ -89,14 +94,27 @@ public class PlayerManager : MonoBehaviour
 
 	public void SetPlayerMaxHealthOnHealthBar(ref PlayerInput playerInput, float maxHealth)
 	{
-		HealthBar playerHealthBar = GameObject.Find($"P{playerInput.playerIndex + 1}HealthBar").GetComponent<HealthBar>();
+		HealthBar playerHealthBar = GameObject.Find($"P{playerInput.playerIndex + 1}_HealthBar").GetComponent<HealthBar>();
 			
 		playerHealthBar.SetMaxHealth(maxHealth);
 	}
 
 	public void UpdatePlayerHealthBar(ref PlayerInput playerInput, float health)
 	{
-		HealthBar playerHealthBar = GameObject.Find($"P{playerInput.playerIndex + 1}HealthBar").GetComponent<HealthBar>();
+		HealthBar playerHealthBar = GameObject.Find($"P{playerInput.playerIndex + 1}_HealthBar").GetComponent<HealthBar>();
 		playerHealthBar.SetHealth(health);
+	}
+
+	public void SetCharacterIcon(ref PlayerInput playerInput)
+	{
+		Image characterIconImage = GameObject.Find($"P{playerInput.playerIndex + 1}_CharacterIcon").GetComponent<Image>();
+
+		foreach (PlayableCharacter playableCharacter in playableCharacters)
+		{
+			if (players[playerInput.playerIndex].character.name == playableCharacter.name)
+			{
+				characterIconImage.sprite = Resources.Load<Sprite>($"Sprites/CharacterIcons/{playableCharacter.name}_CharacterIcon");
+			}
+		}
 	}
 }

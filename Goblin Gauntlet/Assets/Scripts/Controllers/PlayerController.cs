@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 	void Start()
 	{
 		PlayerManager.Instance.SetPlayerMaxHealthOnHealthBar(ref playerInput, maxHealth);
+		PlayerManager.Instance.SetCharacterIcon(ref playerInput);
 	}
 
 	// Update is called once per frame

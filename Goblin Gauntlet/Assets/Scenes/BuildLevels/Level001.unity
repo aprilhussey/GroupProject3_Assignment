@@ -918,6 +918,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: playableCharacters.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: playableCharacters.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 80ad4f9cedaed5e4d9cb80da106ad138, type: 2}
+    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: playableCharacters.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b4941c517c0773c4b890c6d68fdde8b5, type: 2}
+    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: playableCharacters.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: c6f7c8847692494489f3c7b0fe4bb7f2, type: 2}
+    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: playableCharacters.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: da7e358e116f065469b4a3d15c04d798, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2144,7 +2164,7 @@ GameObject:
   - component: {fileID: 503643893}
   - component: {fileID: 503643892}
   m_Layer: 5
-  m_Name: Player2
+  m_Name: P2_CharacterIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2189,7 +2209,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e9eeaa95d11318d4aaf781d2456b4bb8, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3050,7 +3070,7 @@ GameObject:
   - component: {fileID: 677506362}
   - component: {fileID: 677506361}
   m_Layer: 5
-  m_Name: Player3
+  m_Name: P3_CharacterIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3095,7 +3115,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ed1d829b40065ca4c9f13a8e006cd060, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4761,7 +4781,7 @@ GameObject:
   - component: {fileID: 1088406269}
   - component: {fileID: 1088406268}
   m_Layer: 5
-  m_Name: P3HealthBar
+  m_Name: P3_HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5397,7 +5417,7 @@ GameObject:
   - component: {fileID: 1297657204}
   - component: {fileID: 1297657203}
   m_Layer: 5
-  m_Name: P2HealthBar
+  m_Name: P2_HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5604,7 +5624,7 @@ GameObject:
   - component: {fileID: 1375001720}
   - component: {fileID: 1375001719}
   m_Layer: 5
-  m_Name: Player1
+  m_Name: P1_CharacterIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5649,7 +5669,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0ffa3f54058257c40974e75acec40ff7, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6124,7 +6144,7 @@ GameObject:
   - component: {fileID: 1498280905}
   - component: {fileID: 1498280904}
   m_Layer: 5
-  m_Name: P4HealthBar
+  m_Name: P4_HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6435,7 +6455,7 @@ GameObject:
   - component: {fileID: 1636613898}
   - component: {fileID: 1636613897}
   m_Layer: 5
-  m_Name: P1HealthBar
+  m_Name: P1_HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7263,7 +7283,7 @@ GameObject:
   - component: {fileID: 1862550856}
   - component: {fileID: 1862550855}
   m_Layer: 5
-  m_Name: Player4
+  m_Name: P4_CharacterIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

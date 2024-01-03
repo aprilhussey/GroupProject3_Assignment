@@ -18,7 +18,7 @@ public class PlayerSpawner : MonoBehaviour
 		{
 			foreach (Player player in players)
 			{
-				// Instantiate th echaracter prefab at the spawn location
+				// Instantiate the character prefab at the spawn location
 				GameObject character = Instantiate(player.characterPrefab, spawnLocations[player.id].transform.position, Quaternion.identity);
 
 				PlayerInput characterInput = character.GetComponent<PlayerInput>();
