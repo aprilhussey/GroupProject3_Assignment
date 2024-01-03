@@ -94,14 +94,17 @@ public class PlayerManager : MonoBehaviour
 
 	public void SetPlayerMaxHealthOnHealthBar(ref PlayerInput playerInput, float maxHealth)
 	{
-		HealthBar playerHealthBar = GameObject.Find($"P{playerInput.playerIndex + 1}_HealthBar").GetComponent<HealthBar>();
-			
+		GameObject playerHealthBarParent = GameObject.Find($"P{playerInput.playerIndex + 1}_CharacterTile");
+		HealthBar playerHealthBar = playerHealthBarParent.GetComponentInChildren<HealthBar>();
+		
 		playerHealthBar.SetMaxHealth(maxHealth);
 	}
 
 	public void UpdatePlayerHealthBar(ref PlayerInput playerInput, float health)
 	{
-		HealthBar playerHealthBar = GameObject.Find($"P{playerInput.playerIndex + 1}_HealthBar").GetComponent<HealthBar>();
+		GameObject playerHealthBarParent = GameObject.Find($"P{playerInput.playerIndex + 1}_CharacterTile");
+		HealthBar playerHealthBar = playerHealthBarParent.GetComponentInChildren<HealthBar>();
+		
 		playerHealthBar.SetHealth(health);
 	}
 

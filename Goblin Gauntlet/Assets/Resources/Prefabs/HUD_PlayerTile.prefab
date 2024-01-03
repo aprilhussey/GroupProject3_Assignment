@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 5120512682350146295}
   - component: {fileID: 505380670510501312}
   m_Layer: 5
-  m_Name: P1_HealthBar
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 891141041618316897}
   - component: {fileID: 974244529300261682}
   m_Layer: 5
-  m_Name: P1_CooldownBar
+  m_Name: CooldownBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
