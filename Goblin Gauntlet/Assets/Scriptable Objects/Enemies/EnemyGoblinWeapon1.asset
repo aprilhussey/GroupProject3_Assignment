@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: EnemyGoblinWeapon1
   m_EditorClassIdentifier: 
   entityName: Goblin
-  health: 3
+  health: 5
   speed: 2
   rotationSpeed: 5
   fieldOfView: 45
   visionDistance: 5
-  attackDistance: 2.5
+  attackDistance: 0.6
   basicAttack: {fileID: 11400000, guid: f02bccf45173fab4ca22c5aa59f592e7, type: 2}
