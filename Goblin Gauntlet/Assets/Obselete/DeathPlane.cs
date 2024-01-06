@@ -8,7 +8,7 @@ public class DeathPlane : MonoBehaviour
     {
         if (other.gameObject.layer == 6)
         {
-            other.gameObject.GetComponent<GoblinController>().health = 0;
+            other.gameObject.GetComponent<GoblinController>().currentHealth = 0;
         }
         else
         {
