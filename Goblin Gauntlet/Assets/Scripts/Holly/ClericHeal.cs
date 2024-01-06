@@ -17,10 +17,10 @@ public class ClericHeal : MonoBehaviour
 
     IEnumerator PlayerHeal(PlayerController healthScript)
     {
-        if (healthScript.canHeal && healthScript.health <= healthScript.characterData.health)
+        if (healthScript.canHeal && healthScript.currentHealth <= healthScript.characterData.health)
         {
             healthScript.canHeal = false;
-            healthScript.health += healthScript.health / 10;
+            healthScript.currentHealth += healthScript.currentHealth / 10;
             yield return new WaitForSeconds(1);
         }
     }

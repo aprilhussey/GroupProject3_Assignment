@@ -21,7 +21,7 @@ public class WarlockAnimScript : MonoBehaviour
     //Update is called once per frame
     void Update()
     {
-        if (playerController.health <= 0)
+        if (playerController.currentHealth <= 0)
         {
             animator.SetBool("Dead", true);
         }

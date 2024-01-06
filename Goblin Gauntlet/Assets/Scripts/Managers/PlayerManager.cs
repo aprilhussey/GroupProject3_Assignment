@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static GameManager;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class PlayerManager : MonoBehaviour
 	public List<Player> players;
 
 	private List<GameObject> characterPrefabs;
+
+	[SerializeField]
+	private List<PlayableCharacter> playableCharacters;
 
 	void Awake()
 	{
@@ -63,12 +67,13 @@ public class PlayerManager : MonoBehaviour
 			{
 				if (player.character == characterPrefab.GetComponent<PlayerController>().characterData)
 				{
+					
+					Debug.Log($"player character name: {player.character.name}");
 					player.characterPrefab = characterPrefab;
 				}
 				else
 				{
 					// Do nothing
-					break;
 				}
 			}
 		}
@@ -85,5 +90,41 @@ public class PlayerManager : MonoBehaviour
 
 		// Switch the control scheme of playerInput to the device
 		playerInput.SwitchCurrentControlScheme(player.controlScheme, player.devices);
+	}
+
+	public void SetPlayerMaxHealthOnHealthBar(ref PlayerInput playerInput, float maxHealth)
+	{
+		GameObject playerHealthBarParent = GameObject.Find($"P{playerInput.playerIndex + 1}_CharacterTile");
+		HealthBar playerHealthBar = playerHealthBarParent.GetComponentInChildren<HealthBar>();
+		
+		playerHealthBar.SetMaxHealth(maxHealth);
+	}
+
+	public void UpdatePlayerHealthBar(ref PlayerInput playerInput, float health)
+	{
+		GameObject playerHealthBarParent = GameObject.Find($"P{playerInput.playerIndex + 1}_CharacterTile");
+		HealthBar playerHealthBar = playerHealthBarParent.GetComponentInChildren<HealthBar>();
+		
+		playerHealthBar.SetHealth(health);
+	}
+
+	public void CreatePlayerTile(ref PlayerInput playerInput)
+	{
+		GameObject playerTileParent = GameObject.Find($"P{playerInput.playerIndex + 1}_CharacterTile");
+		GameObject playerTilePrefab = Resources.Load<GameObject>("Prefabs/HUD_PlayerTile");
+
+		GameObject playerTile = Instantiate(playerTilePrefab);
+		playerTile.transform.SetParent(playerTileParent.transform, false);
+
+		Image playerTileImage = playerTile.GetComponent<Image>();
+
+		foreach (PlayableCharacter playableCharacter in playableCharacters)
+		{
+			if (players[playerInput.playerIndex].character.name == playableCharacter.name)
+			{
+				playerTileImage.sprite = Resources.Load<Sprite>($"Sprites/CharacterIcons/{playableCharacter.name}_CharacterIcon");
+				playerTile.SetActive(true);
+			}
+		}
 	}
 }
