@@ -386,17 +386,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 122135881757843889, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1176199413879127531, guid: 690bcdf5bbae92f4eb8cc2de99392822, type: 3}
       propertyPath: m_Name
       value: MainMenuGoblin (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3619505684050016025, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5166372785879098859, guid: 690bcdf5bbae92f4eb8cc2de99392822, type: 3}
       propertyPath: m_LocalScale.x
@@ -453,6 +445,14 @@ PrefabInstance:
     - target: {fileID: 5166372785879098859, guid: 690bcdf5bbae92f4eb8cc2de99392822, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 122135881757843889, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619505684050016025, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -776,11 +776,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -3.28
       objectReference: {fileID: 0}
+    - target: {fileID: 5827400824372729866, guid: 824cb743e63026e42b769321ddc3a18f, type: 3}
+      propertyPath: artefactSpark
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7518410239559039041, guid: 824cb743e63026e42b769321ddc3a18f, type: 3}
       propertyPath: m_Name
       value: pf_Artifact
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5827400824372729866, guid: 824cb743e63026e42b769321ddc3a18f, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5321039661955106889, guid: 824cb743e63026e42b769321ddc3a18f, type: 3}
     - {fileID: 4276266624876032256, guid: 824cb743e63026e42b769321ddc3a18f, type: 3}
