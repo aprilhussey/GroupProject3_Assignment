@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
 		Game,
 		Paused,
 		Level001,
-		Level002
+		Level002,
+		Settings
 	}
 
 	public GameState gameState;
@@ -47,6 +48,27 @@ public class GameManager : MonoBehaviour
 	public static bool isGamePaused = false;
 	// TEMP //
 	// TEMP //
+
+
+	[Header("Main Menu Buttons")]
+	[SerializeField]
+	private GameObject mainMenuCanvas;
+	[SerializeField]
+	private GameObject mainMenuFirstButton;
+
+	[Header("Settings Buttons")]
+	[SerializeField]
+	private GameObject settingsCanvas;
+	[SerializeField]
+	private GameObject settingsFirstButton;
+	[SerializeField]
+	private GameObject settingsClosedButton;
+
+	[Header("Credits Buttons")]
+	[SerializeField]
+	private GameObject creditsFirstButton;
+	[SerializeField]
+	private GameObject creditsClosedButton;
 
 	// Awake is called before Start
 	void Awake()
@@ -163,6 +185,7 @@ public class GameManager : MonoBehaviour
 		{
 			case GameState.MainMenu:
 				SceneManager.LoadScene("MainMenu");
+				EventSystem.current.SetSelectedGameObject(mainMenuFirstButton);
 				break;
 
 			case GameState.CharacterSelect:
@@ -184,6 +207,10 @@ public class GameManager : MonoBehaviour
 			case GameState.Paused:
 				// Handle pause logic here
 				break;
+			case GameState.Settings:
+				mainMenuCanvas.SetActive(false);
+				settingsCanvas.SetActive(true);
+				break;
 		}
 	}
 
@@ -195,15 +222,15 @@ public class GameManager : MonoBehaviour
 
 	public void OnSettingsButtonClick()
 	{
-		Debug.Log($"Show settings");
+		ChangeGameState(GameState.Settings);
 	}
 
 	public void OnQuitButtonClick()
 	{
 		Application.Quit();
 	}
-	// MAIN MENU BUTTONS //
 
+	// WIN / LOSE BUTTONS //
 	public void OnOkayButtonClick()
 	{
 		ChangeGameState(GameState.MainMenu);
@@ -219,5 +246,22 @@ public class GameManager : MonoBehaviour
 	public void OnMainMenuButtonClick()
 	{
 		ChangeGameState(GameState.MainMenu);
+	}
+
+	// SETTINGS BUTTONS //
+	public void OnSoundButtonClick()
+	{
+		// Clear selected button
+		EventSystem.current.SetSelectedGameObject(null);
+		// Set selected button
+		EventSystem.current.SetSelectedGameObject(settingsFirstButton);
+	}
+
+	public void OnBackClick()
+	{
+		if (settingsCanvas.activeInHierarchy)
+		{
+			
+		}
 	}
 }
