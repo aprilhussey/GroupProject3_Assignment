@@ -9,7 +9,9 @@ public class GoblinController : MonoBehaviour, IDamageable
 
     // Entity.cs varaibles
     private string characterName;
-    [HideInInspector] public float health;
+	private float maxHealth;
+    [HideInInspector]
+	public float currentHealth;
 
 	// Character.cs varaibles
 	private float speed;
@@ -22,7 +24,8 @@ public class GoblinController : MonoBehaviour, IDamageable
 	private float attackCooldown;
 
 	private GoblinBasicAttack basicAttack;
-	[HideInInspector] public float basicAttackCooldownTime;
+	[HideInInspector]
+	public float basicAttackCooldownTime;
 	private float basicAttackActiveTime;
 
 	// Sphere collider variables
@@ -34,7 +37,8 @@ public class GoblinController : MonoBehaviour, IDamageable
 
 	// Other variables
 	private List<GameObject> playersSeen;
-	[HideInInspector] public GameObject target = null;
+	[HideInInspector]
+	public GameObject target = null;
 	private AudioSource goblinDeathSound;
 	private AudioSource goblinSpawnSound;
 	private AudioSource goblinAttackSound;
@@ -50,7 +54,8 @@ public class GoblinController : MonoBehaviour, IDamageable
 
 	private Ability.AbilityState basicAttackState;
 
-	[SerializeField] FloatingHealthBar healthBar;
+	//[SerializeField]
+	HealthBar healthBar;
 
 	public ParticleSystem goblinBlood;
 	
@@ -60,7 +65,8 @@ public class GoblinController : MonoBehaviour, IDamageable
     {
 		// Access character data - Entity.cs
 		characterName = characterData.entityName;
-		health = characterData.health;
+		maxHealth = characterData.health;
+		currentHealth = characterData.health;
 
 		// Access character data - Character.cs
 		speed = characterData.speed;
@@ -87,12 +93,14 @@ public class GoblinController : MonoBehaviour, IDamageable
 
 		basicAttackState = Ability.AbilityState.ready;
 
-		healthBar = GetComponentInChildren<FloatingHealthBar>();
+		healthBar = GetComponentInChildren<HealthBar>();
 	}
     
     // Start is called before the first frame update
 	void Start()
     {
+		healthBar.SetMaxHealth(maxHealth);
+
 		AudioSource[] audioSources = GetComponents<AudioSource>();
 		//goblinDeathSound = audioSources[0];
 		//goblinSpawnSound = audioSources[1];
@@ -125,6 +133,8 @@ public class GoblinController : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+		healthBar.gameObject.transform.LookAt(Camera.main.transform);
+
 		AIVision();
 
 		FindTarget();
@@ -150,7 +160,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 		}
 
 		// If goblin health is less than or equal to 0
-		if (health <= 0)
+		if (currentHealth <= 0)
 		{
 			//goblinDeathSound.Play();
 			//Debug.Log("Goblin dead");
@@ -158,7 +168,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 			Destroy(gameObject);
 		}
 
-		Debug.Log($"{gameObject.name} health = {health}");
+		Debug.Log($"{gameObject.name} health = {currentHealth}");
 
 		CheckAbilityState(basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
 	}
@@ -352,15 +362,14 @@ public class GoblinController : MonoBehaviour, IDamageable
 	// Class needs to derive from 'IDamageable' for this function to work
 	public void TakeDamage(float amount)
 	{
-		if (health > 0)
+		if (currentHealth > 0)
 		{
-			
 			Debug.Log("Knockback Applied");
 			//Vector3 difference = nearestPlayer.transform.position - transform.position;
 			//difference = difference.normalized * 2f;
 			//rb.AddForce(-difference, ForceMode.Impulse);
-			health -= amount;
-			//healthBar.UpdateHealthBar();
+			currentHealth -= amount;
+			healthBar.SetHealth(currentHealth);
 			goblinBlood.Play();
 		}
 	}
@@ -374,27 +383,27 @@ public class GoblinController : MonoBehaviour, IDamageable
 		{
 			Debug.LogWarning($"WARNING: {gameObject.name}.characterName is null");
 		}
-		if (health == 0)
+		if (currentHealth == 0)
 		{
-			Debug.LogWarning($"WARNING:  {gameObject.name}..health is null");
+			Debug.LogWarning($"WARNING:  {gameObject.name}.health is null");
 		}
 		if (speed == 0)
 		{
-			Debug.LogWarning($"WARNING:  {gameObject.name}..speed is null");
+			Debug.LogWarning($"WARNING:  {gameObject.name}.speed is null");
 		}
 		if (rotationSpeed == 0)
 		{
-			Debug.LogWarning($"WARNING:  {gameObject.name}..rotationSpeed is null");
+			Debug.LogWarning($"WARNING:  {gameObject.name}.rotationSpeed is null");
 		}
 
 		// Check if EnemyCharacter.cs variables are null
 		if (visionDistance == 0)
 		{
-			Debug.LogWarning($"WARNING:  {gameObject.name}..visionDistance is null");
+			Debug.LogWarning($"WARNING:  {gameObject.name}.visionDistance is null");
 		}
 		if (fieldOfView == 0)
 		{
-			Debug.LogWarning($"WARNING:  {gameObject.name}..fieldOfView is null");
+			Debug.LogWarning($"WARNING:  {gameObject.name}.fieldOfView is null");
 		}
 
 		// Check if sphere collider varaibles are null

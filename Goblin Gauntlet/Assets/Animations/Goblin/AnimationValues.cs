@@ -24,7 +24,7 @@ public class AnimationValues : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (goblincontrol.health <= 0)
+        if (goblincontrol.currentHealth <= 0)
         {
             animator.SetBool("Dead", true);
         }
