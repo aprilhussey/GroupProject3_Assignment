@@ -10114,9 +10114,13 @@ MonoBehaviour:
   characterPrefabs:
   - {fileID: 8419127536225119428, guid: 17056e4c9ff8472418d409042897fde4, type: 3}
   - {fileID: 8419127536225119428, guid: ba4dfef8bdb40114cb8cb56846adf44e, type: 3}
+  - {fileID: 8419127536225119428, guid: c3e1dca77f3671740b00403284f19b16, type: 3}
+  - {fileID: 9049595214799060663, guid: af970cde7aeebad469aa126367ae2179, type: 3}
   characterSelectPrefabs:
   - {fileID: 8419127536225119428, guid: a983a37cc60500645a04934092a4a01a, type: 3}
   - {fileID: 8419127536225119428, guid: 8a09cdc86cb50c2418a9dce65f0a2944, type: 3}
+  - {fileID: 8419127536225119428, guid: c3e1dca77f3671740b00403284f19b16, type: 3}
+  - {fileID: 9049595214799060663, guid: af970cde7aeebad469aa126367ae2179, type: 3}
 --- !u!114 &1751784224
 MonoBehaviour:
   m_ObjectHideFlags: 0
