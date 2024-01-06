@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class RogueAnimScript : MonoBehaviour
+public class PlayerCharacterAnimationController : MonoBehaviour
 {
     private float speed;
     private PlayerController playerController;
@@ -30,5 +30,6 @@ public class RogueAnimScript : MonoBehaviour
         //Debug.Log("speed; "+ speed);
         animator.SetFloat("speed", speed);
         animator.SetBool("basicAttacking", playerController.basicAttack.attacking);
+        animator.SetBool("speacialAttacking", playerController.specialAbility.attacking);
     }
 }

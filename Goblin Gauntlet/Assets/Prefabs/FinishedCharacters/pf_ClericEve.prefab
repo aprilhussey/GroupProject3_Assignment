@@ -145,7 +145,6 @@ GameObject:
   - component: {fileID: 4756457189127077893}
   - component: {fileID: 1007436252323341844}
   - component: {fileID: 6485943673288483448}
-  - component: {fileID: 4427524557888506910}
   m_Layer: 3
   m_Name: pf_ClericEve
   m_TagString: Player
@@ -435,19 +434,6 @@ MonoBehaviour:
   damage: 0
   smoothRotationTime: 0.1
   playerDamageSpark: {fileID: 5399221449320304992}
---- !u!114 &4427524557888506910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8419127536225119428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9acfa98dba2bade4e92d06030c26a350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playableCharacter: {fileID: 11400000, guid: da7e358e116f065469b4a3d15c04d798, type: 2}
 --- !u!1001 &8159439797623823232
 PrefabInstance:
   m_ObjectHideFlags: 0

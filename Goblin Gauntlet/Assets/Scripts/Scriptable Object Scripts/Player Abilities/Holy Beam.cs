@@ -14,7 +14,9 @@ public class HolyBeam : Ability
     {
         playerController = parent.GetComponent<PlayerController>();
 
-        Debug.Log("Holy Beam ability used");
+		this.attacking = true;
+
+		Debug.Log("Holy Beam ability used");
         Vector3 playerPos = playerController.transform.position;
         Vector3 playerDirection = playerController.transform.forward;
         Quaternion playerRotation = playerController.transform.rotation;
@@ -27,7 +29,9 @@ public class HolyBeam : Ability
     {
         playerController = parent.GetComponent<PlayerController>();
 
-        Debug.Log("Holy Beam ability ended");
+		this.attacking = false;
+
+		Debug.Log("Holy Beam ability ended");
         Destroy(childObject);
     }
 }

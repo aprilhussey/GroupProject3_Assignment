@@ -158,7 +158,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 			Destroy(gameObject);
 		}
 
-		Debug.Log($"{gameObject.name} health = {health}");
+		//Debug.Log($"{gameObject.name} health = {health}");
 
 		CheckAbilityState(basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
 	}
@@ -284,7 +284,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 				target = artifact;
 			}
 		}
-		Debug.Log($"target = {target}");
+		//Debug.Log($"target = {target}");
 	}
 
 	void MoveTowardsTarget(GameObject target)

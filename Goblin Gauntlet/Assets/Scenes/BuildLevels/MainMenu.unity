@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.745
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38868108, g: 0.43276268, b: 0.5021168, a: 0.745}
+  m_IndirectSpecularColor: {r: 0.38868132, g: 0.43276313, b: 0.5021174, a: 0.745}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -386,6 +386,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 122135881757843889, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619505684050016025, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1176199413879127531, guid: 690bcdf5bbae92f4eb8cc2de99392822, type: 3}
       propertyPath: m_Name
       value: MainMenuGoblin (1)
@@ -445,14 +453,6 @@ PrefabInstance:
     - target: {fileID: 5166372785879098859, guid: 690bcdf5bbae92f4eb8cc2de99392822, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 122135881757843889, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3619505684050016025, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
