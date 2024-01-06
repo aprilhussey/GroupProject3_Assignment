@@ -405,7 +405,12 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'upper_arm.R'\n\tTransform 'forearm.R'\n\tTransform
+    'upper_arm.L'\n\tTransform 'forearm.L'\n\tTransform 'spine.002'\n\tTransform
+    'hand.L'\n\tTransform 'spine.006'\n\tTransform 'SK_Rogue'\n\tTransform 'f_pinky.03.R'\n\tTransform
+    'palm.04.L'\n\tand more ...\n\tFrom animation clip 'SK_Rogue|RogueSpecial'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -423,13 +428,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: c6f7c8847692494489f3c7b0fe4bb7f2, type: 2}
-  health: 0
+  maxHealth: 0
+  currentHealth: 0
   canHeal: 1
   canMove: 1
   basicAttack: {fileID: 0}
   basicAttackCooldownTime: 0
   mainAbility: {fileID: 0}
+  mainAbilityCooldownTime: 0
   specialAbility: {fileID: 0}
+  specialAbilityCooldownTime: 0
   damage: 0
   smoothRotationTime: 0.1
   playerDamageSpark: {fileID: 5399221449320304992}
@@ -459,23 +467,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db1bb3b9cbebd64489a5175ebef17513, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.79335374
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db1bb3b9cbebd64489a5175ebef17513, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.60876095
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db1bb3b9cbebd64489a5175ebef17513, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db1bb3b9cbebd64489a5175ebef17513, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db1bb3b9cbebd64489a5175ebef17513, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db1bb3b9cbebd64489a5175ebef17513, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

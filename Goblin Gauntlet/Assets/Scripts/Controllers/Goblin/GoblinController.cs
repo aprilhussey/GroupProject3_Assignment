@@ -154,7 +154,13 @@ public class GoblinController : MonoBehaviour, IDamageable
 		{
 			//goblinDeathSound.Play();
 			//Debug.Log("Goblin dead");
-			new WaitForSeconds(1);
+			target = null;
+			StartCoroutine(AnimDelay());			
+		}
+
+		IEnumerator AnimDelay()
+		{
+			yield return new WaitForSeconds(1f);
 			Destroy(gameObject);
 		}
 
