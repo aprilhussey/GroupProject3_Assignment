@@ -5457,7 +5457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - enemyPrefab: {fileID: 1176199413879127531, guid: da227098196deb147a4eaafaff7fe37f, type: 3}
+  - enemyPrefab: {fileID: 2926330856799340412, guid: 6757df4a7774c5048bc28f316101672c, type: 3}
     cost: 1
   waveCurrency: 60
   waveDuration: 130
