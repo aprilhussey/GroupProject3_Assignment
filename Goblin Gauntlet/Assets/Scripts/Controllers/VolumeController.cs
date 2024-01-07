@@ -18,6 +18,7 @@ public class VolumeController : MonoBehaviour
         if (volumeSlider != null)
         {
             LoadValues();
+            VolumeSlider();
         }
     }
 

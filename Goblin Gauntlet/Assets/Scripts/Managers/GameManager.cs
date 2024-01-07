@@ -70,11 +70,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private GameObject volumeSlider;
 
-	[Header("Credits Buttons")]
+	public GameObject brightnessButton;
 	[SerializeField]
-	private GameObject creditsFirstButton;
-	[SerializeField]
-	private GameObject creditsClosedButton;
+	private GameObject brightnessSlider;
 
 	// Awake is called before Start
 	void Awake()
@@ -282,6 +280,14 @@ public class GameManager : MonoBehaviour
 		EventSystem.current.SetSelectedGameObject(null);
 		// Set selected button
 		EventSystem.current.SetSelectedGameObject(volumeSlider);
+	}
+
+	public void OnBrightnessButtonClick()
+	{
+		// Clear selected button
+		EventSystem.current.SetSelectedGameObject(null);
+		// Set selected button
+		EventSystem.current.SetSelectedGameObject(brightnessSlider);
 	}
 
 	public void OnBackClick()
