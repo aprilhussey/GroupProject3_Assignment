@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -47,6 +48,32 @@ public class GameManager : MonoBehaviour
 	public static bool isGamePaused = false;
 	// TEMP //
 	// TEMP //
+
+
+	[Header("Main Menu Buttons")]
+	[SerializeField]
+	private GameObject mainMenuCanvas;
+	[SerializeField]
+	private GameObject mainMenuFirstButton;
+
+	[Header("Settings Buttons")]
+	[SerializeField]
+	private GameObject settingsCanvas;
+	[SerializeField]
+	private GameObject settingsFirstButton;
+	[SerializeField]
+	private GameObject settingsClosedButton;
+
+
+	public GameObject volumeButton;
+	[SerializeField]
+	private GameObject volumeSlider;
+
+	[Header("Credits Buttons")]
+	[SerializeField]
+	private GameObject creditsFirstButton;
+	[SerializeField]
+	private GameObject creditsClosedButton;
 
 	// Awake is called before Start
 	void Awake()
@@ -109,6 +136,14 @@ public class GameManager : MonoBehaviour
 
 				//player.input.SwitchCurrentActionMap("Player");
 			}*/
+		}
+
+		if (scene.name == "MainMenu")
+		{
+			mainMenuCanvas.SetActive(true);
+			settingsCanvas.SetActive(false);
+
+			EventSystem.current.SetSelectedGameObject(mainMenuFirstButton);
 		}
 	}
 
@@ -195,15 +230,24 @@ public class GameManager : MonoBehaviour
 
 	public void OnSettingsButtonClick()
 	{
-		Debug.Log($"Show settings");
+		if (gameState == GameState.MainMenu)
+		{
+			mainMenuCanvas.SetActive(false);
+			settingsCanvas.SetActive(true);
+
+			// Clear selected button
+			EventSystem.current.SetSelectedGameObject(null);
+			// Set selected button
+			EventSystem.current.SetSelectedGameObject(settingsFirstButton);
+		}
 	}
 
 	public void OnQuitButtonClick()
 	{
 		Application.Quit();
 	}
-	// MAIN MENU BUTTONS //
 
+	// WIN / LOSE BUTTONS //
 	public void OnOkayButtonClick()
 	{
 		ChangeGameState(GameState.MainMenu);
@@ -219,5 +263,28 @@ public class GameManager : MonoBehaviour
 	public void OnMainMenuButtonClick()
 	{
 		ChangeGameState(GameState.MainMenu);
+	}
+
+	// SETTINGS BUTTONS //
+	public void OnSoundButtonClick()
+	{
+		// Clear selected button
+		EventSystem.current.SetSelectedGameObject(null);
+		// Set selected button
+		EventSystem.current.SetSelectedGameObject(volumeSlider);
+	}
+
+	public void OnBackClick()
+	{
+		if (settingsCanvas.activeInHierarchy)
+		{
+			settingsCanvas.SetActive(false);
+			mainMenuCanvas.SetActive(true);
+
+			// Clear selected button
+			EventSystem.current.SetSelectedGameObject(null);
+			// Set selected button
+			EventSystem.current.SetSelectedGameObject(settingsClosedButton);
+		}
 	}
 }
