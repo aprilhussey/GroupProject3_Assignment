@@ -74,6 +74,11 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private GameObject brightnessSlider;
 
+	[HideInInspector]
+	public float beforeChangeVolumeValue;
+	[HideInInspector]
+	public float beforeChangeBrightnessValue;
+
 	// Awake is called before Start
 	void Awake()
 	{
@@ -97,6 +102,8 @@ public class GameManager : MonoBehaviour
 		playerLayer = LayerMask.GetMask("Player");
 		enemyLayer = LayerMask.GetMask("Enemy");
 		obstructionLayer = LayerMask.GetMask("Obstruction");
+
+
 	}
 
 	// TEMP //
@@ -276,6 +283,9 @@ public class GameManager : MonoBehaviour
 	// SETTINGS BUTTONS //
 	public void OnSoundButtonClick()
 	{
+		VolumeController volumeController = this.gameObject.GetComponent<VolumeController>();
+		beforeChangeVolumeValue = volumeController.GetCurrentVolumeValue();
+
 		// Clear selected button
 		EventSystem.current.SetSelectedGameObject(null);
 		// Set selected button
@@ -284,6 +294,9 @@ public class GameManager : MonoBehaviour
 
 	public void OnBrightnessButtonClick()
 	{
+		BrightnessController brightnessController = this.gameObject.GetComponent<BrightnessController>();
+		beforeChangeBrightnessValue = brightnessController.GetCurrentBrightnessValue();
+
 		// Clear selected button
 		EventSystem.current.SetSelectedGameObject(null);
 		// Set selected button

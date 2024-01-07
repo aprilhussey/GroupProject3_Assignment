@@ -690,6 +690,7 @@ GameObject:
   - component: {fileID: 173933630}
   - component: {fileID: 173933629}
   - component: {fileID: 173933628}
+  - component: {fileID: 173933632}
   m_Layer: 5
   m_Name: SoundButton
   m_TagString: Untagged
@@ -810,6 +811,35 @@ RectTransform:
   m_AnchoredPosition: {x: -580, y: 200}
   m_SizeDelta: {x: 1738, y: 722}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &173933632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173933627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 16
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1315191542}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: OnBackClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &384032941
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,6 +1837,7 @@ GameObject:
   - component: {fileID: 767074270}
   - component: {fileID: 767074269}
   - component: {fileID: 767074268}
+  - component: {fileID: 767074272}
   m_Layer: 5
   m_Name: ResolutionButton
   m_TagString: Untagged
@@ -1857,19 +1888,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 767074269}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1315191542}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnSettingsButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &767074269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1927,6 +1946,35 @@ RectTransform:
   m_AnchoredPosition: {x: -580, y: 0}
   m_SizeDelta: {x: 1738, y: 722}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &767074272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767074267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 16
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1315191542}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: OnBackClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &789678048
 GameObject:
   m_ObjectHideFlags: 0
@@ -2436,6 +2484,7 @@ GameObject:
   - component: {fileID: 966730930}
   - component: {fileID: 966730929}
   - component: {fileID: 966730928}
+  - component: {fileID: 966730931}
   m_Layer: 5
   m_Name: BrightnessButton
   m_TagString: Untagged
@@ -2556,6 +2605,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966730926}
   m_CullTransparentMesh: 1
+--- !u!114 &966730931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966730926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 16
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1315191542}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: OnBackClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1051384464
 GameObject:
   m_ObjectHideFlags: 0
@@ -3289,6 +3367,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 16
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1655868158}
+          m_TargetAssemblyTypeName: BrightnessController, Assembly-CSharp
+          m_MethodName: OnCancel
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &1275643865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3814,6 +3908,22 @@ MonoBehaviour:
         - m_Target: {fileID: 1647014857}
           m_TargetAssemblyTypeName: VolumeController, Assembly-CSharp
           m_MethodName: OnSubmit
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 16
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1647014857}
+          m_TargetAssemblyTypeName: VolumeController, Assembly-CSharp
+          m_MethodName: OnCancel
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -9812,9 +9922,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1647014855}
+  - {fileID: 2098925044}
   - {fileID: 789678052}
   - {fileID: 384032945}
-  - {fileID: 2098925044}
   - {fileID: 7707103}
   - {fileID: 1189185432}
   - {fileID: 1829652875}

@@ -12,6 +12,8 @@ public class VolumeController : MonoBehaviour
     [SerializeField]
     private TMP_Text volumeText = null;
 
+
+
     // Awake is called before Start
     void Awake()
     {
@@ -50,8 +52,31 @@ public class VolumeController : MonoBehaviour
 		AudioListener.volume = volumeValue;
 	}
 
+    public float GetCurrentVolumeValue()
+    {
+        float volumeValue = volumeSlider.value;
+        return volumeValue;
+	}
+
+    public void SetVolumeValueToBeforeChange()
+    {
+        float volumeValue = GameManager.Instance.beforeChangeVolumeValue;
+		PlayerPrefs.SetFloat("GameVolume", volumeValue);
+		LoadValues();
+	}
+
 	public void OnSubmit(BaseEventData eventData)
 	{
+		// Clear selected button
+		EventSystem.current.SetSelectedGameObject(null);
+		// Set selected button
+		EventSystem.current.SetSelectedGameObject(GameManager.Instance.volumeButton);
+	}
+
+    public void OnCancel(BaseEventData eventData)
+    {
+        SetVolumeValueToBeforeChange();
+
 		// Clear selected button
 		EventSystem.current.SetSelectedGameObject(null);
 		// Set selected button

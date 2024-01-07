@@ -57,8 +57,31 @@ public class BrightnessController : MonoBehaviour
 		darkOverlay.color = new Color(darkOverlay.color.r, darkOverlay.color.g, darkOverlay.color.b, transparencyValue);
 	}
 
+	public float GetCurrentBrightnessValue()
+	{
+		float brightnessValue = brightnessSlider.value;
+		return brightnessValue;
+	}
+
+	public void SetBrightnessValueToBeforeChange()
+	{
+		float brightnessValue = GameManager.Instance.beforeChangeBrightnessValue;
+		PlayerPrefs.SetFloat("ImageBrightness", brightnessValue);
+		LoadValues();
+	}
+
 	public void OnSubmit(BaseEventData eventData)
 	{
+		// Clear selected button
+		EventSystem.current.SetSelectedGameObject(null);
+		// Set selected button
+		EventSystem.current.SetSelectedGameObject(GameManager.Instance.brightnessButton);
+	}
+
+	public void OnCancel(BaseEventData eventData)
+	{
+		SetBrightnessValueToBeforeChange();
+
 		// Clear selected button
 		EventSystem.current.SetSelectedGameObject(null);
 		// Set selected button
