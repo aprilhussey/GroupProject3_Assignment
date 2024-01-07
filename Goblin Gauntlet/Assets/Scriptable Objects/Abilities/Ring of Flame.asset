@@ -15,5 +15,6 @@ MonoBehaviour:
   abilityName: Ring of Flame
   activeTime: 5
   cooldownTime: 10
+  attacking: 0
   warlockReticle: {fileID: 1670396494358298541, guid: 440f2962835878b4583a4504353cae90, type: 3}
   childObject: {fileID: 0}
