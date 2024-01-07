@@ -164,11 +164,17 @@ public class GoblinController : MonoBehaviour, IDamageable
 		{
 			//goblinDeathSound.Play();
 			//Debug.Log("Goblin dead");
-			new WaitForSeconds(1);
+			target = null;
+			StartCoroutine(AnimDelay());			
+		}
+
+		IEnumerator AnimDelay()
+		{
+			yield return new WaitForSeconds(1f);
 			Destroy(gameObject);
 		}
 
-		Debug.Log($"{gameObject.name} health = {currentHealth}");
+		//Debug.Log($"{gameObject.name} health = {health}");
 
 		CheckAbilityState(basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
 	}
@@ -294,7 +300,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 				target = artifact;
 			}
 		}
-		Debug.Log($"target = {target}");
+		//Debug.Log($"target = {target}");
 	}
 
 	void MoveTowardsTarget(GameObject target)

@@ -2665,7 +2665,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 9049595214799060663, guid: af970cde7aeebad469aa126367ae2179, type: 3}
+  m_PlayerPrefab: {fileID: 8419127536225119428, guid: c3e1dca77f3671740b00403284f19b16, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -10163,6 +10163,10 @@ PrefabInstance:
       propertyPath: deathScreen
       value: 
       objectReference: {fileID: 1019000058}
+    - target: {fileID: 887565546501316132, guid: f02da94d3d43de74f81448ffcb84c2ee, type: 3}
+      propertyPath: currentHealth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3772238558545362403, guid: f02da94d3d43de74f81448ffcb84c2ee, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -10214,6 +10218,10 @@ PrefabInstance:
     - target: {fileID: 6207790053795957443, guid: f02da94d3d43de74f81448ffcb84c2ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6712662031519020970, guid: f02da94d3d43de74f81448ffcb84c2ee, type: 3}
+      propertyPath: m_Name
+      value: ArtifactHealthBar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

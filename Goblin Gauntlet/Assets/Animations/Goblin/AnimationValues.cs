@@ -26,6 +26,7 @@ public class AnimationValues : MonoBehaviour
     {
         if (goblincontrol.currentHealth <= 0)
         {
+            
             animator.SetBool("Dead", true);
         }
 

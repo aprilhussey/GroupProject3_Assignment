@@ -14,7 +14,9 @@ public class HealingCircle : Ability
     {
         playerController = parent.GetComponent<PlayerController>();
 
-        Debug.Log("Healing Circle ability used");
+		this.attacking = true;
+
+		Debug.Log("Healing Circle ability used");
         childObject = Instantiate(clericHeal) as GameObject;
         childObject.transform.parent = playerController.transform;
         childObject.transform.position = playerController.transform.position;
@@ -24,7 +26,9 @@ public class HealingCircle : Ability
     {
         playerController = parent.GetComponent<PlayerController>();
 
-        Debug.Log("Healing Circle ability ended");
+		this.attacking = false;
+
+		Debug.Log("Healing Circle ability ended");
         Destroy(childObject);
     }
 }

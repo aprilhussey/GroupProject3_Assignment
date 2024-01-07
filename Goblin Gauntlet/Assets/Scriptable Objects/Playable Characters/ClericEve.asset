@@ -19,4 +19,4 @@ MonoBehaviour:
   characterClass: 2
   basicAttack: {fileID: 11400000, guid: 823e8c3b59780ae489c99c5fb394d5ca, type: 2}
   mainAbility: {fileID: 0}
-  specialAbility: {fileID: 0}
+  specialAbility: {fileID: 11400000, guid: e43adcbf493f71040bcf87fa21bb419a, type: 2}

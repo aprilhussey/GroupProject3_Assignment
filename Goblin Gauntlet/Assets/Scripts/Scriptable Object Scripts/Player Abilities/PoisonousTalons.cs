@@ -13,6 +13,8 @@ public class PoisonousTalons : Ability
     {
 		playerController = parent.GetComponent<PlayerController>();
 
+		this.attacking = true;
+
 		Debug.Log("Poisonous Talons ability used");
         playerController.damage += damageBuff;
     }
@@ -20,6 +22,8 @@ public class PoisonousTalons : Ability
     public override void EndAbility(GameObject parent)
     {
 		playerController = parent.GetComponent<PlayerController>();
+
+		this.attacking = false;
 
 		Debug.Log("Poisonous Talons ability ended");
         playerController.damage -= damageBuff;
