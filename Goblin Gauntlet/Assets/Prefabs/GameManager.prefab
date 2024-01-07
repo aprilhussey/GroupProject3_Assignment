@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4673675605664133176}
   - component: {fileID: 1501546367596638774}
   - component: {fileID: 5374778878096419987}
-  - component: {fileID: 6760330262886219291}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -57,19 +56,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   spawnLocation: {x: 0, y: 0, z: 0}
+  playerController: {fileID: 0}
   artifactController: {fileID: 0}
   gameOver: {fileID: 0}
   paused: {fileID: 0}
   okayButton: {fileID: 0}
   resumeButton: {fileID: 0}
-  mainMenuCanvas: {fileID: 0}
-  mainMenuFirstButton: {fileID: 0}
-  settingsCanvas: {fileID: 0}
-  settingsFirstButton: {fileID: 0}
-  settingsClosedButton: {fileID: 0}
-  soundSlider: {fileID: 0}
-  creditsFirstButton: {fileID: 0}
-  creditsClosedButton: {fileID: 0}
 --- !u!114 &5374778878096419987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,22 +74,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5f80e4eaf6b9e478ae5be595889ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableCharacters:
-  - {fileID: 11400000, guid: 80ad4f9cedaed5e4d9cb80da106ad138, type: 2}
-  - {fileID: 11400000, guid: b4941c517c0773c4b890c6d68fdde8b5, type: 2}
-  - {fileID: 11400000, guid: da7e358e116f065469b4a3d15c04d798, type: 2}
-  - {fileID: 11400000, guid: c6f7c8847692494489f3c7b0fe4bb7f2, type: 2}
---- !u!114 &6760330262886219291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4951224710705040765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81603c63180feb048beea15966682fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 0}
-  volumeText: {fileID: 0}
+  characterPrefabs:
+  - {fileID: 8419127536225119428, guid: ba4dfef8bdb40114cb8cb56846adf44e, type: 3}
