@@ -135,9 +135,11 @@ public class GoblinController : MonoBehaviour, IDamageable
     {
 		healthBar.gameObject.transform.LookAt(Camera.main.transform);
 
-		AIVision();
-
-		FindTarget();
+		if (currentHealth > 0)
+		{
+			AIVision();
+			FindTarget();
+		}
 
 		if (target != null)
 		{

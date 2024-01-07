@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6221112965614065800
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1682635548155115275, guid: 74c21eb3bf2ce3740881eee27f180468, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e3e580ea47cb6b94788c7f5c667cebfb, type: 2}
+    - target: {fileID: 2337805977665918176, guid: 74c21eb3bf2ce3740881eee27f180468, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337805977665918176, guid: 74c21eb3bf2ce3740881eee27f180468, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337805977665918176, guid: 74c21eb3bf2ce3740881eee27f180468, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337805977665918176, guid: 74c21eb3bf2ce3740881eee27f180468, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337805977665918176, guid: 74c21eb3bf2ce3740881eee27f180468, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337805977665918176, guid: 74c21eb3bf2ce3740881eee27f180468, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337805977665918176, guid: 74c21eb3bf2ce3740881eee27f180468, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337805977665918176, guid: 74c21eb3bf2ce3740881eee27f180468, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337805977665918176, guid: 74c21eb3bf2ce3740881eee27f180468, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337805977665918176, guid: 74c21eb3bf2ce3740881eee27f180468, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615836513438518496, guid: 74c21eb3bf2ce3740881eee27f180468, type: 3}
+      propertyPath: m_Name
+      value: Goblin_Celebrate Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 74c21eb3bf2ce3740881eee27f180468, type: 3}

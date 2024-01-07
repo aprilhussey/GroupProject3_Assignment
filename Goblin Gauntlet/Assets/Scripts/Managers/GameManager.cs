@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
 		Game,
 		Paused,
 		Level001,
-		Level002
+		Level002,
+		Credits
 	}
 
 	public GameState gameState;
@@ -219,6 +220,10 @@ public class GameManager : MonoBehaviour
 			case GameState.Paused:
 				// Handle pause logic here
 				break;
+
+			case GameState.Credits:
+				SceneManager.LoadScene("Credits");
+				break;
 		}
 	}
 
@@ -245,6 +250,11 @@ public class GameManager : MonoBehaviour
 	public void OnQuitButtonClick()
 	{
 		Application.Quit();
+	}
+
+	public void OnCreditsButtonClick()
+	{
+		ChangeGameState(GameState.Credits);
 	}
 
 	// WIN / LOSE BUTTONS //
