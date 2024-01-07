@@ -15,5 +15,6 @@ MonoBehaviour:
   abilityName: Holy Beam
   activeTime: 3
   cooldownTime: 10
+  attacking: 0
   paladinBeam: {fileID: 1871512013431325409, guid: e0c32511af344e843b4c6d3ea24165c7, type: 3}
   childObject: {fileID: 0}
