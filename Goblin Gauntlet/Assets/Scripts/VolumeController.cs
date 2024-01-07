@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class VolumeController : MonoBehaviour
@@ -14,13 +15,19 @@ public class VolumeController : MonoBehaviour
     // Awake is called before Start
     void Awake()
     {
-        LoadValues();
+        if (volumeSlider != null)
+        {
+            LoadValues();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        SaveVolume();
+        if (volumeSlider != null)
+        {
+            SaveVolume();
+        }
     }
 
     public void VolumeSlider()
@@ -40,5 +47,13 @@ public class VolumeController : MonoBehaviour
 		float volumeValue = PlayerPrefs.GetFloat("GameVolume");
 		volumeSlider.value = volumeValue;
 		AudioListener.volume = volumeValue;
+	}
+
+	public void OnSubmit(BaseEventData eventData)
+	{
+		// Clear selected button
+		EventSystem.current.SetSelectedGameObject(null);
+		// Set selected button
+		EventSystem.current.SetSelectedGameObject(GameManager.Instance.volumeButton);
 	}
 }

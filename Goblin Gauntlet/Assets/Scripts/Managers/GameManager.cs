@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,8 +20,7 @@ public class GameManager : MonoBehaviour
 		Game,
 		Paused,
 		Level001,
-		Level002,
-		Settings
+		Level002
 	}
 
 	public GameState gameState;
@@ -63,6 +63,11 @@ public class GameManager : MonoBehaviour
 	private GameObject settingsFirstButton;
 	[SerializeField]
 	private GameObject settingsClosedButton;
+
+
+	public GameObject volumeButton;
+	[SerializeField]
+	private GameObject volumeSlider;
 
 	[Header("Credits Buttons")]
 	[SerializeField]
@@ -132,6 +137,14 @@ public class GameManager : MonoBehaviour
 				//player.input.SwitchCurrentActionMap("Player");
 			}*/
 		}
+
+		if (scene.name == "MainMenu")
+		{
+			mainMenuCanvas.SetActive(true);
+			settingsCanvas.SetActive(false);
+
+			EventSystem.current.SetSelectedGameObject(mainMenuFirstButton);
+		}
 	}
 
 	// Update is called once per frame
@@ -185,7 +198,6 @@ public class GameManager : MonoBehaviour
 		{
 			case GameState.MainMenu:
 				SceneManager.LoadScene("MainMenu");
-				EventSystem.current.SetSelectedGameObject(mainMenuFirstButton);
 				break;
 
 			case GameState.CharacterSelect:
@@ -207,10 +219,6 @@ public class GameManager : MonoBehaviour
 			case GameState.Paused:
 				// Handle pause logic here
 				break;
-			case GameState.Settings:
-				mainMenuCanvas.SetActive(false);
-				settingsCanvas.SetActive(true);
-				break;
 		}
 	}
 
@@ -222,7 +230,16 @@ public class GameManager : MonoBehaviour
 
 	public void OnSettingsButtonClick()
 	{
-		ChangeGameState(GameState.Settings);
+		if (gameState == GameState.MainMenu)
+		{
+			mainMenuCanvas.SetActive(false);
+			settingsCanvas.SetActive(true);
+
+			// Clear selected button
+			EventSystem.current.SetSelectedGameObject(null);
+			// Set selected button
+			EventSystem.current.SetSelectedGameObject(settingsFirstButton);
+		}
 	}
 
 	public void OnQuitButtonClick()
@@ -254,14 +271,20 @@ public class GameManager : MonoBehaviour
 		// Clear selected button
 		EventSystem.current.SetSelectedGameObject(null);
 		// Set selected button
-		EventSystem.current.SetSelectedGameObject(settingsFirstButton);
+		EventSystem.current.SetSelectedGameObject(volumeSlider);
 	}
 
 	public void OnBackClick()
 	{
 		if (settingsCanvas.activeInHierarchy)
 		{
-			
+			settingsCanvas.SetActive(false);
+			mainMenuCanvas.SetActive(true);
+
+			// Clear selected button
+			EventSystem.current.SetSelectedGameObject(null);
+			// Set selected button
+			EventSystem.current.SetSelectedGameObject(settingsClosedButton);
 		}
 	}
 }

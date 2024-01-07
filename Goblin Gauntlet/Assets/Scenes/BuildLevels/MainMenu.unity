@@ -156,7 +156,7 @@ RectTransform:
   m_Father: {fileID: 1964547327}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -716,7 +716,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 966730928}
+    m_SelectOnUp: {fileID: 2136215347}
     m_SelectOnDown: {fileID: 767074268}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -747,7 +747,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1315191542}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnSettingsButtonClick
+        m_MethodName: OnSoundButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -832,7 +832,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &384032942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1719,8 +1719,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1581880522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1913,7 +1913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &789678049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2366,7 +2366,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 767074268}
-    m_SelectOnDown: {fileID: 173933628}
+    m_SelectOnDown: {fileID: 2136215347}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -2840,7 +2840,7 @@ MonoBehaviour:
   m_ScrollWheelAction: {fileID: 315986520079062529, guid: 9850c2090ec39454785c1086b4b2e436, type: 3}
   m_TrackedDevicePositionAction: {fileID: 1791216647391744742, guid: 9850c2090ec39454785c1086b4b2e436, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 5504630791470386330, guid: 9850c2090ec39454785c1086b4b2e436, type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
 --- !u!1 &1242175690
@@ -3207,7 +3207,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
   m_PrefabInstance: {fileID: 1647014855}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1647014856}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52d68b5ffbe3bd042aad2b9e076d9017, type: 3}
@@ -3258,6 +3258,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: soundSlider
+      value: 
+      objectReference: {fileID: 1670117038}
+    - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: volumeButton
+      value: 
+      objectReference: {fileID: 173933627}
+    - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: volumeSlider
+      value: 
+      objectReference: {fileID: 1670117038}
+    - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
       propertyPath: mainMenuCanvas
       value: 
       objectReference: {fileID: 789678048}
@@ -3268,7 +3280,7 @@ PrefabInstance:
     - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
       propertyPath: mainMenuFirstButton
       value: 
-      objectReference: {fileID: 173933627}
+      objectReference: {fileID: 1051384464}
     - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
       propertyPath: settingsFirstButton
       value: 
@@ -3321,53 +3333,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: playableCharacters.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: playableCharacters.Array.data[0]
+    - target: {fileID: 6760330262886219291, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: volumeText
       value: 
-      objectReference: {fileID: 11400000, guid: 80ad4f9cedaed5e4d9cb80da106ad138, type: 2}
-    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: playableCharacters.Array.data[1]
+      objectReference: {fileID: 685688452}
+    - target: {fileID: 6760330262886219291, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+      propertyPath: volumeSlider
       value: 
-      objectReference: {fileID: 11400000, guid: b4941c517c0773c4b890c6d68fdde8b5, type: 2}
-    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: playableCharacters.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: da7e358e116f065469b4a3d15c04d798, type: 2}
-    - target: {fileID: 5374778878096419987, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: playableCharacters.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: c6f7c8847692494489f3c7b0fe4bb7f2, type: 2}
+      objectReference: {fileID: 1670117040}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4951224710705040765, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1647014857}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
---- !u!1 &1647014856 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4951224710705040765, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
+--- !u!114 &1647014857 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6760330262886219291, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
   m_PrefabInstance: {fileID: 1647014855}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1647014857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1647014856}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81603c63180feb048beea15966682fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 1670117040}
-  volumeText: {fileID: 685688452}
 --- !u!1 &1670117038
 GameObject:
   m_ObjectHideFlags: 0
@@ -3378,8 +3367,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1670117039}
   - component: {fileID: 1670117040}
+  - component: {fileID: 1670117041}
   m_Layer: 5
-  m_Name: SoundBar
+  m_Name: VolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3427,7 +3417,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -3447,7 +3437,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 733346813}
   m_FillRect: {fileID: 3202450}
   m_HandleRect: {fileID: 733346812}
@@ -3471,6 +3461,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1670117041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670117038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 15
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1647014857}
+          m_TargetAssemblyTypeName: VolumeController, Assembly-CSharp
+          m_MethodName: OnSubmit
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1697879138
 GameObject:
   m_ObjectHideFlags: 0
@@ -8846,7 +8865,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 966730928}
-    m_SelectOnDown: {fileID: 767074268}
+    m_SelectOnDown: {fileID: 173933628}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -8876,7 +8895,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1315191542}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnSettingsButtonClick
+        m_MethodName: OnBackClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

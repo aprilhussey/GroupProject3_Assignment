@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 4673675605664133176}
   - component: {fileID: 1501546367596638774}
   - component: {fileID: 5374778878096419987}
-  - component: {fileID: 4949973042798972958}
-  - component: {fileID: 8856634656067367397}
+  - component: {fileID: 6760330262886219291}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -68,6 +67,7 @@ MonoBehaviour:
   settingsCanvas: {fileID: 0}
   settingsFirstButton: {fileID: 0}
   settingsClosedButton: {fileID: 0}
+  soundSlider: {fileID: 0}
   creditsFirstButton: {fileID: 0}
   creditsClosedButton: {fileID: 0}
 --- !u!114 &5374778878096419987
@@ -87,7 +87,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4941c517c0773c4b890c6d68fdde8b5, type: 2}
   - {fileID: 11400000, guid: da7e358e116f065469b4a3d15c04d798, type: 2}
   - {fileID: 11400000, guid: c6f7c8847692494489f3c7b0fe4bb7f2, type: 2}
---- !u!114 &4949973042798972958
+--- !u!114 &6760330262886219291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,11 +101,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 0}
   volumeText: {fileID: 0}
---- !u!81 &8856634656067367397
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4951224710705040765}
-  m_Enabled: 1
