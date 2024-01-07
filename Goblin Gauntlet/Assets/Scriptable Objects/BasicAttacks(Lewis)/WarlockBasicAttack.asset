@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: WarlockBasicAttack
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBasicAttack
   abilityName: Attack
-  activeTime: 0.1
+  activeTime: 0.28
   cooldownTime: 0.01
+  attacking: 0
   damage: 1
   attackRadius: 2.5
   fieldOfAttack: 90
-  attacking: 0
