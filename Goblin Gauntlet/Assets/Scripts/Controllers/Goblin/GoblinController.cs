@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GoblinController : MonoBehaviour, IDamageable
+public class GoblinController : MonoBehaviour, IDamageable, IPoisonable
 {
     public EnemyCharacter characterData;
 
@@ -61,6 +61,10 @@ public class GoblinController : MonoBehaviour, IDamageable
 
 	[HideInInspector]
 	public bool attacking = false;
+
+	private bool isPoisoned = false;
+	private float poisonTimer = 0f;
+	private float poisonDamage = 0f;
 
 	// Awake is called before Start
 	void Awake()
@@ -389,6 +393,31 @@ public class GoblinController : MonoBehaviour, IDamageable
 			currentHealth -= amount;
 			healthBar.SetHealth(currentHealth);
 			goblinBlood.Play();
+		}
+	}
+
+	public void StartPoisonEffect(float duration, float damage)
+	{
+		poisonTimer = duration;
+		poisonDamage = damage;
+		isPoisoned = true;
+
+		StartCoroutine(PoisonEffect());
+	}
+
+	private IEnumerator PoisonEffect()
+	{
+		while (isPoisoned)
+		{
+			// Apply damage
+			this.TakeDamage(poisonDamage);
+			yield return new WaitForSeconds(1f);
+			poisonTimer -= Time.deltaTime;
+			
+			if (poisonTimer <= 0)
+			{
+				isPoisoned = false;
+			}
 		}
 	}
 
