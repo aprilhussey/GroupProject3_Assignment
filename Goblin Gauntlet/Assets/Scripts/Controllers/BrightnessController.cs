@@ -24,6 +24,16 @@ public class BrightnessController : MonoBehaviour
 		{
 			LoadValues();
 			BrightnessSlider();
+
+			if (brightnessSlider.value < 10)
+			{
+                brightnessSlider.value = 100;
+
+                // Cover the brightness value to a transparency value
+                float transparencyValue = 1f - 100 / 100f;
+
+                darkOverlay.color = new Color(darkOverlay.color.r, darkOverlay.color.g, darkOverlay.color.b, transparencyValue);
+            }
 		}
 	}
 	void Start()
