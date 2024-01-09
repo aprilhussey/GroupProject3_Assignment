@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3252e4ce85f855842b9c37db37f06682, type: 3}
   m_Name: ClericBasicAttack
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBasicAttack
-  abilityName: Attack
-  activeTime: 0.28
-  cooldownTime: 0.01
+  abilityName: 
+  activeTime: 0
+  cooldownTime: 0
   attacking: 0
-  damage: 1.5
+  damage: 1
   attackRadius: 2.5
-  fieldOfAttack: 90
+  fieldOfAttack: 45

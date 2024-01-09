@@ -58,7 +58,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6477285048686497187, guid: 19ab7ad28f0cb8f42ad8ceacfbd200de, type: 3}
       propertyPath: m_Name
-      value: pf_GoblinWeapon2 Variant
+      value: pf_GoblinWeapon2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477285048686497187, guid: 19ab7ad28f0cb8f42ad8ceacfbd200de, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
