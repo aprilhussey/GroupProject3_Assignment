@@ -13,6 +13,8 @@ TagManager:
   - TurnUp
   - TurnDown
   - Island
+  - GameOver
+  - Victory
   layers:
   - Default
   - TransparentFX
