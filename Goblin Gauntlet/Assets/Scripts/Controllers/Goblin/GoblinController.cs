@@ -190,6 +190,14 @@ public class GoblinController : MonoBehaviour, IDamageable
 			Destroy(gameObject);
 		}
 
+		foreach (GameObject player in playersSeen)
+		{
+			if (player.GetComponent<PlayerController>().currentHealth <= 0)
+			{
+				playersSeen.Remove(player);
+			}
+		}
+
 		//Debug.Log($"{gameObject.name} health = {health}");
 
 		CheckAbilityState(basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);

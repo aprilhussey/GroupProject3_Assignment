@@ -10246,8 +10246,8 @@ MonoBehaviour:
   - {fileID: 8419127536225119428, guid: ba4dfef8bdb40114cb8cb56846adf44e, type: 3}
   characterSelectPrefabs:
   - {fileID: 8419127536225119428, guid: a983a37cc60500645a04934092a4a01a, type: 3}
-  - {fileID: 9049595214799060663, guid: 357883e1cb6ea1944b042577015cef90, type: 3}
-  - {fileID: 8419127536225119428, guid: 04950d344372be94c90c4471dd0ff38f, type: 3}
+  - {fileID: 7930092369158024937, guid: 2051915ef585674479854ef75c0681fa, type: 3}
+  - {fileID: 3148506042301891973, guid: 181325af3e63faf439808d1155579880, type: 3}
   - {fileID: 8419127536225119428, guid: 8a09cdc86cb50c2418a9dce65f0a2944, type: 3}
 --- !u!114 &1751784224
 MonoBehaviour:
@@ -10262,7 +10262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 2
-  m_MaxPlayerCount: 1
+  m_MaxPlayerCount: 2
   m_AllowJoining: 1
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
