@@ -603,6 +603,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54104660}
   m_CullTransparentMesh: 1
+--- !u!1 &74302755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 74302756}
+  m_Layer: 0
+  m_Name: Canvas'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &74302756
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74302755}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 789678052}
+  - {fileID: 384032945}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &165966245
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,8 +775,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1315191542}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1944519320}
+        m_TargetAssemblyTypeName: SettingsButtonManager, Assembly-CSharp
         m_MethodName: OnSoundButtonClick
         m_Mode: 1
         m_Arguments:
@@ -828,8 +861,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1315191542}
-          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        - m_Target: {fileID: 798109742}
+          m_TargetAssemblyTypeName: MainMenuButtonManager, Assembly-CSharp
           m_MethodName: OnBackClick
           m_Mode: 1
           m_Arguments:
@@ -908,8 +941,8 @@ Canvas:
   m_GameObject: {fileID: 384032941}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1772672233}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -929,7 +962,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384032941}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
@@ -941,7 +974,7 @@ RectTransform:
   - {fileID: 966730927}
   - {fileID: 1275643863}
   - {fileID: 2136215346}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 74302756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1320,8 +1353,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1315191542}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 798109742}
+        m_TargetAssemblyTypeName: MainMenuButtonManager, Assembly-CSharp
         m_MethodName: OnQuitButtonClick
         m_Mode: 1
         m_Arguments:
@@ -1825,6 +1858,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733346811}
   m_CullTransparentMesh: 1
+--- !u!1 &755527055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 755527056}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &755527056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755527055}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 798109741}
+  - {fileID: 1944519317}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &767074267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,8 +2029,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1315191542}
-          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        - m_Target: {fileID: 798109742}
+          m_TargetAssemblyTypeName: MainMenuButtonManager, Assembly-CSharp
           m_MethodName: OnBackClick
           m_Mode: 1
           m_Arguments:
@@ -2044,8 +2110,8 @@ Canvas:
   m_GameObject: {fileID: 789678048}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1772672233}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2075,7 +2141,7 @@ RectTransform:
   - {fileID: 1245303998}
   - {fileID: 513309153}
   - {fileID: 54104661}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 74302756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2170,6 +2236,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8244252969346905172, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
   m_PrefabInstance: {fileID: 794392205}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &798109740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 798109741}
+  - component: {fileID: 798109742}
+  m_Layer: 0
+  m_Name: MainMenuButtonManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &798109741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798109740}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 755527056}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &798109742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798109740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755bb60437be58441bf87916f428bc27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuCanvas: {fileID: 789678048}
+  mainMenuFirstButton: {fileID: 1051384464}
 --- !u!1001 &834631657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2310,8 +2422,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1315191542}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 798109742}
+        m_TargetAssemblyTypeName: MainMenuButtonManager, Assembly-CSharp
         m_MethodName: OnCreditsButtonClick
         m_Mode: 1
         m_Arguments:
@@ -2555,8 +2667,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1315191542}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1944519320}
+        m_TargetAssemblyTypeName: SettingsButtonManager, Assembly-CSharp
         m_MethodName: OnBrightnessButtonClick
         m_Mode: 1
         m_Arguments:
@@ -2622,8 +2734,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1315191542}
-          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        - m_Target: {fileID: 798109742}
+          m_TargetAssemblyTypeName: MainMenuButtonManager, Assembly-CSharp
           m_MethodName: OnBackClick
           m_Mode: 1
           m_Arguments:
@@ -2646,7 +2758,6 @@ GameObject:
   - component: {fileID: 1051384468}
   - component: {fileID: 1051384467}
   - component: {fileID: 1051384466}
-  - component: {fileID: 1051384469}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -2717,8 +2828,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1315191542}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 798109742}
+        m_TargetAssemblyTypeName: MainMenuButtonManager, Assembly-CSharp
         m_MethodName: OnPlayButtonClick
         m_Mode: 1
         m_Arguments:
@@ -2767,19 +2878,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051384464}
   m_CullTransparentMesh: 1
---- !u!114 &1051384469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1051384464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c41490068f5e494fbe94a00cf34d612, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: Level001
 --- !u!1001 &1069249910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3247,8 +3345,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1315191542}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 798109742}
+        m_TargetAssemblyTypeName: MainMenuButtonManager, Assembly-CSharp
         m_MethodName: OnSettingsButtonClick
         m_Mode: 1
         m_Arguments:
@@ -3355,7 +3453,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1655868158}
+        - m_Target: {fileID: 1944519318}
           m_TargetAssemblyTypeName: BrightnessController, Assembly-CSharp
           m_MethodName: OnSubmit
           m_Mode: 0
@@ -3371,7 +3469,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1655868158}
+        - m_Target: {fileID: 1944519318}
           m_TargetAssemblyTypeName: BrightnessController, Assembly-CSharp
           m_MethodName: OnCancel
           m_Mode: 0
@@ -3434,7 +3532,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1655868158}
+      - m_Target: {fileID: 1944519318}
         m_TargetAssemblyTypeName: BrightnessController, Assembly-CSharp
         m_MethodName: BrightnessSlider
         m_Mode: 1
@@ -3598,17 +3696,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8244252969346905172, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
   m_PrefabInstance: {fileID: 1310352567}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1315191542 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-  m_PrefabInstance: {fileID: 1647014855}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655868155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52d68b5ffbe3bd042aad2b9e076d9017, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1581880521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3653,46 +3740,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: soundSlider
-      value: 
-      objectReference: {fileID: 1670117038}
-    - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: volumeButton
-      value: 
-      objectReference: {fileID: 173933627}
-    - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: volumeSlider
-      value: 
-      objectReference: {fileID: 1670117038}
-    - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: mainMenuCanvas
-      value: 
-      objectReference: {fileID: 789678048}
-    - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: settingsCanvas
-      value: 
-      objectReference: {fileID: 384032941}
-    - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: brightnessButton
-      value: 
-      objectReference: {fileID: 966730926}
-    - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: brightnessSlider
-      value: 
-      objectReference: {fileID: 1275643862}
-    - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: mainMenuFirstButton
-      value: 
-      objectReference: {fileID: 1051384464}
-    - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: settingsFirstButton
-      value: 
-      objectReference: {fileID: 173933627}
-    - target: {fileID: 1501546367596638774, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: settingsClosedButton
-      value: 
-      objectReference: {fileID: 1245303997}
     - target: {fileID: 4673675605664133176, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3711,15 +3758,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4673675605664133176, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4673675605664133176, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4673675605664133176, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4673675605664133176, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3737,53 +3784,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 6760330262886219291, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: volumeText
-      value: 
-      objectReference: {fileID: 685688452}
-    - target: {fileID: 6760330262886219291, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      propertyPath: volumeSlider
-      value: 
-      objectReference: {fileID: 1670117040}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4951224710705040765, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1655868158}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
---- !u!114 &1647014857 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6760330262886219291, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-  m_PrefabInstance: {fileID: 1647014855}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655868155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81603c63180feb048beea15966682fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1655868155 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4951224710705040765, guid: 167a6632b824e9a45956d60f57d09e85, type: 3}
-  m_PrefabInstance: {fileID: 1647014855}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1655868158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655868155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aad0ea6da2f2284da7a457d1cfe7947, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  brightnessSlider: {fileID: 1275643865}
-  brightnessText: {fileID: 1949732667}
-  darkOverlay: {fileID: 1946919971}
 --- !u!1 &1670117038
 GameObject:
   m_ObjectHideFlags: 0
@@ -3876,7 +3881,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647014857}
+      - m_Target: {fileID: 1944519319}
         m_TargetAssemblyTypeName: VolumeController, Assembly-CSharp
         m_MethodName: VolumeSlider
         m_Mode: 1
@@ -3905,7 +3910,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647014857}
+        - m_Target: {fileID: 1944519319}
           m_TargetAssemblyTypeName: VolumeController, Assembly-CSharp
           m_MethodName: OnSubmit
           m_Mode: 0
@@ -3921,7 +3926,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647014857}
+        - m_Target: {fileID: 1944519319}
           m_TargetAssemblyTypeName: VolumeController, Assembly-CSharp
           m_MethodName: OnCancel
           m_Mode: 0
@@ -4465,6 +4470,90 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912003461}
   m_CullTransparentMesh: 1
+--- !u!1 &1944519316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1944519317}
+  - component: {fileID: 1944519320}
+  - component: {fileID: 1944519319}
+  - component: {fileID: 1944519318}
+  m_Layer: 0
+  m_Name: SettingsButtonManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1944519317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944519316}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 755527056}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1944519318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944519316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aad0ea6da2f2284da7a457d1cfe7947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brightnessSlider: {fileID: 1275643865}
+  brightnessText: {fileID: 1949732667}
+  darkOverlay: {fileID: 1946919971}
+--- !u!114 &1944519319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944519316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81603c63180feb048beea15966682fb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeSlider: {fileID: 1670117040}
+  volumeText: {fileID: 685688452}
+--- !u!114 &1944519320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944519316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a351b2f4695f940b640ad7683f2abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingsCanvas: {fileID: 384032941}
+  settingsFirstButton: {fileID: 173933627}
+  settingsClosedButton: {fileID: 1245303997}
+  volumeButton: {fileID: 173933627}
+  volumeSlider: {fileID: 1670117038}
+  brightnessButton: {fileID: 966730926}
+  brightnessSlider: {fileID: 1275643862}
+  beforeChangeVolumeValue: 0
+  beforeChangeBrightnessValue: 0
 --- !u!1 &1946919969
 GameObject:
   m_ObjectHideFlags: 0
@@ -9682,8 +9771,8 @@ Canvas:
   m_GameObject: {fileID: 2098925040}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1772672233}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -9810,8 +9899,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1315191542}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 798109742}
+        m_TargetAssemblyTypeName: MainMenuButtonManager, Assembly-CSharp
         m_MethodName: OnBackClick
         m_Mode: 1
         m_Arguments:
@@ -9923,8 +10012,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 1647014855}
   - {fileID: 2098925044}
-  - {fileID: 789678052}
-  - {fileID: 384032945}
+  - {fileID: 755527056}
+  - {fileID: 74302756}
   - {fileID: 7707103}
   - {fileID: 1189185432}
   - {fileID: 1829652875}

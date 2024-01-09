@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.UI;
 
 public class GameManager : MonoBehaviour
 {
 	// Singleton instance
 	public static GameManager Instance = null;
+
+	private SettingsButtonManager settingsButtonManager = null;
+	private MainMenuButtonManager mainMenuButtonManager = null;
 
 	// Game state
 	public enum GameState
@@ -50,35 +49,6 @@ public class GameManager : MonoBehaviour
 	// TEMP //
 	// TEMP //
 
-
-	[Header("Main Menu Buttons")]
-	[SerializeField]
-	private GameObject mainMenuCanvas;
-	[SerializeField]
-	private GameObject mainMenuFirstButton;
-
-	[Header("Settings Buttons")]
-	[SerializeField]
-	private GameObject settingsCanvas;
-	[SerializeField]
-	private GameObject settingsFirstButton;
-	[SerializeField]
-	private GameObject settingsClosedButton;
-
-
-	public GameObject volumeButton;
-	[SerializeField]
-	private GameObject volumeSlider;
-
-	public GameObject brightnessButton;
-	[SerializeField]
-	private GameObject brightnessSlider;
-
-	[HideInInspector]
-	public float beforeChangeVolumeValue;
-	[HideInInspector]
-	public float beforeChangeBrightnessValue;
-
 	// Awake is called before Start
 	void Awake()
 	{
@@ -102,8 +72,6 @@ public class GameManager : MonoBehaviour
 		playerLayer = LayerMask.GetMask("Player");
 		enemyLayer = LayerMask.GetMask("Enemy");
 		obstructionLayer = LayerMask.GetMask("Obstruction");
-
-
 	}
 
 	// TEMP //
@@ -114,6 +82,9 @@ public class GameManager : MonoBehaviour
 
 		inputActions = new InputActions();
 		inputActions.Enable();
+
+		settingsButtonManager = GameObject.Find("SettingsButtonManager").GetComponent<SettingsButtonManager>();
+		mainMenuButtonManager = GameObject.Find("MainMenuButtonManager").GetComponent<MainMenuButtonManager>();
 	}
 
 	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -121,7 +92,7 @@ public class GameManager : MonoBehaviour
 		if (scene.name == "Game" || scene.name == "Level001" || scene.name == "Level002")
 		{
 			//playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-			artifactController = GameObject.FindWithTag("Artifact").GetComponent<ArtifactController>();
+			//artifactController = GameObject.FindWithTag("Artifact").GetComponent<ArtifactController>();
 
 			//gameOver = GameObject.Find("GameOver");
 			//gameOver.SetActive(false);
@@ -146,10 +117,18 @@ public class GameManager : MonoBehaviour
 
 		if (scene.name == "MainMenu")
 		{
-			mainMenuCanvas.SetActive(true);
-			settingsCanvas.SetActive(false);
+			/*MainMenuButtonManager.Instance.mainMenuCanvas.SetActive(true);
+			SettingsButtonManager.Instance.settingsCanvas.SetActive(false);
 
-			EventSystem.current.SetSelectedGameObject(mainMenuFirstButton);
+			EventSystem.current.SetSelectedGameObject(MainMenuButtonManager.Instance.mainMenuFirstButton);
+			*/
+			if (mainMenuButtonManager != null || settingsButtonManager != null)
+			{
+				mainMenuButtonManager.mainMenuCanvas.SetActive(true);
+				settingsButtonManager.settingsCanvas.SetActive(false);
+
+				EventSystem.current.SetSelectedGameObject(mainMenuButtonManager.mainMenuFirstButton);
+			}
 		}
 	}
 
@@ -232,36 +211,6 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	// MAIN MENU BUTTONS //
-	public void OnPlayButtonClick()
-	{
-		ChangeGameState(GameState.CharacterSelect);
-	}
-
-	public void OnSettingsButtonClick()
-	{
-		if (gameState == GameState.MainMenu)
-		{
-			mainMenuCanvas.SetActive(false);
-			settingsCanvas.SetActive(true);
-
-			// Clear selected button
-			EventSystem.current.SetSelectedGameObject(null);
-			// Set selected button
-			EventSystem.current.SetSelectedGameObject(settingsFirstButton);
-		}
-	}
-
-	public void OnQuitButtonClick()
-	{
-		Application.Quit();
-	}
-
-	public void OnCreditsButtonClick()
-	{
-		ChangeGameState(GameState.Credits);
-	}
-
 	// WIN / LOSE BUTTONS //
 	public void OnOkayButtonClick()
 	{
@@ -278,42 +227,5 @@ public class GameManager : MonoBehaviour
 	public void OnMainMenuButtonClick()
 	{
 		ChangeGameState(GameState.MainMenu);
-	}
-
-	// SETTINGS BUTTONS //
-	public void OnSoundButtonClick()
-	{
-		VolumeController volumeController = this.gameObject.GetComponent<VolumeController>();
-		beforeChangeVolumeValue = volumeController.GetCurrentVolumeValue();
-
-		// Clear selected button
-		EventSystem.current.SetSelectedGameObject(null);
-		// Set selected button
-		EventSystem.current.SetSelectedGameObject(volumeSlider);
-	}
-
-	public void OnBrightnessButtonClick()
-	{
-		BrightnessController brightnessController = this.gameObject.GetComponent<BrightnessController>();
-		beforeChangeBrightnessValue = brightnessController.GetCurrentBrightnessValue();
-
-		// Clear selected button
-		EventSystem.current.SetSelectedGameObject(null);
-		// Set selected button
-		EventSystem.current.SetSelectedGameObject(brightnessSlider);
-	}
-
-	public void OnBackClick()
-	{
-		if (settingsCanvas.activeInHierarchy)
-		{
-			settingsCanvas.SetActive(false);
-			mainMenuCanvas.SetActive(true);
-
-			// Clear selected button
-			EventSystem.current.SetSelectedGameObject(null);
-			// Set selected button
-			EventSystem.current.SetSelectedGameObject(settingsClosedButton);
-		}
 	}
 }

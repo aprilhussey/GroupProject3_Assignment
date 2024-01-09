@@ -15,6 +15,8 @@ public class BrightnessController : MonoBehaviour
 	[SerializeField]
 	private Image darkOverlay = null;
 
+	private SettingsButtonManager settingsButtonManager = null;
+
 	// Awake is called before Start
 	void Awake()
 	{
@@ -23,6 +25,10 @@ public class BrightnessController : MonoBehaviour
 			LoadValues();
 			BrightnessSlider();
 		}
+	}
+	void Start()
+	{
+		settingsButtonManager = this.gameObject.GetComponent<SettingsButtonManager>();
 	}
 
 	// Update is called once per frame
@@ -65,7 +71,8 @@ public class BrightnessController : MonoBehaviour
 
 	public void SetBrightnessValueToBeforeChange()
 	{
-		float brightnessValue = GameManager.Instance.beforeChangeBrightnessValue;
+		//float brightnessValue = SettingsButtonManager.Instance.beforeChangeBrightnessValue;
+		float brightnessValue = settingsButtonManager.beforeChangeBrightnessValue;
 		PlayerPrefs.SetFloat("ImageBrightness", brightnessValue);
 		LoadValues();
 	}
@@ -75,7 +82,8 @@ public class BrightnessController : MonoBehaviour
 		// Clear selected button
 		EventSystem.current.SetSelectedGameObject(null);
 		// Set selected button
-		EventSystem.current.SetSelectedGameObject(GameManager.Instance.brightnessButton);
+		//EventSystem.current.SetSelectedGameObject(SettingsButtonManager.Instance.brightnessButton);
+		EventSystem.current.SetSelectedGameObject(settingsButtonManager.brightnessButton);
 	}
 
 	public void OnCancel(BaseEventData eventData)
@@ -85,6 +93,7 @@ public class BrightnessController : MonoBehaviour
 		// Clear selected button
 		EventSystem.current.SetSelectedGameObject(null);
 		// Set selected button
-		EventSystem.current.SetSelectedGameObject(GameManager.Instance.brightnessButton);
+		//EventSystem.current.SetSelectedGameObject(SettingsButtonManager.Instance.brightnessButton);
+		EventSystem.current.SetSelectedGameObject(settingsButtonManager.brightnessButton);
 	}
 }

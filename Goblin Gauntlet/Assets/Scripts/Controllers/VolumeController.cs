@@ -12,7 +12,7 @@ public class VolumeController : MonoBehaviour
     [SerializeField]
     private TMP_Text volumeText = null;
 
-
+    private SettingsButtonManager settingsButtonManager = null;
 
     // Awake is called before Start
     void Awake()
@@ -24,8 +24,13 @@ public class VolumeController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+	void Start()
+	{
+		settingsButtonManager = this.gameObject.GetComponent<SettingsButtonManager>();
+	}
+
+	// Update is called once per frame
+	void Update()
     {
         if (volumeSlider != null)
         {
@@ -60,7 +65,8 @@ public class VolumeController : MonoBehaviour
 
     public void SetVolumeValueToBeforeChange()
     {
-        float volumeValue = GameManager.Instance.beforeChangeVolumeValue;
+		float volumeValue = settingsButtonManager.beforeChangeVolumeValue;
+		// float volumeValue = SettingsButtonManager.Instance.beforeChangeVolumeValue;
 		PlayerPrefs.SetFloat("GameVolume", volumeValue);
 		LoadValues();
 	}
@@ -70,7 +76,8 @@ public class VolumeController : MonoBehaviour
 		// Clear selected button
 		EventSystem.current.SetSelectedGameObject(null);
 		// Set selected button
-		EventSystem.current.SetSelectedGameObject(GameManager.Instance.volumeButton);
+		//EventSystem.current.SetSelectedGameObject(SettingsButtonManager.Instance.volumeButton);
+		EventSystem.current.SetSelectedGameObject(settingsButtonManager.volumeButton);
 	}
 
     public void OnCancel(BaseEventData eventData)
@@ -80,6 +87,7 @@ public class VolumeController : MonoBehaviour
 		// Clear selected button
 		EventSystem.current.SetSelectedGameObject(null);
 		// Set selected button
-		EventSystem.current.SetSelectedGameObject(GameManager.Instance.volumeButton);
+		//EventSystem.current.SetSelectedGameObject(SettingsButtonManager.Instance.volumeButton);
+		EventSystem.current.SetSelectedGameObject(settingsButtonManager.volumeButton);
 	}
 }
