@@ -18,7 +18,6 @@ public class PlayerBasicAttack : Ability
 	{
 		playerController = parent.GetComponent<PlayerController>();
 
-		this.attacking = true;
 		Debug.Log($"{parent.name} basic attack used");
 
 		enemiesSeen = new List<GameObject>();
@@ -78,7 +77,6 @@ public class PlayerBasicAttack : Ability
 
 	public override void EndAbility(GameObject parent)
 	{
-		this.attacking = false;
 		Debug.Log($"{parent.name} basic attack ended");
 		nearestEnemy = null;
 	}
