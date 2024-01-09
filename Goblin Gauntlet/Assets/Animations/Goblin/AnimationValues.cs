@@ -30,12 +30,21 @@ public class AnimationValues : MonoBehaviour
             animator.SetBool("Dead", true);
         }
 
-        speed = rb.velocity.magnitude;
-        animator.SetFloat("speed", speed);
+        //speed = rb.velocity.magnitude;
+        animator.SetFloat("speed", goblincontrol.speed);
 
         if (artefact == null)
         {
             animator.SetBool("artefactdes", true);
+        }
+
+        if (goblincontrol.attacking)
+        {
+            animator.SetBool("attacking", true);
+        }
+        else
+        {
+            animator.SetBool("attacking", false);
         }
     }
 }

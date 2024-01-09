@@ -14,7 +14,7 @@ public class GoblinController : MonoBehaviour, IDamageable
 	public float currentHealth;
 
 	// Character.cs varaibles
-	private float speed;
+	public float speed;
 	private float rotationSpeed;
 
 	// EnemyCharacter.cs variables
@@ -58,7 +58,9 @@ public class GoblinController : MonoBehaviour, IDamageable
 	HealthBar healthBar;
 
 	public ParticleSystem goblinBlood;
-	
+
+	[HideInInspector]
+	public bool attacking = false;
 
 	// Awake is called before Start
 	void Awake()
@@ -143,7 +145,19 @@ public class GoblinController : MonoBehaviour, IDamageable
 
 		if (target != null)
 		{
-			MoveTowardsTarget(target);
+			if (targetInAttackRadius)
+			{
+				attacking = true;
+			}
+			else
+			{
+				attacking = false;
+			}
+
+			if (!attacking)
+			{
+				MoveTowardsTarget(target);
+			}
 
 			if (target == nearestPlayer)
 			{
@@ -308,10 +322,10 @@ public class GoblinController : MonoBehaviour, IDamageable
 	void MoveTowardsTarget(GameObject target)
 	{
 		Vector3 targetDirection = (target.transform.position - transform.position).normalized;
-		Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, 
+		Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0,
 			targetDirection.z));
 
-		transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 
+		transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime *
 			rotationSpeed);
 		transform.position = Vector3.MoveTowards(transform.position, target.transform.position,
 			speed * Time.deltaTime);
@@ -340,12 +354,6 @@ public class GoblinController : MonoBehaviour, IDamageable
 	// Handles the OnTriggerEnter functionality of the attackRadiusCollider
 	public void AttackRadiusEntered(GameObject other)
 	{
-		/*if (other == target)
-		{
-			//Debug.Log($"Game object entered attack radius: {other.name}");
-			targetInAttackRadius = true;
-		}*/
-
 		if (other.transform.root.CompareTag("Player") || other.transform.root.CompareTag("Artifact"))
 		{
 			targetInAttackRadius = true;
@@ -355,15 +363,9 @@ public class GoblinController : MonoBehaviour, IDamageable
 	// Handles the OnTriggerExit functionality of the attackRadiusCollider
 	public void AttackRadiusExited(GameObject other)
 	{
-		/*if (other == target)
-		{
-			//Debug.Log($"Game object exited attack radius: {other.name}");
-			targetInAttackRadius = false;
-		}*/
-
 		if (other.transform.root.CompareTag("Player") || other.transform.root.CompareTag("Artifact"))
 		{
-			targetInAttackRadius = true;
+			targetInAttackRadius = false;
 		}
 	}
 
