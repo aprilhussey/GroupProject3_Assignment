@@ -4312,6 +4312,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5827400824372729866, guid: 824cb743e63026e42b769321ddc3a18f, type: 3}
+      propertyPath: deathScreen
+      value: 
+      objectReference: {fileID: 1206694579}
+    - target: {fileID: 5827400824372729866, guid: 824cb743e63026e42b769321ddc3a18f, type: 3}
+      propertyPath: VictoryScreen
+      value: 
+      objectReference: {fileID: 5985343}
     - target: {fileID: 7518410239559039041, guid: 824cb743e63026e42b769321ddc3a18f, type: 3}
       propertyPath: m_Name
       value: pf_Artifact

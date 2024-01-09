@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Holy Beam", menuName = "Scriptable Object/Ability/Holy Beam")]
@@ -14,8 +15,6 @@ public class HolyBeam : Ability
     {
         playerController = parent.GetComponent<PlayerController>();
 
-		
-
 		Debug.Log("Holy Beam ability used");
         Vector3 playerPos = playerController.transform.position;
         Vector3 playerDirection = playerController.transform.forward;
@@ -23,23 +22,12 @@ public class HolyBeam : Ability
         float spawnDistance = 10;
         Vector3 spawnPos = playerPos + playerDirection * spawnDistance;
         childObject = Instantiate(paladinBeam, spawnPos, playerRotation * Quaternion.Euler(270,0,0));
-        //CoroutineStarter.Instance.StartCoroutine(AnimDelay());
     }
 
     public override void EndAbility(GameObject parent)
     {
         playerController = parent.GetComponent<PlayerController>();
-
-		
-
-		Debug.Log("Holy Beam ability ended");
-        Destroy(childObject);
-    }
-
-    IEnumerator AnimDelay()
-    {
-        this.attacking = true;
-        yield return new WaitForSeconds(1);
-        this.attacking = false;
-    }
+		Destroy(childObject);
+		//Debug.Log("Holy Beam ability ended");
+	}
 }

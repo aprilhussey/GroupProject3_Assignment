@@ -10,6 +10,9 @@ public class PlayerCharacterAnimationController : MonoBehaviour
     private Rigidbody playerRigidbody;
     private Animator animator;
 
+    bool basicAttacking = false;
+    bool specialAttacking = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,24 @@ public class PlayerCharacterAnimationController : MonoBehaviour
     //Update is called once per frame
     void Update()
     {
+		if (playerController.basicAttackState == Ability.AbilityState.active)
+		{
+			basicAttacking = true;
+		}
+		else
+		{
+			basicAttacking = false;
+		}
+
+        if (playerController.specialAbilityState == Ability.AbilityState.active)
+        {
+            specialAttacking = true;
+        }
+        else
+        {
+            specialAttacking = false;
+        }
+
         if (playerController.currentHealth <= 0)
         {
             animator.SetBool("Dead", true);
@@ -29,7 +50,7 @@ public class PlayerCharacterAnimationController : MonoBehaviour
         speed = playerRigidbody.velocity.magnitude;
         //Debug.Log("speed; "+ speed);
         animator.SetFloat("speed", speed);
-        animator.SetBool("basicAttacking", playerController.basicAttack.attacking);
-        animator.SetBool("specialAttacking", playerController.specialAbility.attacking);
+        animator.SetBool("basicAttacking", basicAttacking);
+        animator.SetBool("specialAttacking", specialAttacking);
     }
 }

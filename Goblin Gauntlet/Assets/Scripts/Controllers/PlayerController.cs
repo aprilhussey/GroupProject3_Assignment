@@ -62,15 +62,18 @@ public class PlayerController : MonoBehaviour, IDamageable
 	//private string currentControlScheme;
 	// Commented out as this will need to be implemented at some point //
 
-	private Ability.AbilityState basicAttackState;
-    private Ability.AbilityState mainAbilityState;
-	private Ability.AbilityState specialAbilityState;
+	[HideInInspector]
+	public Ability.AbilityState basicAttackState;
+	[HideInInspector]
+	public Ability.AbilityState mainAbilityState;
+	[HideInInspector]
+	public Ability.AbilityState specialAbilityState;
 
 	private InputActions inputActions;
 
-	private bool basicAttackInput;
-	private bool mainAbilityInput;
-	private bool specialAbilityInput;
+	private bool basicAttackInput = false;
+	private bool mainAbilityInput = false;
+	private bool specialAbilityInput = false;
 
 	//Damage Particle System
 	public ParticleSystem playerDamageSpark; 
@@ -253,7 +256,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 				{
 					abilityState = Ability.AbilityState.cooldown;
 					abilityCooldownTime = ability.cooldownTime;
-
+					ability.EndAbility(this.gameObject);
 				}
 				break;
 
@@ -266,7 +269,6 @@ public class PlayerController : MonoBehaviour, IDamageable
 				else
 				{
 					abilityState = Ability.AbilityState.ready;
-					ability.EndAbility(this.gameObject);
 				}
 				break;
 		}
