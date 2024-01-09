@@ -14,21 +14,29 @@ public class HealingCircle : Ability
     {
         playerController = parent.GetComponent<PlayerController>();
 
-		this.attacking = true;
+		//this.attacking = true;
 
 		Debug.Log("Healing Circle ability used");
         childObject = Instantiate(clericHeal) as GameObject;
         childObject.transform.parent = playerController.transform;
         childObject.transform.position = playerController.transform.position;
+        //CoroutineStarter.Instance.StartCoroutine(AnimDelay());
     }
 
     public override void EndAbility(GameObject parent)
     {
         playerController = parent.GetComponent<PlayerController>();
 
-		this.attacking = false;
+		//this.attacking = false;
 
 		Debug.Log("Healing Circle ability ended");
         Destroy(childObject);
+    }
+
+    IEnumerator AnimDelay()
+    {
+        this.attacking = true;
+        yield return new WaitForSeconds(1);
+        this.attacking = false;
     }
 }

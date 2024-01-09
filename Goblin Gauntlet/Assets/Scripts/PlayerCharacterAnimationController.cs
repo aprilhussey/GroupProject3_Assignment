@@ -30,6 +30,6 @@ public class PlayerCharacterAnimationController : MonoBehaviour
         //Debug.Log("speed; "+ speed);
         animator.SetFloat("speed", speed);
         animator.SetBool("basicAttacking", playerController.basicAttack.attacking);
-        animator.SetBool("speacialAttacking", playerController.specialAbility.attacking);
+        animator.SetBool("specialAttacking", playerController.specialAbility.attacking);
     }
 }

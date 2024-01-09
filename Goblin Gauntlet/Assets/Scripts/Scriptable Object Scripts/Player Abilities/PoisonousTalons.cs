@@ -13,19 +13,27 @@ public class PoisonousTalons : Ability
     {
 		playerController = parent.GetComponent<PlayerController>();
 
-		this.attacking = true;
+		//this.attacking = true;
 
 		Debug.Log("Poisonous Talons ability used");
         playerController.damage += damageBuff;
+        //CoroutineStarter.Instance.StartCoroutine(AnimDelay());
     }
 
     public override void EndAbility(GameObject parent)
     {
 		playerController = parent.GetComponent<PlayerController>();
 
-		this.attacking = false;
+		//this.attacking = false;
 
 		Debug.Log("Poisonous Talons ability ended");
         playerController.damage -= damageBuff;
+    }
+
+    IEnumerator AnimDelay()
+    {
+        this.attacking = true;
+        yield return new WaitForSeconds(1);
+        this.attacking = false;
     }
 }

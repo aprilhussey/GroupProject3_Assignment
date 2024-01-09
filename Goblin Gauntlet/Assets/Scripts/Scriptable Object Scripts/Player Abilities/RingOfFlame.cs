@@ -14,29 +14,30 @@ public class RingOfFlame : Ability
     {
         playerController = parent.GetComponent<PlayerController>();
 
-		this.attacking = true;
+		//this.attacking = true;
 
 
 		Debug.Log("Ring of Flame ability used");
         playerController.canMove = false;
         childObject = Instantiate(warlockReticle, playerController.transform.position, Quaternion.identity, playerController.transform);
-        //StartCoroutine(AnimDelay());
-        
+        //CoroutineStarter.Instance.StartCoroutine(AnimDelay());
+
     }
 
     public override void EndAbility(GameObject parent)
     {
         playerController = parent.GetComponent<PlayerController>();
 
-        this.attacking = false;
+        //this.attacking = false;
         Debug.Log("Ring of Flame ability ended");
         playerController.canMove = true;
         Destroy(childObject);
     }
 
-    //IEnumerator AnimDelay()
-    //{
-     //   yield return new WaitForSeconds(99f);
-    //    this.attacking = false;
-   // }
+    IEnumerator AnimDelay()
+    {
+        this.attacking = true;
+        yield return new WaitForSeconds(1);
+        this.attacking = false;
+    }
 }
