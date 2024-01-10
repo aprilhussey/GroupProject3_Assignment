@@ -68,7 +68,7 @@ public class PlayerManager : MonoBehaviour
 				if (player.character == characterPrefab.GetComponent<PlayerController>().characterData)
 				{
 					
-					Debug.Log($"player character name: {player.character.name}");
+					//Debug.Log($"player character name: {player.character.name}");
 					player.characterPrefab = characterPrefab;
 				}
 				else

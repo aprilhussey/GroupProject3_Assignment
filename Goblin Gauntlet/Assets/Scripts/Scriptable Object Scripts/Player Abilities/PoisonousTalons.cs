@@ -20,7 +20,7 @@ public class PoisonousTalons : Ability
     {
 		playerController = parent.GetComponent<PlayerController>();
 
-		Debug.Log($"{parent.name} special attack used");
+		//Debug.Log($"{parent.name} special attack used");
 
 		enemiesSeen = new List<GameObject>();
 		nearestEnemy = null;
@@ -80,7 +80,7 @@ public class PoisonousTalons : Ability
 
     public override void EndAbility(GameObject parent)
     {
-		Debug.Log("Poisonous Talons ability ended");
+		//Debug.Log("Poisonous Talons ability ended");
 		nearestEnemy = null;
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static GameManager;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class MainMenuButtonManager : MonoBehaviour
 {
@@ -41,7 +42,9 @@ public class MainMenuButtonManager : MonoBehaviour
 
 	public void OnSettingsButtonClick()
 	{
-		if (GameManager.Instance.gameState == GameState.MainMenu)
+		Scene currentScene = SceneManager.GetActiveScene();
+
+		if (currentScene.name == "MainMenu")
 		{
 			mainMenuCanvas.SetActive(false);
 			//SettingsButtonManager.Instance.settingsCanvas.SetActive(true);
@@ -53,6 +56,19 @@ public class MainMenuButtonManager : MonoBehaviour
 			//EventSystem.current.SetSelectedGameObject(SettingsButtonManager.Instance.settingsFirstButton);
 			EventSystem.current.SetSelectedGameObject(settingsButtonManager.settingsFirstButton);
 		}
+
+		/*if (GameManager.Instance.gameState == GameState.MainMenu)
+		{
+			mainMenuCanvas.SetActive(false);
+			//SettingsButtonManager.Instance.settingsCanvas.SetActive(true);
+			settingsButtonManager.settingsCanvas.SetActive(true);
+
+			// Clear selected button
+			EventSystem.current.SetSelectedGameObject(null);
+			// Set selected button
+			//EventSystem.current.SetSelectedGameObject(SettingsButtonManager.Instance.settingsFirstButton);
+			EventSystem.current.SetSelectedGameObject(settingsButtonManager.settingsFirstButton);
+		}*/
 	}
 
 	public void OnQuitButtonClick()
