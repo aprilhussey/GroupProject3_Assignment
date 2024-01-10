@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3252e4ce85f855842b9c37db37f06682, type: 3}
   m_Name: WarlockBasicAttack
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBasicAttack
-  abilityName: 
-  activeTime: 0
-  cooldownTime: 0
+  abilityName: Attack
+  activeTime: 1
+  cooldownTime: 0.01
   attacking: 0
-  damage: 1
-  attackRadius: 2.5
-  fieldOfAttack: 45
+  damage: 4
+  attackRadius: 3
+  fieldOfAttack: 90

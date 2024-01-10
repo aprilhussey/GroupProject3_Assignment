@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PaladinBasicAttack
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBasicAttack
   abilityName: Attack
-  activeTime: 2.03
+  activeTime: 1
   cooldownTime: 0.01
   attacking: 0
   damage: 5
-  attackRadius: 1
+  attackRadius: 3
   fieldOfAttack: 90

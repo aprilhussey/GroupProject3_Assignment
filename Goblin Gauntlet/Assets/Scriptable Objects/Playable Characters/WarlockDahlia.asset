@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: WarlockDahlia
   m_EditorClassIdentifier: 
   entityName: Dahlia
-  health: 100
-  speed: 3
+  health: 30
+  speed: 3.5
   rotationSpeed: 5
   characterClass: 1
   basicAttack: {fileID: 11400000, guid: 6b0eb6d7481d39949940504ec3c4e417, type: 2}

@@ -20,7 +20,7 @@ public class ClericHeal : MonoBehaviour
         if (healthScript.canHeal && healthScript.currentHealth <= healthScript.characterData.health)
         {
             healthScript.canHeal = false;
-            healthScript.currentHealth += healthScript.currentHealth / 10;
+            healthScript.currentHealth += healthScript.currentHealth / 1;
             yield return new WaitForSeconds(1);
         }
     }

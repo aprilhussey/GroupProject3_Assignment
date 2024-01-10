@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PaladinAzreal
   m_EditorClassIdentifier: 
   entityName: Azreal
-  health: 18
+  health: 40
   speed: 2.5
   rotationSpeed: 3
   characterClass: 0
