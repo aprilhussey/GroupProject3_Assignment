@@ -20,7 +20,9 @@ public class GameManager : MonoBehaviour
 		Paused,
 		Level001,
 		Level002,
-		Credits
+		Credits,
+		LoadingScene001,
+		LoadingScene002
 	}
 
 	public GameState gameState;
@@ -201,7 +203,15 @@ public class GameManager : MonoBehaviour
 				SceneManager.LoadScene("Level002");
 				break;
 
-			case GameState.Paused:
+            case GameState.LoadingScene001:
+                SceneManager.LoadScene("LoadingScene001");
+                break;
+
+            case GameState.LoadingScene002:
+                SceneManager.LoadScene("LoadingScene002");
+                break;
+
+            case GameState.Paused:
 				// Handle pause logic here
 				break;
 

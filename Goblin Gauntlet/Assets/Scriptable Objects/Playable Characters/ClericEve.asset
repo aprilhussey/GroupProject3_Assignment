@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ClericEve
   m_EditorClassIdentifier: 
   entityName: Eve
-  health: 100
+  health: 26
   speed: 3
   rotationSpeed: 5
   characterClass: 2

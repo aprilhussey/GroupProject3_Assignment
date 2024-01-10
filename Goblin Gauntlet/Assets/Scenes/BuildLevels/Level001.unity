@@ -7555,6 +7555,12 @@ MonoBehaviour:
   enemies:
   - enemyPrefab: {fileID: 2926330856799340412, guid: 6757df4a7774c5048bc28f316101672c, type: 3}
     cost: 1
+  - enemyPrefab: {fileID: 2926330856799340412, guid: 6757df4a7774c5048bc28f316101672c, type: 3}
+    cost: 1
+  - enemyPrefab: {fileID: 2926330856799340412, guid: 6757df4a7774c5048bc28f316101672c, type: 3}
+    cost: 1
+  - enemyPrefab: {fileID: 2926330856799340412, guid: 6757df4a7774c5048bc28f316101672c, type: 3}
+    cost: 1
   waveCurrency: 60
   waveDuration: 130
   delaySpawnBy: 0

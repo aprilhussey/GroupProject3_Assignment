@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/BuildLevels/Credits.unity
     guid: b3dde5bddb291614ab97e97a318fb895
   - enabled: 1
+    path: Assets/Scenes/BuildLevels/LoadingScene001.unity
+    guid: aa32ae89020a45b49934b8ce81c48834
+  - enabled: 1
     path: Assets/Scenes/BuildLevels/LoadingScene002.unity
     guid: 8d82d476a3d504648ac9963024001297
   m_configObjects: {}
