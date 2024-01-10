@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -48,6 +50,8 @@ public class GameManager : MonoBehaviour
 	public Button resumeButton;
 
 	public static bool isGamePaused = false;
+
+	List<GameObject> playerGameObjects;
 	// TEMP //
 	// TEMP //
 
@@ -91,39 +95,22 @@ public class GameManager : MonoBehaviour
 
 	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
+		Time.timeScale = 1.0f;
+
 		if (scene.name == "Game" || scene.name == "Level001" || scene.name == "Level002")
 		{
-			//playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-			//artifactController = GameObject.FindWithTag("Artifact").GetComponent<ArtifactController>();
+			playerGameObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+			artifactController = GameObject.FindWithTag("Artifact").GetComponent<ArtifactController>();
 
-			//gameOver = GameObject.Find("GameOver");
-			//gameOver.SetActive(false);
+			gameOver = GameObject.FindWithTag("GameOver");
+			gameOver.SetActive(false);
 
 			//paused = GameObject.Find("Paused");
 			//paused.SetActive(false);
-
-			/*foreach (Player player in PlayerManager.Instance.players)
-			{
-				// Instantiate the correct prefab based on the player's index or selection
-				GameObject playerPrefab = Instantiate(GetPlayerPrefab(player.index), spawnLocation, Quaternion.identity);
-				PlayerInput playerInputComponent = playerPrefab.GetComponent<PlayerInput>();
-
-				// Transfer the PlayerInput component from the old character to the new one
-				InputSystem.DisableDevice(player.input.devices[0]); // Disable the old input device
-				playerInputComponent.SwitchCurrentControlScheme(player.input.currentControlScheme, player.input.devices); // Switch control scheme
-				InputSystem.EnableDevice(player.input.devices[0]); // Re-enable the input device
-
-				//player.input.SwitchCurrentActionMap("Player");
-			}*/
 		}
 
 		if (scene.name == "MainMenu")
 		{
-			/*MainMenuButtonManager.Instance.mainMenuCanvas.SetActive(true);
-			SettingsButtonManager.Instance.settingsCanvas.SetActive(false);
-
-			EventSystem.current.SetSelectedGameObject(MainMenuButtonManager.Instance.mainMenuFirstButton);
-			*/
 			if (mainMenuButtonManager != null || settingsButtonManager != null)
 			{
 				mainMenuButtonManager.mainMenuCanvas.SetActive(true);
@@ -132,45 +119,47 @@ public class GameManager : MonoBehaviour
 				EventSystem.current.SetSelectedGameObject(mainMenuButtonManager.mainMenuFirstButton);
 			}
 		}
+
+		if (scene.name == "CharacterSelect")
+		{
+			PlayerManager.Instance.players.Clear();
+		}
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (artifactController != null)
+		if (artifactController != null && gameOver != null)
 		{
 			if (artifactController.currentHealth <= 0)
 			{
-				ChangeGameState(GameState.MainMenu);
-				/*Time.timeScale = 0f;
 				gameOver.SetActive(true);
-				okayButton = GameObject.Find("Okay").GetComponent<Button>();
-				EventSystem.current.SetSelectedGameObject(null);
-				EventSystem.current.SetSelectedGameObject(okayButton.gameObject);
+				artifactController = null;
+				EventSystem.current.SetSelectedGameObject(gameOver.GetComponentInChildren<Button>().gameObject);
+			}
+		}
 
-				isGamePaused = true;*/
+		if (playerGameObjects != null && gameOver != null)
+		{
+			int numberOfPlayers = playerGameObjects.Count;
+			int deadPlayers = 0;
+
+			for (int i = 0; i < numberOfPlayers; i++)
+			{
+				PlayerController playerController = playerGameObjects[i].GetComponent<PlayerController>();
+				if (playerController.currentHealth <= 0)
+				{
+					//Destroy(playerController.gameObject);
+					deadPlayers++;
+				}
 			}
 
-			if (inputActions.Player.Pause.triggered)
+			if (deadPlayers == numberOfPlayers)
 			{
-				if (!paused.activeInHierarchy)
-				{
-					Time.timeScale = 0f;
-					paused.SetActive(true);
-					resumeButton = GameObject.Find("Resume").GetComponent<Button>();
-					EventSystem.current.SetSelectedGameObject(null);
-					EventSystem.current.SetSelectedGameObject(resumeButton.gameObject);
-
-					isGamePaused = true;
-				}
-				else if (paused.activeInHierarchy)
-				{
-					Time.timeScale = 1f;
-					paused.SetActive(false);
-					EventSystem.current.SetSelectedGameObject(null);
-
-					isGamePaused = false;
-				}
+				Time.timeScale = 0f;
+				playerGameObjects.Clear();
+				gameOver.SetActive(true);
+				EventSystem.current.SetSelectedGameObject(gameOver.GetComponentInChildren<Button>().gameObject);
 			}
 		}
 	}

@@ -66,6 +66,8 @@ public class GoblinController : MonoBehaviour, IDamageable, IPoisonable
 	private float poisonTimer = 0f;
 	private float poisonDamage = 0f;
 
+	private bool isCollidingWithPlayerOrArtifact = false;
+
 	// Awake is called before Start
 	void Awake()
     {
@@ -149,16 +151,7 @@ public class GoblinController : MonoBehaviour, IDamageable, IPoisonable
 
 		if (target != null)
 		{
-			if (targetInAttackRadius)
-			{
-				attacking = true;
-			}
-			else
-			{
-				attacking = false;
-			}
-
-			if (!attacking)
+			if (!targetInAttackRadius)
 			{
 				MoveTowardsTarget(target);
 			}
@@ -166,10 +159,12 @@ public class GoblinController : MonoBehaviour, IDamageable, IPoisonable
 			if (target == nearestPlayer)
 			{
 				targetHealth = target.GetComponent<PlayerController>().currentHealth;
+				MoveTowardsTarget(target);
 			}
 
 			if (target == artifact)
 			{
+				playersSeen.Clear();
 				targetHealth = target.GetComponent<ArtifactController>().currentHealth;
 			}
 
@@ -194,13 +189,13 @@ public class GoblinController : MonoBehaviour, IDamageable, IPoisonable
 			Destroy(gameObject);
 		}
 
-		foreach (GameObject player in playersSeen)
+		/*foreach (GameObject player in playersSeen)
 		{
 			if (player.GetComponent<PlayerController>().currentHealth <= 0)
 			{
 				playersSeen.Remove(player);
 			}
-		}
+		}*/
 
 		//Debug.Log($"{gameObject.name} health = {health}");
 

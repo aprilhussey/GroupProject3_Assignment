@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 			if (currentHealth <= 0)
 			{
 				//Debug.Log($"{gameObject.name} destroyed");
-				Destroy(gameObject);
+				//Destroy(gameObject);
 				Gamepad.current.SetMotorSpeeds(0f, 0f);
 			}
 			//Debug.Log($"{gameObject.name} health = {currentHealth}");

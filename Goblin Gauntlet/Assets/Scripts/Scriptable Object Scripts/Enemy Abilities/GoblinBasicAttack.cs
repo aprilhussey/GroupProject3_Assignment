@@ -19,6 +19,7 @@ public class GoblinBasicAttack : Ability
 			if (damageable != null)
 			{
 				//Debug.Log($"damageable = {damageable} ");
+				goblinController.attacking = true;
 				damageable.TakeDamage(damage);
 				//Debug.Log($"{parent.name} basic attack used");
 			}
@@ -27,6 +28,7 @@ public class GoblinBasicAttack : Ability
 
 	public override void EndAbility(GameObject parent)
 	{
+		goblinController.attacking = false;
 		//Debug.Log($"{parent.name} basic attack ended");
 	}
 }
