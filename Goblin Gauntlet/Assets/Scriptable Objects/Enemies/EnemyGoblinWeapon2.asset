@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyGoblinWeapon2
   m_EditorClassIdentifier: 
   entityName: Goblin
-  health: 5
+  health: 10
   speed: 2
   rotationSpeed: 5
   fieldOfView: 45
