@@ -2317,9 +2317,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 3adfa4d01524f9940a304b8717ae00a7, type: 3}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 21300000, guid: 3adfa4d01524f9940a304b8717ae00a7, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 874d8ccfcce50434a914fe3d933d3bfc, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 874d8ccfcce50434a914fe3d933d3bfc, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 874d8ccfcce50434a914fe3d933d3bfc, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -4763,13 +4763,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1206694580}
+  - component: {fileID: 1206694581}
   m_Layer: 5
   m_Name: GameOver
   m_TagString: GameOver
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1206694580
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4791,6 +4792,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1206694581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206694579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4436e1af0bce94ba6ee82c30b55bc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  confirmButton: {fileID: 589005911}
+  hud: {fileID: 673778148}
 --- !u!1 &1209916838 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8171188535475933108, guid: 8bed3236b1d11be449d0a6c5d5827285, type: 3}
