@@ -9,6 +9,8 @@ public abstract class Ability : ScriptableObject
 	public float activeTime;
 	public float cooldownTime;
 
+	public bool attacking;
+
 	public enum AbilityState
 	{
 		ready,

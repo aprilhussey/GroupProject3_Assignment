@@ -15,5 +15,6 @@ MonoBehaviour:
   abilityName: Healing Circle
   activeTime: 5
   cooldownTime: 10
+  attacking: 0
   clericHeal: {fileID: 2451525247174892631, guid: 642dee88b8b4cf9449ab4783abce64d1, type: 3}
   childObject: {fileID: 0}

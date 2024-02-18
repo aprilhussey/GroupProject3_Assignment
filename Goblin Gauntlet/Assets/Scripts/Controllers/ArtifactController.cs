@@ -49,7 +49,7 @@ public class ArtifactController : MonoBehaviour, IDamageable
 			//Destroy(gameObject);
 		}
 
-		Debug.Log($"{gameObject.name} health = {currentHealth}");
+		//Debug.Log($"{gameObject.name} health = {currentHealth}");
     }
 
 	// Class needs to derive from 'IDamageable' for this function to work

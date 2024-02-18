@@ -34,12 +34,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 	[HideInInspector]
 	public Ability mainAbility;
-    private float mainAbilityCooldownTime;
+    public float mainAbilityCooldownTime;
 	private float mainAbilityActiveTime;
 
 	[HideInInspector]
 	public Ability specialAbility;
-	private float specialAbilityCooldownTime;
+	public float specialAbilityCooldownTime;
 	private float specialAbilityActiveTime;
 
 	// Other variables
@@ -105,9 +105,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 		mainAbilityInput = false;
 		specialAbilityInput = false;
 
-		playerRigidbody = GetComponent<Rigidbody>();
+		playerRigidbody = this.GetComponent<Rigidbody>();
 
-		playerInput = GetComponent<PlayerInput>();
+		playerInput = this.GetComponent<PlayerInput>();
 
 		// Input actions
 		inputActions = new InputActions();
@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 				Destroy(gameObject);
 				Gamepad.current.SetMotorSpeeds(0f, 0f);
 			}
-			Debug.Log($"{gameObject.name} health = {currentHealth}");
+			//Debug.Log($"{gameObject.name} health = {currentHealth}");
 
 			CheckAbilityState(ref basicAttackInput, basicAttack, ref basicAttackState, ref basicAttackCooldownTime, ref basicAttackActiveTime);
 			//CheckAbilityState(ref mainAbilityInput, mainAbility, ref mainAbilityState, ref mainAbilityCooldownTime, ref mainAbilityActiveTime);

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Player Basic Attack", menuName = "Scriptable Object/Ability/Player Basic Attack")]
@@ -13,13 +14,11 @@ public class PlayerBasicAttack : Ability
 	private List<GameObject> enemiesSeen;
 	private GameObject nearestEnemy;
 
-	public bool attacking = false;
-
 	public override void UseAbility(GameObject parent)
 	{
 		playerController = parent.GetComponent<PlayerController>();
 
-		attacking = true;
+		this.attacking = true;
 		Debug.Log($"{parent.name} basic attack used");
 
 		enemiesSeen = new List<GameObject>();
@@ -79,7 +78,7 @@ public class PlayerBasicAttack : Ability
 
 	public override void EndAbility(GameObject parent)
 	{
-		attacking = false;
+		this.attacking = false;
 		Debug.Log($"{parent.name} basic attack ended");
 		nearestEnemy = null;
 	}
